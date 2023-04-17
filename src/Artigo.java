@@ -1,43 +1,35 @@
 import java.util.Objects;
 
 public abstract class Artigo{
-    public enum Estado{
-        Novo,
-        Usado;
-    }
-    private Estado estado;
     private double avaliacao;
     private int numeroDonos;
     private String descricao;
     private String marca;
-    private String codAlfanumerico;
+    private String id;
     private double precoBase;
     private double desconto;
 
     public  Artigo(){
-        this.estado = null;
         this.numeroDonos = 0;
         this.descricao = null;
         this.marca = null;
-        this.codAlfanumerico = null;
+        this.id = null;
         this.precoBase = 0;
         this.desconto = 0;
     }
     public  Artigo(Artigo a){
-        this.estado = a.getEstado();
         this.numeroDonos = a.getNumeroDonos();
         this.descricao = a.getDescricao();
         this.marca = a.getMarca();
-        this.codAlfanumerico = a.getCodAlfanumerico();
+        this.id = a.getID();
         this.precoBase = a.getPrecoBase();
         this.desconto = a.getDesconto();
     }
-    public Artigo(Estado estado, int numeroDonos, String descricao, String marca, String codAlfanumerico, double precoBase, double desconto){
-        this.estado = estado;
+    public Artigo(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto){
         this.numeroDonos = numeroDonos;
         this.descricao = descricao;
         this.marca = marca;
-        this.codAlfanumerico = codAlfanumerico;
+        this.id = id;
         this.precoBase = precoBase;
         this.desconto = desconto;
     }
@@ -48,14 +40,6 @@ public abstract class Artigo{
 
     public void setDesconto(double desconto) {
         this.desconto = desconto;
-    }
-
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
     }
 
     public int getNumeroDonos() {
@@ -82,12 +66,12 @@ public abstract class Artigo{
         this.marca = marca;
     }
 
-    public String getCodAlfanumerico() {
-        return this.codAlfanumerico;
+    public String getID() {
+        return this.id;
     }
 
-    public void setCodAlfanumerico(String codAlfanumerico) {
-        this.codAlfanumerico = codAlfanumerico;
+    public void setID(String id) {
+        this.id = id;
     }
 
     public Double getPrecoBase() {
@@ -98,6 +82,11 @@ public abstract class Artigo{
         this.precoBase = precoBase;
     }
 
+    public double getAvaliacao() {return this.avaliacao;
+    }
+
+    public void setAvaliacao(double avaliacao) {this.avaliacao = avaliacao;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -107,17 +96,17 @@ public abstract class Artigo{
         return /*this.numeroDonos.equals(artigo.numeroDonos) &&
                 this.precoBase.equals(artigo.precoBase) &&
                 this.desconto.equals(artigo.desconto) &&*/
-                this.estado.equals(artigo.estado) &&
                 this.descricao.equals(artigo.descricao) &&
                 this.marca.equals(artigo.marca) &&
-                this.codAlfanumerico.equals(artigo.codAlfanumerico);
+                this.id.equals(artigo.id);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(getEstado(), getNumeroDonos(), getDescricao(), getMarca(), getCodAlfanumerico(), getPrecoBase(), getDesconto());
+        return Objects.hash(getNumeroDonos(), getDescricao(), getMarca(), getID(), getPrecoBase(), getDesconto());
     }
 
     public abstract Artigo clone();
 
-    public abstract double precofinal();
+    public abstract double precoartigo();
 }
+

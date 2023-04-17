@@ -12,8 +12,8 @@ public class Sapatilhas extends Artigo {
     private Year ano;
 
 
-    public Sapatilhas(Estado estado, int numeroDonos, String descricao, String marca, String codAlfannumerico, double precoBase, double desconto, Detalhe detalhe , int tamanho, String cor, int ano){
-        super(estado, numeroDonos, descricao, marca, codAlfannumerico, precoBase, desconto);
+    public Sapatilhas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, Detalhe detalhe , int tamanho, String cor, int ano){
+        super(numeroDonos, descricao, marca, id, precoBase, desconto);
         this.detalhe = detalhe;
         this.tamanho = tamanho;
         this.cor = cor;
@@ -69,14 +69,15 @@ public class Sapatilhas extends Artigo {
     public int hashCode() {
         return Objects.hash(getDetalhe(), getTamanho(), getCor(), getAno(), getDesconto());
     }
+
     public Sapatilhas clone(){
         return new Sapatilhas(this);
     }
 
-    public double precofinal(){
+    public double precoartigo(){
         double preco = 0.0;
         if(this.getNumeroDonos() > 0 || this.getTamanho() > 45){
-            preco = getPrecoBase() - (getPrecoBase() / getNumeroDonos());
+            preco = getPrecoBase() - (getPrecoBase() / getNumeroDonos() * getAvaliacao());
             preco = preco - (preco * getDesconto());
         }
         return preco;
