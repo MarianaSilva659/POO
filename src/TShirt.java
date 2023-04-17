@@ -20,6 +20,11 @@ public class TShirt extends Artigo{
         this.tamanho = tamanho;
         this.padrao = padrao;
     }
+    public TShirt(TShirt t){
+        super(t);
+        this.padrao = t.getPadrao();
+        this.tamanho = t.getTamanho();
+    }
 
     public String getTamanho() {
         return this.tamanho;
@@ -51,6 +56,9 @@ public class TShirt extends Artigo{
         return Objects.hash(super.hashCode(), getTamanho(), getPadrao());
     }
 
+    public TShirt clone(){
+        return new TShirt(this);
+    }
     public double precoartigo(){
         double preco = 0;
         preco = getPrecoBase() * ((100 - getDesconto())/100);

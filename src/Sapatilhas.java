@@ -2,23 +2,20 @@ import java.time.Year;
 import java.util.Objects;
 
 public class Sapatilhas extends Artigo {
-    public enum Detalhe{
-        Atacadore,
-        Atilhos;
-    }
-    private Detalhe detalhe;
+    private String detalhe;
     private int tamanho;
     private String cor;
     private Year ano;
 
 
-    public Sapatilhas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, Detalhe detalhe , int tamanho, String cor, int ano){
-        super(numeroDonos, descricao, marca, id, precoBase, desconto);
+    public Sapatilhas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, String detalhe , int tamanho, String cor, int ano){
+        super(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao);
         this.detalhe = detalhe;
         this.tamanho = tamanho;
         this.cor = cor;
         this.ano = Year.of(ano);
     }
+
     public Sapatilhas(Sapatilhas s){
         super(s);
         this.detalhe = s.getDetalhe();
@@ -26,6 +23,7 @@ public class Sapatilhas extends Artigo {
         this.cor = s.getCor();
         this.ano = Year.of(s.getAno());
     }
+
     public Sapatilhas(){
         super();
         this.detalhe = null;
@@ -33,11 +31,12 @@ public class Sapatilhas extends Artigo {
         this.cor = null;
         this.ano = null;
     }
-    public Detalhe getDetalhe() {
-        return detalhe;
+
+    public String getDetalhe() {
+        return this.detalhe;
     }
 
-    public void setDetalhe(Detalhe detalhe) {
+    public void setDetalhe(String detalhe) {
         this.detalhe = detalhe;
     }
 
@@ -67,7 +66,7 @@ public class Sapatilhas extends Artigo {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDetalhe(), getTamanho(), getCor(), getAno(), getDesconto());
+        return Objects.hash(detalhe, tamanho, cor, ano);
     }
 
     public Sapatilhas clone(){
