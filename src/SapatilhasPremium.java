@@ -1,3 +1,5 @@
+import java.time.Year;
+
 public class SapatilhasPremium extends Sapatilhas{
     private String autores;
 
@@ -25,6 +27,8 @@ public class SapatilhasPremium extends Sapatilhas{
     }
 
     public double precoartigo(){
-        return getPrecoBase() + (getPrecoBase() / getNumeroDonos() * getAvaliacao());
+        Year ano = Year.now();
+        int anoAtual = ano.getValue();
+        return getPrecoBase() + (getPrecoBase() / getNumeroDonos() * (anoAtual - getAno()));
     }
 }
