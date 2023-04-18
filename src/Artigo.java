@@ -16,6 +16,7 @@ public abstract class Artigo{
         this.id = null;
         this.precoBase = 0;
         this.desconto = 0;
+        this.avaliacao = 0;
     }
     public  Artigo(Artigo a){
         this.numeroDonos = a.getNumeroDonos();
@@ -24,14 +25,16 @@ public abstract class Artigo{
         this.id = a.getID();
         this.precoBase = a.getPrecoBase();
         this.desconto = a.getDesconto();
+        this.avaliacao = a.getAvaliacao();
     }
-    public Artigo(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto){
+    public Artigo(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao){
         this.numeroDonos = numeroDonos;
         this.descricao = descricao;
         this.marca = marca;
         this.id = id;
         this.precoBase = precoBase;
         this.desconto = desconto;
+        this.avaliacao = avaliacao;
     }
 
     public double getDesconto() {
@@ -82,10 +85,13 @@ public abstract class Artigo{
         this.precoBase = precoBase;
     }
 
-    public double getAvaliacao() {return this.avaliacao;
+    public double getAvaliacao() {
+        return this.avaliacao;
     }
 
-    public void setAvaliacao(double avaliacao) {this.avaliacao = avaliacao;}
+    public void setAvaliacao(double avaliacao) {
+        this.avaliacao = avaliacao;
+    }
 
     @Override
     public boolean equals(Object o) {

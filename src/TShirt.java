@@ -1,8 +1,17 @@
 import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TShirt extends Artigo{
     private String tamanho;
     private String padrao;
+    private static final Map<String, Integer> mapDesconto = new HashMap<>();
+
+    static{
+        mapDesconto.put("liso", 0);
+        mapDesconto.put("riscas", 50);
+        mapDesconto.put("palmeiras", 50);
+    }
 
     public TShirt(String tamanho, String padrao) {
         this.tamanho = tamanho;
@@ -15,8 +24,8 @@ public class TShirt extends Artigo{
         this.padrao = padrao;
     }
 
-    public TShirt(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, String tamanho, String padrao) {
-        super(numeroDonos, descricao, marca, id, precoBase, desconto);
+    public TShirt(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, String tamanho, String padrao) {
+        super(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao);
         this.tamanho = tamanho;
         this.padrao = padrao;
     }
@@ -61,7 +70,12 @@ public class TShirt extends Artigo{
     }
     public double precoartigo(){
         double preco = 0;
-        preco = getPrecoBase() * ((100 - getDesconto())/100);
+        if(getNumeroDonos() > 0){
+            preco = getPrecoBase() * ((100 - mapDesconto.get(this.getPadrao()))/100);
+        }  
+        else{
+            preco = getPrecoBase() * ((100 - getDesconto())/100);
+        } 
         return preco;
     }
 }
