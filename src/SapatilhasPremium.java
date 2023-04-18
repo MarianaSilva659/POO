@@ -30,5 +30,6 @@ public class SapatilhasPremium extends Sapatilhas{
         Year ano = Year.now();
         int anoAtual = ano.getValue();
         return getPrecoBase() + (getPrecoBase() / getNumeroDonos() * (anoAtual - getAno()));
+        
     }
 }
