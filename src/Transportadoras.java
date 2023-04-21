@@ -82,11 +82,11 @@ public class Transportadoras {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Transportadoras that = (Transportadoras) o;
-        return  Double.compare(that.valorBase_PEQ, valorBase_PEQ) == 0 &&
-                Double.compare(that.valorBase_MED, valorBase_MED) == 0 &&
-                Double.compare(that.valorBase_GRA, valorBase_GRA) == 0 &&
-                Double.compare(that.parteDeLucro, parteDeLucro) == 0;
+        Transportadoras transportadora = (Transportadoras) o;
+        return  Double.compare(transportadora.getValorBase_PEQ(), this.getValorBase_PEQ()) == 0 &&
+                Double.compare(transportadora.getValorBase_MED(), this.getValorBase_MED()) == 0 &&
+                Double.compare(transportadora.getValorBase_GRA(), this.getValorBase_GRA()) == 0 &&
+                Double.compare(transportadora.getParteDeLucro(), this.getParteDeLucro()) == 0;
     }
 
     public Transportadoras clone(){
