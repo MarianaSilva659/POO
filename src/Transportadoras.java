@@ -36,19 +36,19 @@ public class Transportadoras {
     }
 
     public double getValorBase_PEQ() {
-        return valorBase_PEQ;
+        return this.valorBase_PEQ;
     }
 
     public double getValorBase_MED() {
-        return valorBase_MED;
+        return this.valorBase_MED;
     }
 
     public double getValorBase_GRA() {
-        return valorBase_GRA;
+        return this.valorBase_GRA;
     }
 
     public double getParteDeLucro() {
-        return parteDeLucro;
+        return this.parteDeLucro;
     }
 
 

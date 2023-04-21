@@ -21,9 +21,20 @@ public class SapatilhasPremium extends Sapatilhas{
         this.autores = s.getAutores();
     }
 
-    public SapatilhasPremium(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, String detalhe , int tamanho, String cor, int ano, String autores){
+    public SapatilhasPremium(int numeroDonos, String descricao, String marca, String id, double precoBase, double avaliacao, String detalhe , int tamanho, String cor, int ano, String autores){
         super(numeroDonos, descricao, marca, id, precoBase, 0, avaliacao, detalhe, tamanho, cor, ano);
         this.autores = autores;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof SapatilhasPremium)) {
+            return false;
+        }
+        SapatilhasPremium sapatilhasPremium = (SapatilhasPremium) o;
+        return this.autores.equals(sapatilhasPremium.autores);
     }
 
     public double precoartigo(){

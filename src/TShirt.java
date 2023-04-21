@@ -1,6 +1,4 @@
 import java.util.Objects;
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class TShirt extends Artigo{
     private String tamanho;
@@ -20,6 +18,12 @@ public abstract class TShirt extends Artigo{
         super(t);
         this.padrao = t.getPadrao();
         this.tamanho = t.getTamanho();
+    }
+
+    public TShirt(){
+        super();
+        this.tamanho = null;
+        this.padrao = null;
     }
 
     public String getTamanho() {
@@ -51,6 +55,8 @@ public abstract class TShirt extends Artigo{
     public int hashCode() {
         return Objects.hash(super.hashCode(), getTamanho(), getPadrao());
     }
+
+    public abstract TShirt clone();
 
     public abstract double precoartigo();
 }
