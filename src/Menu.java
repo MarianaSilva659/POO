@@ -9,7 +9,7 @@ public class Menu {
         str.append("2 -> Registar nova conta\n");
         str.append("0 -> Sair\n\n");
 
-        str.append("Selecione um número para prossegir\n");
+        str.append("Selecione um número para prosseguir: ");
 
         System.out.println(str.toString());
         Scanner input = new Scanner(System.in);
