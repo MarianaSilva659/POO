@@ -1,15 +1,22 @@
 import java.util.Objects;
 
 public abstract class TShirt extends Artigo{
-    private String tamanho;
+    public enum Tamanho{
+        S,
+        M,
+        L,
+        XL
+    }
+    private Tamanho tamanho;
+
     private String padrao;
 
-    public TShirt(String tamanho, String padrao) {
+    public TShirt(Tamanho tamanho, String padrao) {
         this.tamanho = tamanho;
         this.padrao = padrao;
     }
 
-    public TShirt(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, String tamanho, String padrao) {
+    public TShirt(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, Tamanho tamanho, String padrao) {
         super(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao);
         this.tamanho = tamanho;
         this.padrao = padrao;
@@ -26,11 +33,11 @@ public abstract class TShirt extends Artigo{
         this.padrao = null;
     }
 
-    public String getTamanho() {
+    public Tamanho getTamanho() {
         return this.tamanho;
     }
 
-    public void setTamanho(String tamanho) {
+    public void setTamanho(Tamanho tamanho) {
         this.tamanho = tamanho;
     }
 

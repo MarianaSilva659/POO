@@ -75,7 +75,7 @@ public class Sapatilhas extends Artigo {
 
     public double precoartigo(){
         double preco = 0.0;
-        if(this.getNumeroDonos() > 0 || this.getTamanho() > 45){
+        if((this.getNumeroDonos() > 0) || (this.getTamanho() > 45)){
             preco = getPrecoBase() - (getPrecoBase() / getNumeroDonos() * getAvaliacao());
             preco = preco * ((100 - getDesconto())/100);
         }
