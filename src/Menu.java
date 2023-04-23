@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Menu {
     public static int MenuInicial(){
+        int opcao;
         StringBuilder str = new StringBuilder("          Seja bem vindo á Vintege\n\n");
         
         str.append("1 -> Iniciar sessão\n");
@@ -13,6 +14,8 @@ public class Menu {
 
         System.out.println(str.toString());
         Scanner input = new Scanner(System.in);
-        return input.nextInt();
+        opcao = input.nextInt();
+        input.close();
+        return opcao;
     }
 }

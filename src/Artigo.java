@@ -22,7 +22,7 @@ public abstract class Artigo{
         this.numeroDonos = a.getNumeroDonos();
         this.descricao = a.getDescricao();
         this.marca = a.getMarca();
-        this.id = a.getID();
+        this.id = a.getId();
         this.precoBase = a.getPrecoBase();
         this.desconto = a.getDesconto();
         this.avaliacao = a.getAvaliacao();
@@ -69,11 +69,11 @@ public abstract class Artigo{
         this.marca = marca;
     }
 
-    public String getID() {
+    public String getId() {
         return this.id;
     }
 
-    public void setID(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -101,16 +101,29 @@ public abstract class Artigo{
         Artigo a = (Artigo) o;
         return Double.compare(this.getAvaliacao(), a.getAvaliacao()) == 0 &&
                this.getNumeroDonos() == a.getNumeroDonos() &&
-               this.descricao.equals(a.descricao) &&
-               this.marca.equals(a.marca) &&
-               this.id.equals(a.id) &&
+               this.getDescricao().equals(a.getDescricao()) &&
+               this.getMarca().equals(a.getMarca()) &&
+               this.getId().equals(a.getId()) &&
                Double.compare(this.getPrecoBase(), a.getPrecoBase()) == 0 &&
                Double.compare(this.getDesconto(), a.getDesconto()) == 0;
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(getNumeroDonos(), getDescricao(), getMarca(), getID(), getPrecoBase(), getDesconto());
+        return Objects.hash(getNumeroDonos(), getDescricao(), getMarca(), getId(), getPrecoBase(), getDesconto());
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " avaliacao='" + getAvaliacao() + "'" +
+            ", numeroDonos='" + getNumeroDonos() + "'" +
+            ", descricao='" + getDescricao() + "'" +
+            ", marca='" + getMarca() + "'" +
+            ", id='" + getId() + "'" +
+            ", precoBase='" + getPrecoBase() + "'" +
+            ", desconto='" + getDesconto() + "'" +
+            "}";
     }
 
     public abstract Artigo clone();

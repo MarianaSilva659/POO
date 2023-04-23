@@ -31,6 +31,29 @@ public class MalasPremium extends Malas{
         return new MalasPremium(this);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof MalasPremium)) {
+            return false;
+        }
+        MalasPremium malasPremium = (MalasPremium) o;
+        return this.getValorizacao() == malasPremium.getValorizacao();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(valorizacao);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " valorizacao='" + getValorizacao() + "'" +
+            "}";
+    }
+
     public double precoartigo(){
         return getPrecoBase() + (getPrecoBase() * ((100 - this.getValorizacao())/100));
     }

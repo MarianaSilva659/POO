@@ -65,6 +65,20 @@ public class Sapatilhas extends Artigo {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Sapatilhas)) {
+            return false;
+        }
+        Sapatilhas sapatilhas = (Sapatilhas) o;
+        return this.getDetalhe().equals(sapatilhas.getDetalhe()) && 
+        this.getTamanho() == sapatilhas.getTamanho() && 
+        this.getCor().equals(sapatilhas.getCor()) && 
+        this.getAno() == sapatilhas.getAno();
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(detalhe, tamanho, cor, ano);
     }

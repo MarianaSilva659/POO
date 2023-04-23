@@ -25,6 +25,10 @@ public class SapatilhasPremium extends Sapatilhas{
         super(numeroDonos, descricao, marca, id, precoBase, 0, avaliacao, detalhe, tamanho, cor, ano);
         this.autores = autores;
     }
+    
+    public SapatilhasPremium clone(){
+        return new SapatilhasPremium(this);
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,5 +1,7 @@
 import java.util.Objects;
 
+import javax.print.DocFlavor.STRING;
+
 public abstract class TShirt extends Artigo{
     public enum Tamanho{
         S,
@@ -55,7 +57,8 @@ public abstract class TShirt extends Artigo{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         TShirt tShirt = (TShirt) o;
-        return Objects.equals(getTamanho(), tShirt.getTamanho()) && Objects.equals(getPadrao(), tShirt.getPadrao());
+        return this.getTamanho() == tShirt.getTamanho() &&
+               this.getPadrao().equals(tShirt.getPadrao());
     }
 
     @Override
