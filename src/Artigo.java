@@ -77,11 +77,11 @@ public abstract class Artigo{
         this.id = id;
     }
 
-    public Double getPrecoBase() {
+    public double getPrecoBase() {
         return this.precoBase;
     }
 
-    public void setPrecoBase(Double precoBase) {
+    public void setPrecoBase(double precoBase) {
         this.precoBase = precoBase;
     }
 

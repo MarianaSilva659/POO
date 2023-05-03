@@ -43,11 +43,6 @@ public class MalasPremium extends Malas{
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(valorizacao);
-    }
-
-    @Override
     public String toString() {
         return "{" +
             " valorizacao='" + getValorizacao() + "'" +
