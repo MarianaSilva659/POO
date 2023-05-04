@@ -1,69 +1,64 @@
-import java.util.Map;
-import java.util.HashMap;
-import java.util.stream.Collectors;
+import java.util.Set;
 import java.util.Objects;
-public class Utilizador {
-    private String cod;
+import java.util.TreeSet;
+public class Utilizador{
+    private String id;
     private String email;
     private String nome;
     private String morada;
-    private  String nif;
-    private Map<String, Artigo> compras;
-    private Map<String, Artigo> vendidas;
-    private Map<String, Artigo> pra_venda;
-    private double valor_vendas;
+    private String nif;
+    private Set<String> artigos_comprados;
+    private Set<String> artigos_vendidos;
+    private Set<String> artigos_pra_venda;
+
     public Utilizador(){
-        this.cod = "";
+        this.id = "";
         this.email = "";
         this.nome = "";
         this.morada = "";
         this.nif = "";
-        this.compras = new HashMap<>();
-        this.vendidas = new HashMap<>();
-        this.pra_venda = new HashMap<>();
-        this.valor_vendas = 0;
+        this.artigos_comprados = new TreeSet<>();
+        this.artigos_vendidos = new TreeSet<>();
+        this.artigos_pra_venda = new TreeSet<>();
     }
 
-    public Utilizador(String cod, String email, String nome, String morada, String nif, Map<String, Artigo> compras, Map<String, Artigo> vendidas, Map<String, Artigo> pra_venda, double valor_vendas) {
-        this.cod = cod;
+    public Utilizador(String id, String email, String nome, String morada, String nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda) {
+        this.id = id;
         this.email = email;
         this.nome = nome;
         this.morada = morada;
         this.nif = nif;
-        this.compras = compras.entrySet().stream().collect(Collectors.toMap(k->k.getKey(), v->v.getValue().clone()));
-        this.vendidas = vendidas.entrySet().stream().collect(Collectors.toMap(k->k.getKey(), v->v.getValue().clone()));
-        this.pra_venda = pra_venda.entrySet().stream().collect(Collectors.toMap(k->k.getKey(), v->v.getValue().clone()));
-        this.valor_vendas = valor_vendas;
+        this.artigos_comprados = compras;
+        this.artigos_vendidos = vendidas;
+        this.artigos_pra_venda = pra_venda;
     }
-    public Utilizador(String cod, String email, String nome, String morada, String nif) {
-        this.cod = cod;
+    public Utilizador(String id, String email, String nome, String morada, String nif) {
+        this.id = id;
         this.email = email;
         this.nome = nome;
         this.morada = morada;
         this.nif = nif;
-        this.compras = new HashMap<>();
-        this.vendidas = new HashMap<>();
-        this.pra_venda = new HashMap<>();
-        this.valor_vendas = 0;
+        this.artigos_comprados = new TreeSet<>();
+        this.artigos_vendidos = new TreeSet<>();
+        this.artigos_pra_venda = new TreeSet<>();
     }
     public Utilizador(Utilizador u) {
-        this.cod = u.getCod();
+        this.id = u.getId();
         this.email = u.getEmail();
         this.nome = u.getNome();
         this.morada = u.getMorada();
         this.nif = u.getNif();
-        this.compras = u.getCompras();
-        this.vendidas = u.getVendidas();
-        this.pra_venda = u.getPra_venda();
-        this.valor_vendas = u.getValor_vendas();
+        this.artigos_comprados = u.getArtigos_comprados();
+        this.artigos_vendidos = u.getArtigos_vendidos();
+        this.artigos_pra_venda = u.getArtigos_pra_venda();
     }
 
-    public String getCod() {
-        return this.cod;
+    public String getId() {
+        return this.id;
     }
 
-    public void setCod(String cod) {
-        this.cod = cod;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -98,101 +93,49 @@ public class Utilizador {
         this.nif = nif;
     }
 
-    public Map<String, Artigo> getCompras() {
-        return this.compras.entrySet().stream().collect(Collectors.toMap(k->k.getKey(), v->v.getValue().clone()));
+    public Set<String> getArtigos_comprados() {
+        return this.artigos_vendidos;
     }
 
-    public void setCompras(Map<String, Artigo> compras) {
-        this.compras = compras;
+    public void setArtigos_comprados(Set<String> artigos_comprasdos) {
+        this.artigos_comprados = artigos_comprasdos;
     }
 
-    public Map<String, Artigo> getVendidas() {
-        return this.vendidas.entrySet().stream().collect(Collectors.toMap(k->k.getKey(), v->v.getValue().clone()));
+    public Set<String> getArtigos_vendidos() {
+        return this.artigos_vendidos;
     }
 
-    public void setVendidas(Map<String, Artigo> vendidas) {
-        this.vendidas = vendidas;
+    public void setArtigos_vendidos(Set<String> artigos_vendidos) {
+        this.artigos_vendidos = artigos_vendidos;
     }
 
-    public Map<String, Artigo> getPra_venda() {
-        return this.pra_venda.entrySet().stream().collect(Collectors.toMap(k->k.getKey(), v->v.getValue().clone()));
+    public Set<String> getArtigos_pra_venda() {
+        return this.artigos_pra_venda;
     }
 
-    public void setPra_venda(Map<String, Artigo> pra_venda) {
-        this.pra_venda = pra_venda;
+    public void setArtigos_pra_venda(Set<String> artigos_pra_venda) {
+        this.artigos_pra_venda = artigos_pra_venda;
     }
 
-    public double getValor_vendas() {
-        return this.valor_vendas;
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        Utilizador that = (Utilizador) object;
+        return this.id.equals(that.getId()) 
+            && this.email.equals(that.getEmail()) 
+            && this.nome.equals(that.getNome()) 
+            && this.morada.equals(that.getMorada()) 
+            && this.nif.equals(that.getNif()) 
+            && this.artigos_comprados.equals(that.getArtigos_comprados()) 
+            && this.artigos_vendidos.equals(that.getArtigos_vendidos()) 
+            && this.artigos_pra_venda.equals(that.getArtigos_pra_venda());
     }
 
-    public void setValor_vendas(double valor_vendas) {
-        this.valor_vendas = valor_vendas;
-    }
-
-    public void addCompras(Artigo a){
-        this.compras.put(a.getId(), a.clone());
-    }
-    public void addVendidas(Artigo a){
-        this.vendidas.put(a.getId(), a.clone());
-    }
-    public void addPra_Venda(Artigo a){
-        this.pra_venda.put(a.getId(), a.clone());
-    }
-    public Artigo getCompra(String id){
-        if(!compras.containsKey(id)){
-            return null;
-        }
-        return this.compras.get(id).clone();
-    }
-    public Artigo getVendida(String id){
-        if(!vendidas.containsKey(id)){
-            return null;
-        }
-        return this.vendidas.get(id).clone();
-    }
-    public Artigo getPra_Venda(String id){
-        if(!pra_venda.containsKey(id)){
-            return null;
-        }
-        return this.pra_venda.get(id).clone();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Utilizador that = (Utilizador) o;
-        return Double.compare(that.getValor_vendas(), getValor_vendas()) == 0
-                && Objects.equals(getCod(), that.getCod())
-                && Objects.equals(getEmail(), that.getEmail())
-                && Objects.equals(getNome(), that.getNome())
-                && Objects.equals(getMorada(), that.getMorada())
-                && Objects.equals(getNif(), that.getNif())
-                && this.compras.equals(that.getCompras())
-                && this.vendidas.equals(that.getVendidas())
-                && this.pra_venda.equals(that.getPra_venda());
-    }
-
-    @Override
     public int hashCode() {
-        return Objects.hash(getCod(), getEmail(), getNome(), getMorada(), getNif(), getCompras(), getVendidas(), getPra_venda(), getValor_vendas());
+        return Objects.hash(super.hashCode(), getId(), getEmail(), getNome(), getMorada(), getNif(), getArtigos_comprados(), getArtigos_vendidos(), getArtigos_pra_venda());
     }
 
-    @Override
-    public String toString() {
-        return "Utilizador{" +
-                "cod='" + cod + '\'' +
-                ", email='" + email + '\'' +
-                ", nome='" + nome + '\'' +
-                ", morada='" + morada + '\'' +
-                ", nif='" + nif + '\'' +
-                ", compras=" + compras +
-                ", vendidas=" + vendidas +
-                ", pra_venda=" + pra_venda +
-                ", valor_vendas=" + valor_vendas +
-                '}';
-    }
     public Utilizador clone(){
         return new Utilizador();
     }
