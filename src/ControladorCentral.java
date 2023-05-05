@@ -23,7 +23,7 @@ public class ControladorCentral {
                     break;
                 default: 
                     System.out.println("Inseriu um número incorreto. Vintege exit");
-                    System.exit(0);
+                    break;
             }
         }
     }
