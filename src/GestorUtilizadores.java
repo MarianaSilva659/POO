@@ -2,7 +2,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class GestorUtilizadores{
-    private Map<String, Utilizador> contas;
+    private Map<Integer, Utilizador> contas;
 
     public GestorUtilizadores(){
         this.contas = new TreeMap<>();
@@ -12,20 +12,20 @@ public class GestorUtilizadores{
         this.contas = c.getContas();
     }
 
-    public Map<String, Utilizador> getContas(){
-        TreeMap<String, Utilizador> copia = new TreeMap<>();
+    public Map<Integer, Utilizador> getContas(){
+        TreeMap<Integer, Utilizador> copia = new TreeMap<>();
 
-        for(Map.Entry<String, Utilizador> c : contas.entrySet()){
+        for(Map.Entry<Integer, Utilizador> c : contas.entrySet()){
             copia.put(c.getKey(), c.getValue().clone());
         }
         return copia;
     }
 
-    public void setContas(Map<String, Utilizador> contas){
-        TreeMap<String, Utilizador> copia = new TreeMap<>();
+    public void setContas(Map<Integer, Utilizador> contas){
+        TreeMap<Integer, Utilizador> copia = new TreeMap<>();
 
-        for (Map.Entry<String, Utilizador> c : contas.entrySet()) {
-            String key = c.getKey();
+        for (Map.Entry<Integer, Utilizador> c : contas.entrySet()) {
+            Integer key = c.getKey();
             Utilizador value = c.getValue().clone();
             copia.put(key, value);
         }
@@ -40,14 +40,14 @@ public class GestorUtilizadores{
         return new GestorUtilizadores(this);
     }
 
-    public Utilizador getContaByCod(String cod){
+    public Utilizador getContaByCod(int cod){
         if(contas.containsKey(cod)) return contas.get(cod).clone();
         else return null;
     }
 
     public Utilizador geContaByEmail(String email){
         Utilizador conta = null;
-        for(Map.Entry<String, Utilizador> c : contas.entrySet()){
+        for(Map.Entry<Integer, Utilizador> c : contas.entrySet()){
             if(email.equals(c.getValue().getEmail())){
                 conta = c.getValue();
             }
@@ -56,5 +56,11 @@ public class GestorUtilizadores{
         else return null;
     }
 
+    public String getIdNewUtilizador(){
+        String newId = "";
+        for(Map.Entry<String, Utilizador> c : contas.entrySet()){
+
+        }
+    }
 
 }

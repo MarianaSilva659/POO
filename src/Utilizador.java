@@ -2,7 +2,7 @@ import java.util.Set;
 import java.util.Objects;
 import java.util.TreeSet;
 public class Utilizador{
-    private String id;
+    private int id;
     private String email;
     private String nome;
     private String morada;
@@ -12,7 +12,7 @@ public class Utilizador{
     private Set<String> artigos_pra_venda;
 
     public Utilizador(){
-        this.id = "";
+        this.id = 0;
         this.email = "";
         this.nome = "";
         this.morada = "";
@@ -22,7 +22,7 @@ public class Utilizador{
         this.artigos_pra_venda = new TreeSet<>();
     }
 
-    public Utilizador(String id, String email, String nome, String morada, String nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda) {
+    public Utilizador(int id, String email, String nome, String morada, String nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda) {
         this.id = id;
         this.email = email;
         this.nome = nome;
@@ -32,7 +32,7 @@ public class Utilizador{
         this.artigos_vendidos = vendidas;
         this.artigos_pra_venda = pra_venda;
     }
-    public Utilizador(String id, String email, String nome, String morada, String nif) {
+    public Utilizador(int id, String email, String nome, String morada, String nif) {
         this.id = id;
         this.email = email;
         this.nome = nome;
@@ -53,11 +53,11 @@ public class Utilizador{
         this.artigos_pra_venda = u.getArtigos_pra_venda();
     }
 
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -122,7 +122,7 @@ public class Utilizador{
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
         Utilizador that = (Utilizador) object;
-        return this.id.equals(that.getId()) 
+        return this.id == that.getId()
             && this.email.equals(that.getEmail()) 
             && this.nome.equals(that.getNome()) 
             && this.morada.equals(that.getMorada()) 

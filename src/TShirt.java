@@ -1,7 +1,5 @@
 import java.util.Objects;
 
-import javax.print.DocFlavor.STRING;
-
 public abstract class TShirt extends Artigo{
     public enum Tamanho{
         S,

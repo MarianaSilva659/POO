@@ -5,36 +5,40 @@ public abstract class Artigo{
     private int numeroDonos;
     private String descricao;
     private String marca;
-    private String id;
+    private String id_artigo;
     private double precoBase;
     private double desconto;
+    private String id_utilizador;
 
     public  Artigo(){
         this.numeroDonos = 0;
         this.descricao = null;
         this.marca = null;
-        this.id = null;
+        this.id_artigo = null;
         this.precoBase = 0;
         this.desconto = 0;
         this.avaliacao = 0;
+        this.id_utilizador = null;
     }
     public  Artigo(Artigo a){
         this.numeroDonos = a.getNumeroDonos();
         this.descricao = a.getDescricao();
         this.marca = a.getMarca();
-        this.id = a.getId();
+        this.id_artigo = a.getId();
         this.precoBase = a.getPrecoBase();
         this.desconto = a.getDesconto();
         this.avaliacao = a.getAvaliacao();
+        this.id_utilizador = a.getIdUtilizador();
     }
-    public Artigo(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao){
+    public Artigo(int numeroDonos, String descricao, String marca, String id_artigo, double precoBase, double desconto, double avaliacao, String id_utilizador){
         this.numeroDonos = numeroDonos;
         this.descricao = descricao;
         this.marca = marca;
-        this.id = id;
+        this.id_artigo = id_artigo;
         this.precoBase = precoBase;
         this.desconto = desconto;
         this.avaliacao = avaliacao;
+        this.id_utilizador = id_utilizador;
     }
 
     public double getDesconto() {
@@ -70,11 +74,11 @@ public abstract class Artigo{
     }
 
     public String getId() {
-        return this.id;
+        return this.id_artigo;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String id_artigo) {
+        this.id_artigo = id_artigo;
     }
 
     public double getPrecoBase() {
@@ -91,6 +95,14 @@ public abstract class Artigo{
 
     public void setAvaliacao(double avaliacao) {
         this.avaliacao = avaliacao;
+    }
+
+    public String getIdUtilizador(){
+        return this.id_utilizador;
+    }
+
+    public void setIdUtilizador(String id_utilizador){
+        this.id_utilizador = id_utilizador;
     }
 
     @Override
