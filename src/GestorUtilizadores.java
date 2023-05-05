@@ -56,11 +56,12 @@ public class GestorUtilizadores{
         else return null;
     }
 
-    public String getIdNewUtilizador(){
-        String newId = "";
-        for(Map.Entry<String, Utilizador> c : contas.entrySet()){
-
+    public int getIdNewUtilizador(){
+        int newId = 0;
+        for(Map.Entry<Integer, Utilizador> c : contas.entrySet()){
+                newId = c.getKey();
         }
+        return newId++;
     }
 
 }
