@@ -48,22 +48,22 @@ public class GestorArtigos{
         this.produtos_pra_venda = produtos_pra_venda;
     }
 
-    public void addCompra(Artigo a, String idcomprador){
+    public void addCompra(Artigo a, int idcomprador){
         a.setIdUtilizador(idcomprador);
         this.produtos_comprados.put(a.getId(), a);
     }
 
-    public void addVendas(Artigo a, String idvendedor){
+    public void addVendas(Artigo a, int idvendedor){
         a.setIdUtilizador(idvendedor);
         this.produtos_vendidos.put(a.getId(), a);
     }
 
-    public void addPra_venda(Artigo a, String idvende){
+    public void addPra_venda(Artigo a, int idvende){
         a.setIdUtilizador(idvende);
         this.produtos_pra_venda.put(a.getId(), a);
     }
 
-    public void remove_produto_pra_venda(Artigo a, String idcomprador){
+    public void remove_produto_pra_venda(Artigo a, int idcomprador){
         Artigo nova_compra = a.clone();
         nova_compra.setIdUtilizador(idcomprador);
 

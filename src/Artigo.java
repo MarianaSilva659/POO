@@ -8,7 +8,7 @@ public abstract class Artigo{
     private String id_artigo;
     private double precoBase;
     private double desconto;
-    private String id_utilizador;
+    private int id_utilizador;
 
     public  Artigo(){
         this.numeroDonos = 0;
@@ -18,7 +18,7 @@ public abstract class Artigo{
         this.precoBase = 0;
         this.desconto = 0;
         this.avaliacao = 0;
-        this.id_utilizador = null;
+        this.id_utilizador = 0;
     }
     public  Artigo(Artigo a){
         this.numeroDonos = a.getNumeroDonos();
@@ -30,7 +30,7 @@ public abstract class Artigo{
         this.avaliacao = a.getAvaliacao();
         this.id_utilizador = a.getIdUtilizador();
     }
-    public Artigo(int numeroDonos, String descricao, String marca, String id_artigo, double precoBase, double desconto, double avaliacao, String id_utilizador){
+    public Artigo(int numeroDonos, String descricao, String marca, String id_artigo, double precoBase, double desconto, double avaliacao, int id_utilizador){
         this.numeroDonos = numeroDonos;
         this.descricao = descricao;
         this.marca = marca;
@@ -97,11 +97,11 @@ public abstract class Artigo{
         this.avaliacao = avaliacao;
     }
 
-    public String getIdUtilizador(){
+    public int getIdUtilizador(){
         return this.id_utilizador;
     }
 
-    public void setIdUtilizador(String id_utilizador){
+    public void setIdUtilizador(int id_utilizador){
         this.id_utilizador = id_utilizador;
     }
 
