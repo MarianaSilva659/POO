@@ -21,8 +21,8 @@ public class SapatilhasPremium extends Sapatilhas{
         this.autores = s.getAutores();
     }
 
-    public SapatilhasPremium(int numeroDonos, String descricao, String marca, String id, double precoBase, double avaliacao, int id_utilizador, String detalhe , int tamanho, String cor, int ano, String autores){
-        super(numeroDonos, descricao, marca, id, precoBase, 0, avaliacao, id_utilizador, detalhe, tamanho, cor, ano);
+    public SapatilhasPremium(int numeroDonos, String descricao, String marca, String id, double precoBase, double avaliacao, int id_utilizador, int id_transporte, String detalhe , int tamanho, String cor, int ano, String autores){
+        super(numeroDonos, descricao, marca, id, precoBase, 0, avaliacao, id_utilizador, id_transporte, detalhe, tamanho, cor, ano);
         this.autores = autores;
     }
     

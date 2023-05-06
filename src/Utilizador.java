@@ -136,6 +136,22 @@ public class Utilizador{
         return Objects.hash(super.hashCode(), getId(), getEmail(), getNome(), getMorada(), getNif(), getArtigos_comprados(), getArtigos_vendidos(), getArtigos_pra_venda());
     }
 
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", morada='" + getMorada() + "'" +
+            ", nif='" + getNif() + "'" +
+            ", artigos_comprados='" + getArtigos_comprados() + "'" +
+            ", artigos_vendidos='" + getArtigos_vendidos() + "'" +
+            ", artigos_pra_venda='" + getArtigos_pra_venda() + "'" +
+            "}";
+    }
+
+
     public Utilizador clone(){
         return new Utilizador();
     }

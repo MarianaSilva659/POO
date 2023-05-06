@@ -57,8 +57,8 @@ public class Malas extends Artigo{
         this.ano = null;
     }
 
-    public Malas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, Year ano, double altura, double largura, double profundidade, String material) {
-        super(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador);
+    public Malas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, Year ano, double altura, double largura, double profundidade, String material) {
+        super(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador, id_transporte);
         this.ano = ano;
         this.altura = altura;
         this.largura = largura;

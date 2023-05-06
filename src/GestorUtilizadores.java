@@ -47,12 +47,12 @@ public class GestorUtilizadores{
         return new GestorUtilizadores(this);
     }
 
-    public Utilizador getContaByCod(int cod){
-        if(contas.containsKey(cod)) return contas.get(cod).clone();
+    public Utilizador getContaByCod(int id){
+        if(contas.containsKey(id)) return contas.get(id).clone();
         else return null;
     }
 
-    public Utilizador geContaByEmail(String email){
+    public Utilizador getContaByEmail(String email){
         Utilizador conta = null;
         Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
         

@@ -9,6 +9,7 @@ public abstract class Artigo{
     private double precoBase;
     private double desconto;
     private int id_utilizador;
+    private int id_transporte;
 
     public  Artigo(){
         this.numeroDonos = 0;
@@ -19,6 +20,7 @@ public abstract class Artigo{
         this.desconto = 0;
         this.avaliacao = 0;
         this.id_utilizador = 0;
+        this.id_transporte = 0;
     }
     public  Artigo(Artigo a){
         this.numeroDonos = a.getNumeroDonos();
@@ -28,9 +30,11 @@ public abstract class Artigo{
         this.precoBase = a.getPrecoBase();
         this.desconto = a.getDesconto();
         this.avaliacao = a.getAvaliacao();
-        this.id_utilizador = a.getIdUtilizador();
+        this.id_utilizador = a.getId_Utilizador();
+        this.id_transporte = a.getId_transporte();
+        
     }
-    public Artigo(int numeroDonos, String descricao, String marca, String id_artigo, double precoBase, double desconto, double avaliacao, int id_utilizador){
+    public Artigo(int numeroDonos, String descricao, String marca, String id_artigo, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte){
         this.numeroDonos = numeroDonos;
         this.descricao = descricao;
         this.marca = marca;
@@ -39,6 +43,7 @@ public abstract class Artigo{
         this.desconto = desconto;
         this.avaliacao = avaliacao;
         this.id_utilizador = id_utilizador;
+        this.id_transporte = id_transporte;
     }
 
     public double getDesconto() {
@@ -97,12 +102,20 @@ public abstract class Artigo{
         this.avaliacao = avaliacao;
     }
 
-    public int getIdUtilizador(){
+    public int getId_Utilizador(){
         return this.id_utilizador;
     }
 
-    public void setIdUtilizador(int id_utilizador){
+    public void setId_Utilizador(int id_utilizador){
         this.id_utilizador = id_utilizador;
+    }
+
+    public int getId_transporte() {
+        return this.id_transporte;
+    }
+
+    public void setId_transporte(int id_transporte) {
+        this.id_transporte = id_transporte;
     }
 
     @Override
@@ -117,25 +130,28 @@ public abstract class Artigo{
                this.getMarca().equals(a.getMarca()) &&
                this.getId().equals(a.getId()) &&
                Double.compare(this.getPrecoBase(), a.getPrecoBase()) == 0 &&
-               Double.compare(this.getDesconto(), a.getDesconto()) == 0;
-    }
-    
-    @Override
-    public int hashCode() {
-        return Objects.hash(getNumeroDonos(), getDescricao(), getMarca(), getId(), getPrecoBase(), getDesconto());
+               Double.compare(this.getDesconto(), a.getDesconto()) == 0 &&
+               this.getId_Utilizador() == a.getId_Utilizador() &&
+               this.getId_transporte() == a.getId_transporte();
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-            " avaliacao='" + getAvaliacao() + "'" +
-            ", numeroDonos='" + getNumeroDonos() + "'" +
-            ", descricao='" + getDescricao() + "'" +
-            ", marca='" + getMarca() + "'" +
-            ", id='" + getId() + "'" +
-            ", precoBase='" + getPrecoBase() + "'" +
-            ", desconto='" + getDesconto() + "'" +
-            "}";
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getAvaliacao(), getNumeroDonos(), getDescricao(), getMarca(), id_artigo, getPrecoBase(), getDesconto(), id_utilizador, getId_transporte());
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Artigo{" +
+                "avaliacao=" + avaliacao +
+                ", numeroDonos=" + numeroDonos +
+                ", descricao='" + descricao + '\'' +
+                ", marca='" + marca + '\'' +
+                ", id_artigo='" + id_artigo + '\'' +
+                ", precoBase=" + precoBase +
+                ", desconto=" + desconto +
+                ", id_utilizador=" + id_utilizador +
+                ", id_transporte=" + id_transporte +
+                '}';
     }
 
     public abstract Artigo clone();

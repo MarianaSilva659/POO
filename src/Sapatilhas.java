@@ -8,8 +8,8 @@ public class Sapatilhas extends Artigo {
     private Year ano;
 
 
-    public Sapatilhas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, String detalhe , int tamanho, String cor, int ano){
-        super(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador);
+    public Sapatilhas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String detalhe , int tamanho, String cor, int ano){
+        super(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador, id_transporte);
         this.detalhe = detalhe;
         this.tamanho = tamanho;
         this.cor = cor;
