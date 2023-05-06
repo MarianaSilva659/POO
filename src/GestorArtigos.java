@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class GestorArtigos{
@@ -76,7 +77,9 @@ public class GestorArtigos{
 
     public boolean existe_Artigo_pra_venda_id(Artigo a){
         boolean existe = false;
-        for(Map.Entry<String, Artigo> e : produtos_pra_venda.entrySet()){
+        Iterator<Map.Entry<String,Artigo>> iterator = produtos_pra_venda.entrySet().iterator();
+       while(iterator.hasNext()){
+        Map.Entry<String, Artigo> e = iterator.next();
                 String id_produto = e.getKey();
                 if(id_produto.equals(a.getId()) == true){
                     existe = true;

@@ -2,37 +2,39 @@ import java.util.Objects;
 
 public class Transportadoras {
 
-    double valorBase_PEQ;// valor para as encomendas de 1 artigo
-    double valorBase_MED;// valor para as encomendas de 2-5 artigos
-    double valorBase_GRA;// valor para as encomendas de +5 artigos
-    double parteDeLucro; // fração do valor base que  que fica para a empresa
+    private double valorBase_PEQ;
+    private double valorBase_MED;
+    private double valorBase_GRA;
+    private int margemLucro; // percentagem
+    private boolean EncPremium; //aceita encomendas premium?
+    private int idTransporte;
+    private static int imposto = 23;
 
     public Transportadoras(){
-
         this.valorBase_MED = 0;
         this.valorBase_PEQ = 0;
         this.valorBase_GRA = 0;
-        this.parteDeLucro = 0;
+        this.margemLucro = 0;
+        this.EncPremium = false;
+        this.idTransporte = 0;
     }
-    public Transportadoras(double baseMed,double basePeq,double baseGra,double partLucro){
+
+    public Transportadoras(double baseMed,double basePeq,double baseGra,int margemLucro, boolean EncPremium, int idTransporte){
         this.valorBase_MED = baseMed;
         this.valorBase_PEQ = basePeq;
         this.valorBase_GRA = baseGra;
-        this.parteDeLucro = partLucro;
-
-    }
-    public Transportadoras(Transportadoras that){
-        this.valorBase_MED = that.valorBase_MED ;
-        this.valorBase_PEQ = that.valorBase_PEQ;
-        this.valorBase_GRA = that.valorBase_GRA;
-        this.parteDeLucro = that.parteDeLucro;
+        this.margemLucro = margemLucro;
+        this.EncPremium = EncPremium;
+        this.idTransporte = idTransporte;
     }
 
-    public double precoExpedicao(){
-        //verificar qual dos valores base se quer
-
-        //executar
-        return -1;
+    public Transportadoras(Transportadoras t){
+        this.valorBase_MED = t.getValorBase_MED() ;
+        this.valorBase_PEQ = t.getPrecoEncomendaPEQ();
+        this.valorBase_GRA = t.getValorBase_GRA();
+        this.margemLucro = t.getMargemLucro();
+        this.EncPremium = t.getEncPremium();
+        this.idTransporte = t.getIdTransporte();
     }
 
     public double getValorBase_PEQ() {
@@ -47,8 +49,8 @@ public class Transportadoras {
         return this.valorBase_GRA;
     }
 
-    public double getParteDeLucro() {
-        return this.parteDeLucro;
+    public int getMargemLucro() {
+        return this.margemLucro;
     }
 
 
@@ -64,17 +66,35 @@ public class Transportadoras {
         this.valorBase_GRA = valorBase_GRA;
     }
 
-    public void setParteDeLucro(double parteDeLucro) {
-        this.parteDeLucro = parteDeLucro;
+    public void setMargemLucro(int margemlucro) {
+        this.margemLucro = margemlucro;
     }
 
-    @Override
-    public String toString() {
+    public boolean getEncPremium() {
+        return this.EncPremium;
+    }
+
+    public void setEncPremium(boolean encPremium) {
+        this.EncPremium = encPremium;
+    }
+
+    public int getIdTransporte() {
+        return this.idTransporte;
+    }
+
+    public void setIdTransporte(int idTransporte) {
+        this.idTransporte = idTransporte;
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
         return "Transportadoras{" +
                 "valorBase_PEQ=" + valorBase_PEQ +
                 ", valorBase_MED=" + valorBase_MED +
                 ", valorBase_GRA=" + valorBase_GRA +
-                ", parteDeLucro=" + parteDeLucro +
+                ", margemLucro=" + margemLucro +
+                ", EncPremium=" + EncPremium +
+                ", idTransporte=" + idTransporte +
                 '}';
     }
 
@@ -83,10 +103,12 @@ public class Transportadoras {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transportadoras transportadora = (Transportadoras) o;
-        return  Double.compare(transportadora.getValorBase_PEQ(), this.getValorBase_PEQ()) == 0 &&
-                Double.compare(transportadora.getValorBase_MED(), this.getValorBase_MED()) == 0 &&
-                Double.compare(transportadora.getValorBase_GRA(), this.getValorBase_GRA()) == 0 &&
-                Double.compare(transportadora.getParteDeLucro(), this.getParteDeLucro()) == 0;
+        return  Double.compare(this.getValorBase_PEQ(), transportadora.getValorBase_PEQ()) == 0 &&
+                Double.compare(this.getValorBase_MED(), transportadora.getValorBase_MED()) == 0 &&
+                Double.compare(this.getValorBase_GRA(), transportadora.getValorBase_GRA()) == 0 &&
+                this.getMargemLucro() == transportadora.getMargemLucro() &&
+                this.EncPremium == transportadora.getEncPremium() &&
+                this.getIdTransporte() == transportadora.getIdTransporte();
     }
 
     public Transportadoras clone(){
@@ -95,6 +117,24 @@ public class Transportadoras {
 
     @Override
     public int hashCode() {
-        return Objects.hash(valorBase_PEQ, valorBase_MED, valorBase_GRA, parteDeLucro);
+        return Objects.hash(valorBase_PEQ, valorBase_MED, valorBase_GRA, margemLucro);
+    }
+
+    public double getPrecoEncomendaPEQ(){
+        if(getEncPremium() == false) return getValorBase_PEQ() * getMargemLucro() * (1 + imposto) * 0.9;
+        
+        else return (getValorBase_PEQ() * 3) * getMargemLucro() * (1 + imposto) * 0.9;
+    }
+
+    public double getPrecoEncomendaMED(){
+        if(getEncPremium() == false) return getValorBase_MED() * getMargemLucro() * (1 + imposto) * 0.9;
+
+        else return (getValorBase_MED() * 3) * getMargemLucro() * (1 + imposto) * 0.9;
+    }
+
+    public double getPrecoEncomendaGRA(){
+        if(getEncPremium() == false) return getValorBase_GRA() * getMargemLucro() * (1 + imposto) * 0.9;
+        
+        else return (getValorBase_MED() * 3) * getMargemLucro() * (1 + imposto) * 0.9;
     }
 }
