@@ -20,7 +20,7 @@ public class GestorUtilizadores{
         while(iterator.hasNext()){
             Map.Entry<Integer,Utilizador> c = iterator.next();
 
-            copia.put(c.getKey(), c.getValue().clone());
+            copia.put(c.getKey(), c.getValue());
         }
         return copia;
     }
