@@ -26,27 +26,81 @@ public class GestorArtigos{
     }
 
     public Map<String, Artigo> getProdutos_comprados() {
-        return this.produtos_comprados;
+        HashMap<String, Artigo> copia = new HashMap<>();
+        Iterator<Map.Entry<String, Artigo>> iterator = produtos_comprados.entrySet().iterator();
+        
+        while(iterator.hasNext()){
+            Map.Entry<String,Artigo> a = iterator.next();
+
+            copia.put(a.getKey(), a.getValue());
+        }
+        return copia;
     }
 
     public void setProdutos_comprados(Map<String, Artigo> produtos_comprados) {
-        this.produtos_comprados = produtos_comprados;
+        HashMap<String, Artigo> copia = new HashMap<>();
+        Iterator<Map.Entry<String, Artigo>> iterator = produtos_comprados.entrySet().iterator();
+        
+        while(iterator.hasNext()){
+            Map.Entry<String,Artigo> c = iterator.next();
+
+            String key = c.getKey();
+            Artigo value = c.getValue().clone();
+            copia.put(key, value);
+        }
+            this.produtos_comprados = copia;
     }
 
     public Map<String, Artigo> getProdutos_vendidos() {
-        return this.produtos_vendidos;
+        HashMap<String, Artigo> copia = new HashMap<>();
+        Iterator<Map.Entry<String, Artigo>> iterator = produtos_vendidos.entrySet().iterator();
+        
+        while(iterator.hasNext()){
+            Map.Entry<String,Artigo> a = iterator.next();
+
+            copia.put(a.getKey(), a.getValue());
+        }
+        return copia;
     }
 
     public void setProdutos_vendidos(Map<String, Artigo> produtos_vendidos) {
-        this.produtos_vendidos = produtos_vendidos;
+        HashMap<String, Artigo> copia = new HashMap<>();
+        Iterator<Map.Entry<String, Artigo>> iterator = produtos_vendidos.entrySet().iterator();
+        
+        while(iterator.hasNext()){
+            Map.Entry<String,Artigo> c = iterator.next();
+
+            String key = c.getKey();
+            Artigo value = c.getValue().clone();
+            copia.put(key, value);
+        }
+            this.produtos_vendidos = copia;
     }
 
     public Map<String, Artigo> getProdutos_pra_venda() {
-        return this.produtos_pra_venda;
+        HashMap<String, Artigo> copia = new HashMap<>();
+        Iterator<Map.Entry<String, Artigo>> iterator = produtos_pra_venda.entrySet().iterator();
+        
+        while(iterator.hasNext()){
+            Map.Entry<String,Artigo> a = iterator.next();
+
+            copia.put(a.getKey(), a.getValue());
+        }
+        return copia;
     }
 
     public void setProdutos_pra_venda(Map<String, Artigo> produtos_pra_venda) {
-        this.produtos_pra_venda = produtos_pra_venda;
+        HashMap<String, Artigo> copia = new HashMap<>();
+        Iterator<Map.Entry<String, Artigo>> iterator = produtos_pra_venda.entrySet().iterator();
+        
+        while(iterator.hasNext()){
+            Map.Entry<String,Artigo> c = iterator.next();
+
+            String key = c.getKey();
+            Artigo value = c.getValue().clone();
+            copia.put(key, value);
+        }
+            this.produtos_pra_venda = copia;
     }
 
     public void addCompra(Artigo a, int idcomprador){
