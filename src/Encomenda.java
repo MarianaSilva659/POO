@@ -1,6 +1,8 @@
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.Iterator;
 
 public class Encomenda {
     private Set<String> encomenda;
@@ -18,12 +20,45 @@ public class Encomenda {
     }
     private Estado estado;
 
+
+    public Encomenda(){
+        this.encomenda = new TreeSet<>();
+        this.dimensao = null;
+        this.dataCriacao = null;
+        this.estado = null;
+    }
+
+    public Encomenda(Encomenda e){
+        this.encomenda = e.getEncomenda();
+        this.dimensao = null;
+        this.dataCriacao = LocalDate.now();
+        this.estado = e.getEstado();
+    }
+
+    public Encomenda(Set<String> encomenda, Dimensao dimensao, Estado estado){
+        this.encomenda = encomenda;
+        this.dimensao = null;
+        this.dataCriacao = LocalDate.now();
+        this.estado = estado;
+    }
+
     public Set<String> getEncomenda() {
-        return this.encomenda;
+        TreeSet<String> copia = new TreeSet<>();
+        Iterator<String> iterator = encomenda.iterator();
+        while (iterator.hasNext()) {
+                String artigo = iterator.next();
+                copia.add(new String(artigo));
+        }
+    return copia;
     }
 
     public void setEncomenda(Set<String> encomenda) {
-        this.encomenda = encomenda;
+        this.encomenda = new TreeSet<>();
+        Iterator<String> iterator = encomenda.iterator();
+        while (iterator.hasNext()) {
+                String artigo = iterator.next();
+                this.encomenda.add(new String(artigo)); // Clonar a String
+        }
     }
 
     public Dimensao getDimensao() {
@@ -73,5 +108,27 @@ public class Encomenda {
                 ", dataCriacao=" + dataCriacao +
                 ", estado=" + estado +
                 '}';
+    }
+
+    public Encomenda clone(){
+        return new Encomenda(this);
+    }
+    public void removeArtigoEnc(String idartigo){
+        this.encomenda.remove(idartigo);
+    }
+
+    public void addArtigoEnc(String idartigo){
+        this.encomenda.add(idartigo);
+    }
+
+    public void getdimensaoEnc(){
+        int dimensao = 0;
+        Iterator<String> iterator = encomenda.iterator();
+        while (iterator.hasNext()) {
+                dimensao++;
+        }
+        if(dimensao == 1) this.dimensao = Dimensao.PEQ;
+        else if((dimensao > 1) && (dimensao < 5)) this.dimensao = Dimensao.MED;
+        else this.dimensao = Dimensao.GRA;
     }
 }
