@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Transportadoras {
+public class Transportadora {
 
     private double valorBase_PEQ;
     private double valorBase_MED;
@@ -10,7 +10,7 @@ public class Transportadoras {
     private int idTransporte;
     private static int imposto = 23;
 
-    public Transportadoras(){
+    public Transportadora(){
         this.valorBase_MED = 0;
         this.valorBase_PEQ = 0;
         this.valorBase_GRA = 0;
@@ -19,7 +19,7 @@ public class Transportadoras {
         this.idTransporte = 0;
     }
 
-    public Transportadoras(double baseMed,double basePeq,double baseGra,int margemLucro, boolean EncPremium, int idTransporte){
+    public Transportadora(double baseMed,double basePeq,double baseGra,int margemLucro, boolean EncPremium, int idTransporte){
         this.valorBase_MED = baseMed;
         this.valorBase_PEQ = basePeq;
         this.valorBase_GRA = baseGra;
@@ -28,7 +28,7 @@ public class Transportadoras {
         this.idTransporte = idTransporte;
     }
 
-    public Transportadoras(Transportadoras t){
+    public Transportadora(Transportadora t){
         this.valorBase_MED = t.getValorBase_MED() ;
         this.valorBase_PEQ = t.getPrecoEncomendaPEQ();
         this.valorBase_GRA = t.getValorBase_GRA();
@@ -88,7 +88,7 @@ public class Transportadoras {
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "Transportadoras{" +
+        return "Transportadora{" +
                 "valorBase_PEQ=" + valorBase_PEQ +
                 ", valorBase_MED=" + valorBase_MED +
                 ", valorBase_GRA=" + valorBase_GRA +
@@ -102,7 +102,7 @@ public class Transportadoras {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Transportadoras transportadora = (Transportadoras) o;
+        Transportadora transportadora = (Transportadora) o;
         return  Double.compare(this.getValorBase_PEQ(), transportadora.getValorBase_PEQ()) == 0 &&
                 Double.compare(this.getValorBase_MED(), transportadora.getValorBase_MED()) == 0 &&
                 Double.compare(this.getValorBase_GRA(), transportadora.getValorBase_GRA()) == 0 &&
@@ -111,8 +111,8 @@ public class Transportadoras {
                 this.getIdTransporte() == transportadora.getIdTransporte();
     }
 
-    public Transportadoras clone(){
-        return new Transportadoras(this);
+    public Transportadora clone(){
+        return new Transportadora(this);
     }
 
     @Override
