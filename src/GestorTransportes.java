@@ -17,9 +17,10 @@ public class GestorTransportes {
     public Map<Integer,Transportadora> getTransportes() {
         TreeMap<Integer, Transportadora> copia = new TreeMap<>();
         Iterator<Map.Entry<Integer, Transportadora>> iterator = transportes.entrySet().iterator();
-        
+        Map.Entry<Integer,Transportadora> c;
+
         while(iterator.hasNext()){
-            Map.Entry<Integer,Transportadora> c = iterator.next();
+            c = iterator.next();
 
             copia.put(c.getKey(), c.getValue());
         }
@@ -29,9 +30,9 @@ public class GestorTransportes {
     public void setTransportes(Map<Integer,Transportadora> transportes) {
         TreeMap<Integer, Transportadora> copia = new TreeMap<>();
         Iterator<Map.Entry<Integer, Transportadora>> iterator = transportes.entrySet().iterator();
-        
+        Map.Entry<Integer,Transportadora> c;
         while(iterator.hasNext()){
-            Map.Entry<Integer,Transportadora> c = iterator.next();
+            c = iterator.next();
 
             Integer key = c.getKey();
             Transportadora value = c.getValue().clone();
@@ -47,9 +48,9 @@ public class GestorTransportes {
     boolean existe_Transportadore(Transportadora t){
         boolean existe = false;
         Iterator<Map.Entry<Integer, Transportadora>> iterator = transportes.entrySet().iterator();
-
+        Map.Entry<Integer, Transportadora> n;
         while(iterator.hasNext()){
-            Map.Entry<Integer, Transportadora> n = iterator.next();
+            n = iterator.next();
 
             if(t.getIdTransporte() == n.getKey()){
                 existe = true;
@@ -65,9 +66,10 @@ public class GestorTransportes {
     public int getIdNewTransportadora(){
         int newId = 0;
         Iterator<Map.Entry<Integer, Transportadora>> iterator = transportes.entrySet().iterator();
-
+        Map.Entry<Integer,Transportadora> n;
+        
         while(iterator.hasNext()){
-            Map.Entry<Integer,Transportadora> n = iterator.next();
+            n = iterator.next();
             
                 newId = n.getKey();
         }
