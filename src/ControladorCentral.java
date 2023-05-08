@@ -1,30 +1,45 @@
+
 public class ControladorCentral {
     public static void correrPrograma(){
+        GestorUtilizadores conta = new GestorUtilizadores();
+        boolean errorMessage = false;
         while(true){
-            int opcaoEscolhida;
-//while(opcaoEscolhida < 0 || opcaoEscolhida > 3){
+            int opcaoEscolhida = -1;
+            while(opcaoEscolhida < 0 || opcaoEscolhida > 2){
                 opcaoEscolhida = Menu.MenuInicial();
-                
-        
-
+            }
             switch(opcaoEscolhida){
 
                 case 1:
-                //pedir o email e password já com conta
+                    String email = Menu.MenuLoginUtilizador(errorMessage);
+                    
+                    if(conta.existeConta(email) != false) Menu.avisos(1);
+                    else{
+                        ControladorUtilizador.run(conta.getContaByEmail(email));
+                    }
                     break;
 
                 case 2:
-                //criar conta pedir email e password
+                    Utilizador utilizador = Menu.MenuNovoRegisto(1000); //no 1000 fica o novo id
+                    System.out.println("\nFoi resgistado com sucesso\n");
+                    //temos de mandar o novo utilizador para o sistema!
+                    ControladorUtilizador.run(utilizador);
+                    break;
+                case 3:
+
                     break;
 
+                case 4:
+                
+                    break;
                 case 0:
                     System.out.println("Execução interrompida");
                     System.exit(0);
                     break;
                 default: 
-                    System.out.println("Inseriu um número incorreto. Vintege exit");
                     break;
             }
         }
     }
 }
+

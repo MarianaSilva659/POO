@@ -16,9 +16,9 @@ public class GestorUtilizadores{
     public Map<Integer, Utilizador> getContas(){
         TreeMap<Integer, Utilizador> copia = new TreeMap<>();
         Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
-        Map.Entry<Integer,Utilizador> c;
+        
         while(iterator.hasNext()){
-           c= iterator.next();
+            Map.Entry<Integer,Utilizador> c = iterator.next();
 
             copia.put(c.getKey(), c.getValue());
         }
@@ -28,10 +28,9 @@ public class GestorUtilizadores{
     public void setContas(Map<Integer, Utilizador> contas){
         TreeMap<Integer, Utilizador> copia = new TreeMap<>();
         Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
-
-        Map.Entry<Integer,Utilizador> c ;
+        
         while(iterator.hasNext()){
-           c= iterator.next();
+            Map.Entry<Integer,Utilizador> c = iterator.next();
 
             Integer key = c.getKey();
             Utilizador value = c.getValue().clone();
@@ -56,9 +55,9 @@ public class GestorUtilizadores{
     public Utilizador getContaByEmail(String email){
         Utilizador conta = null;
         Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
-        Map.Entry<Integer,Utilizador> c;
+        
         while(iterator.hasNext()){
-           c = iterator.next();
+            Map.Entry<Integer,Utilizador> c = iterator.next();
 
             if(email.equals(c.getValue().getEmail())){
                 conta = c.getValue();
@@ -68,12 +67,18 @@ public class GestorUtilizadores{
         else return null;
     }
 
+    public boolean existeConta(String email){
+        Utilizador conta = getContaByEmail(email);
+        if(conta == null) return false;
+        else return true;
+    }
+
     public int getIdNewUtilizador(){
         int newId = 0;
         Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
-        Map.Entry<Integer,Utilizador> c;
+
         while(iterator.hasNext()){
-            c = iterator.next();
+            Map.Entry<Integer,Utilizador> c = iterator.next();
             
                 newId = c.getKey();
         }

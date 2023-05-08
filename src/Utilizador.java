@@ -6,7 +6,7 @@ public class Utilizador{
     private String email;
     private String nome;
     private String morada;
-    private String nif;
+    private int nif;
     private Set<String> artigos_comprados;
     private Set<String> artigos_vendidos;
     private Set<String> artigos_pra_venda;
@@ -16,13 +16,13 @@ public class Utilizador{
         this.email = "";
         this.nome = "";
         this.morada = "";
-        this.nif = "";
+        this.nif = 0;
         this.artigos_comprados = new TreeSet<>();
         this.artigos_vendidos = new TreeSet<>();
         this.artigos_pra_venda = new TreeSet<>();
     }
 
-    public Utilizador(int id, String email, String nome, String morada, String nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda) {
+    public Utilizador(int id, String email, String nome, String morada, int nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda) {
         this.id = id;
         this.email = email;
         this.nome = nome;
@@ -32,7 +32,7 @@ public class Utilizador{
         this.artigos_vendidos = vendidas;
         this.artigos_pra_venda = pra_venda;
     }
-    public Utilizador(int id, String email, String nome, String morada, String nif) {
+    public Utilizador(int id, String email, String nome, String morada, int nif) {
         this.id = id;
         this.email = email;
         this.nome = nome;
@@ -85,11 +85,11 @@ public class Utilizador{
         this.morada = morada;
     }
 
-    public String getNif() {
+    public int getNif() {
         return this.nif;
     }
 
-    public void setNif(String nif) {
+    public void setNif(int nif) {
         this.nif = nif;
     }
 
@@ -126,7 +126,7 @@ public class Utilizador{
             && this.email.equals(that.getEmail()) 
             && this.nome.equals(that.getNome()) 
             && this.morada.equals(that.getMorada()) 
-            && this.nif.equals(that.getNif()) 
+            && this.nif == that.getNif()
             && this.artigos_comprados.equals(that.getArtigos_comprados()) 
             && this.artigos_vendidos.equals(that.getArtigos_vendidos()) 
             && this.artigos_pra_venda.equals(that.getArtigos_pra_venda());
@@ -154,5 +154,9 @@ public class Utilizador{
 
     public Utilizador clone(){
         return new Utilizador();
+    }
+
+    public boolean verificaId(int id_utilizador){
+        return (this.id == id_utilizador);
     }
 }
