@@ -39,13 +39,15 @@ public class Menu {
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU UTILIZADOR-----------\n\n");
         sb.append("1 -> Deseja comprar\n");
         sb.append("2 > Deseja vender\n");
+        sb.append("3 -> Voltar ao Menu Principal\n");
+        sb.append("0 -> Sair\n");
         sb.append("Selecione a opção pretendida: ");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 
-    public static Utilizador MenuNovoRegisto(int id_utilizador){
+    public static boolean MenuNovoRegisto(){
         Scanner scanner = new Scanner(System.in);
 
         StringBuilder sb = new StringBuilder("\n\n\n------------REGISTAR UTLIZADOR---------\n\n");
@@ -59,7 +61,7 @@ public class Menu {
         String morada = scanner.nextLine();
         System.out.print("NIF: ");
         int nif = scanner.nextInt();
-        return new Utilizador(id_utilizador, email, nome, morada, nif, null, null, null);
+        return ControladorCentral.novoUtilizador(email, nome, morada, nif);
     }
 
     public static Transportadora MenuNovoRegistoTransportadora(){
@@ -89,7 +91,7 @@ public class Menu {
         System.out.println("Artigos para venda: ");
     }
 
-    public static void menuArtigoNovo(int id_utilizador){
+    public static Malas menuArtigoNovo(int id_utilizador){
         StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
         sb.append("Insira os dados. n\n");
         System.out.print(sb.toString());
@@ -101,6 +103,8 @@ public class Menu {
         int donos = scanner.nextInt();
         sb.append("Descrição: ");
         String descricao = scanner.nextLine();
+        sb.append("Marca: ");
+        String marca = scanner.nextLine();
         sb.append("Código Alfanumérico: ");
         String cod = scanner.nextLine();
         sb.append("Preço Base: ");
@@ -108,12 +112,14 @@ public class Menu {
         sb.append("Desconto em %: ");
         double desconto = scanner.nextDouble();
         sb.append("Identificador do Transporte: ");
+        return new Malas(donos, descricao, marca, cod, preco, desconto, avaliacao,id_utilizador, 10, null, 1.1, 1.1, 1.1, null);
     }
 
     public static void avisos(int a){
         StringBuilder sb = new StringBuilder();
         System.out.println("aqui\n");
         if (a==1) sb.append("!!!Email Inválido!!!").append("\n");
+        if (a==2) sb.append("!!!Email já existe!!!").append("\n");
         sb.append("\nPressione no enter...");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);

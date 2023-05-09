@@ -1,9 +1,9 @@
 public class ControladorUtilizador {
-    public static void run(Utilizador utilizador){
+    public static void run(){
         
         while(true){
             int opcaoEscolhida = -1;
-            while(opcaoEscolhida < 1 || opcaoEscolhida > 2){
+            while(opcaoEscolhida < 0 || opcaoEscolhida > 3){
                 opcaoEscolhida = Menu.MenuUtilizador();
             }
             switch(opcaoEscolhida){
@@ -14,6 +14,13 @@ public class ControladorUtilizador {
                 //inserir dados dos artigos a vender
                 //mostrar transportadoras 
                 //escolher uma transportadora para transportar o artigo
+                break;
+                case 3:
+                ControladorCentral.correrPrograma();
+                break;
+                case 0:
+                    System.out.println("\nTerminada a sessão");
+                    System.exit(0);
                 break;
 
             }

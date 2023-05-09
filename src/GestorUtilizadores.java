@@ -68,13 +68,20 @@ public class GestorUtilizadores{
     }
 
     public boolean existeConta(String email){
-        Utilizador conta = getContaByEmail(email);
-        if(conta == null) return false;
-        else return true;
+        Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
+        
+        while(iterator.hasNext()){
+            Map.Entry<Integer,Utilizador> c = iterator.next();
+
+            if(email.equals(c.getValue().getEmail())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getIdNewUtilizador(){
-        int newId = 0;
+        int newId = 1;
         Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
 
         while(iterator.hasNext()){
@@ -83,6 +90,12 @@ public class GestorUtilizadores{
                 newId = c.getKey();
         }
         return newId++;
+    }
+
+    public String toString() {
+        final StringBuffer sb = new StringBuffer();
+        sb.append("Contas: ").append(contas.toString()).append('\n');
+        return sb.toString();
     }
 
 }

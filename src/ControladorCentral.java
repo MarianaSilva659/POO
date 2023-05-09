@@ -1,11 +1,13 @@
 
 public class ControladorCentral {
     public static void correrPrograma(){
+        Vintage vintage = new Vintage();
         GestorUtilizadores conta = new GestorUtilizadores();
+        
         boolean errorMessage = false;
         while(true){
             int opcaoEscolhida = -1;
-            while(opcaoEscolhida < 0 || opcaoEscolhida > 2){
+            while(opcaoEscolhida < 0 || opcaoEscolhida > 4){
                 opcaoEscolhida = Menu.MenuInicial();
             }
             switch(opcaoEscolhida){
@@ -15,31 +17,37 @@ public class ControladorCentral {
                     
                     if(conta.existeConta(email) != false) Menu.avisos(1);
                     else{
-                        ControladorUtilizador.run(conta.getContaByEmail(email));
+                        ControladorUtilizador.run();
                     }
                     break;
 
                 case 2:
-                    Utilizador utilizador = Menu.MenuNovoRegisto(1000); //no 1000 fica o novo id
-                    System.out.println("\nFoi resgistado com sucesso\n");
-                    //temos de mandar o novo utilizador para o sistema!
-                    ControladorUtilizador.run(utilizador);
+                    if(Menu.MenuNovoRegisto() == false) Menu.avisos(2);
+                    else{
+                        System.out.println("\nFoi resgistado com sucesso\n");
+                        ControladorUtilizador.run();
+
+                    }
                     break;
                 case 3:
-
+                    
                     break;
 
                 case 4:
                 
                     break;
                 case 0:
-                    System.out.println("Execução interrompida");
+                    System.out.println("\nTerminada a sessão");
                     System.exit(0);
                     break;
                 default: 
                     break;
             }
         }
+    }
+    public static boolean novoUtilizador(String email, String nome, String morada, int nif){
+        Vintage vintage  = new Vintage();
+        return vintage.addContaVintage(email, nome, morada, nif);
     }
 }
 
