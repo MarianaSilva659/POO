@@ -2,7 +2,6 @@
 public class ControladorCentral {
     public static void correrPrograma(){
         Vintage vintage = new Vintage();
-        GestorUtilizadores conta = new GestorUtilizadores();
         
         boolean errorMessage = false;
         while(true){
@@ -15,27 +14,28 @@ public class ControladorCentral {
                 case 1:
                     String email = Menu.MenuLoginUtilizador(errorMessage);
                     
-                    if(conta.existeConta(email) != false) Menu.avisos(1);
-                    else{
-                        ControladorUtilizador.run();
-                    }
-                    break;
-
+                    if(vintage.existeContaU(email) == false) Menu.avisos(1);
+                    else ControladorUtilizador.run();
+                break;
                 case 2:
                     if(Menu.MenuNovoRegisto() == false) Menu.avisos(2);
                     else{
                         System.out.println("\nFoi resgistado com sucesso\n");
                         ControladorUtilizador.run();
-
                     }
-                    break;
+                break;
                 case 3:
-                    
-                    break;
-
+                    int id = Menu.MenuLoginTransportadora(errorMessage);
+                    if(vintage.existeContaT(id) == false) Menu.avisos(3);    
+                    else ControladorTransporte.run();
+                break;
                 case 4:
-                
-                    break;
+                    if(Menu.MenuNovoRegistoTransportadora() == false) Menu.avisos(4);
+                    else{
+                        System.out.println("\nFoi resgistado com sucesso\n");
+                        ControladorTransporte.run();
+                    }
+                break;
                 case 0:
                     System.out.println("\nTerminada a sessão");
                     System.exit(0);
@@ -48,6 +48,11 @@ public class ControladorCentral {
     public static boolean novoUtilizador(String email, String nome, String morada, int nif){
         Vintage vintage  = new Vintage();
         return vintage.addContaVintage(email, nome, morada, nif);
+    }
+
+    public static boolean novoTransporte(double peq, double med, double gra, int margem, boolean aceitaPremium, int id){
+        Vintage vintage = new Vintage();
+        return vintage.addTransporteVintage(peq, med, gra, margem, aceitaPremium, id);
     }
 }
 

@@ -64,7 +64,7 @@ public class Menu {
         return ControladorCentral.novoUtilizador(email, nome, morada, nif);
     }
 
-    public static Transportadora MenuNovoRegistoTransportadora(){
+    public static boolean MenuNovoRegistoTransportadora(){
         Scanner scanner = new Scanner(System.in);
 
         StringBuilder sb = new StringBuilder("\n\n\n------------REGISTAR UTLIZADOR---------\n\n");
@@ -81,10 +81,9 @@ public class Menu {
         double gra = scanner.nextDouble();
         System.out.print("Margem de lucro em %: ");
         int margem = scanner.nextInt();
-        System.out.print("Aceita encomendas Premium: ");
-        String valor = scanner.nextLine();
-        boolean aceita = Boolean.parseBoolean(valor);
-        return new Transportadora(peq, med, gra, margem, aceita, id);
+        System.out.print("Aceita encomendas Premium(true/false): ");
+        boolean aceita = scanner.nextBoolean();
+        return ControladorCentral.novoTransporte(peq, med, gra, margem, aceita, id);
     }
 
     public static void MostraTodosArtigos(){
@@ -115,11 +114,24 @@ public class Menu {
         return new Malas(donos, descricao, marca, cod, preco, desconto, avaliacao,id_utilizador, 10, null, 1.1, 1.1, 1.1, null);
     }
 
+    public static int MenuLoginTransportadora(boolean errorMessage){
+        StringBuilder sb = new StringBuilder("\n\n\n------------INICIAR SESSAO---------\n\n");
+        if(errorMessage) sb.append("Erro - Dados inválidos! Tente novamente!\n\n");
+        sb.append("Insira os seus dados.\n\n");
+        sb.append("Identificador: ");
+        System.out.print(sb.toString());
+        Scanner input = new Scanner(System.in);
+        int id = input.nextInt();
+       
+        return id;
+    }
+
     public static void avisos(int a){
         StringBuilder sb = new StringBuilder();
-        System.out.println("aqui\n");
         if (a==1) sb.append("!!!Email Inválido!!!").append("\n");
         if (a==2) sb.append("!!!Email já existe!!!").append("\n");
+        if (a==3) sb.append("!!!Identificador Inválido!!!").append("\n");
+        if (a==4) sb.append("!!!Identificador já existe!!!").append("\n");
         sb.append("\nPressione no enter...");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);

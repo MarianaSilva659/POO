@@ -30,7 +30,7 @@ public class Transportadora {
 
     public Transportadora(Transportadora t){
         this.valorBase_MED = t.getValorBase_MED() ;
-        this.valorBase_PEQ = t.getPrecoEncomendaPEQ();
+        this.valorBase_PEQ = t.getValorBase_PEQ();
         this.valorBase_GRA = t.getValorBase_GRA();
         this.margemLucro = t.getMargemLucro();
         this.EncPremium = t.getEncPremium();

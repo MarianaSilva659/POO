@@ -153,7 +153,7 @@ public class Utilizador{
 
 
     public Utilizador clone(){
-        return new Utilizador();
+        return new Utilizador(this);
     }
 
     public boolean verificaId(int id_utilizador){

@@ -31,6 +31,7 @@ public class GestorTransportes {
         TreeMap<Integer, Transportadora> copia = new TreeMap<>();
         Iterator<Map.Entry<Integer, Transportadora>> iterator = transportes.entrySet().iterator();
         Map.Entry<Integer,Transportadora> c;
+
         while(iterator.hasNext()){
             c = iterator.next();
 
@@ -45,14 +46,15 @@ public class GestorTransportes {
         return new GestorTransportes(this);
     }
 
-    boolean existe_Transportadore(Transportadora t){
+    boolean existe_Transportadora(int id){
         boolean existe = false;
         Iterator<Map.Entry<Integer, Transportadora>> iterator = transportes.entrySet().iterator();
         Map.Entry<Integer, Transportadora> n;
+        
         while(iterator.hasNext()){
             n = iterator.next();
 
-            if(t.getIdTransporte() == n.getKey()){
+            if(id == n.getKey()){
                 existe = true;
             }
         }
@@ -79,5 +81,11 @@ public class GestorTransportes {
     public Transportadora getTransportadoraById(int id){
         if(transportes.containsKey(id)) return transportes.get(id).clone();
         else return null;
+    }
+
+    public String toString() {
+        final StringBuffer sb = new StringBuffer();
+        sb.append("Transportes: ").append(transportes.toString()).append('\n');
+        return sb.toString();
     }
 }
