@@ -15,25 +15,25 @@ public class ControladorCentral {
                     String email = Menu.MenuLoginUtilizador(errorMessage);
                     
                     if(vintage.existeContaU(email) == false) Menu.avisos(1);
-                    else ControladorUtilizador.run();
+                    else ControladorUtilizador.run(vintage);
                 break;
                 case 2:
                     if(Menu.MenuNovoRegisto() == false) Menu.avisos(2);
                     else{
-                        System.out.println("\nFoi resgistado com sucesso\n");
-                        ControladorUtilizador.run();
+                        System.out.println("Foi resgistado com sucesso\n");
+                        ControladorUtilizador.run(vintage);
                     }
                 break;
                 case 3:
                     int id = Menu.MenuLoginTransportadora(errorMessage);
                     if(vintage.existeContaT(id) == false) Menu.avisos(3);    
-                    else ControladorTransporte.run();
+                    else ControladorTransporte.run(vintage, id);
                 break;
                 case 4:
                     if(Menu.MenuNovoRegistoTransportadora() == false) Menu.avisos(4);
                     else{
-                        System.out.println("\nFoi resgistado com sucesso\n");
-                        ControladorTransporte.run();
+                        System.out.println("Foi resgistado com sucesso\n");
+                        Menu.MenuInicial();
                     }
                 break;
                 case 0:

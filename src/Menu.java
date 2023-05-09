@@ -38,7 +38,7 @@ public class Menu {
     public static int MenuUtilizador(){
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU UTILIZADOR-----------\n\n");
         sb.append("1 -> Deseja comprar\n");
-        sb.append("2 > Deseja vender\n");
+        sb.append("2 -> Deseja vender\n");
         sb.append("3 -> Voltar ao Menu Principal\n");
         sb.append("0 -> Sair\n");
         sb.append("Selecione a opção pretendida: ");
@@ -67,7 +67,7 @@ public class Menu {
     public static boolean MenuNovoRegistoTransportadora(){
         Scanner scanner = new Scanner(System.in);
 
-        StringBuilder sb = new StringBuilder("\n\n\n------------REGISTAR UTLIZADOR---------\n\n");
+        StringBuilder sb = new StringBuilder("\n\n\n------------REGISTAR TRANSPORTE---------\n\n");
         sb.append("Introduza os seguintes dados.\n\n");
 
         sb.append("Identificador(inteiro): ");
@@ -124,6 +124,58 @@ public class Menu {
         int id = input.nextInt();
        
         return id;
+    }
+
+    public static int MenuTransportes(){
+        StringBuilder sb = new StringBuilder("\n\n\n-----------MENU TRANSPORTE----------\n\n");
+        sb.append("1 -> Deseja alterar todos os valores de cálculo?\n");
+        sb.append("2 -> Deseja alterar o valor base para encomendas pequenas?\n");
+        sb.append("3 -> Deseja alterar o valor base para encomendas médias?\n");
+        sb.append("4 -> Deseja alterar o valor base para encomendas grandes?\n");
+        sb.append("5 -> Deseja alterar o valor da margem de Lucro?\n");
+        sb.append("6 -> Voltar ao Menu Principal\n");
+        sb.append("0 -> Sair\n");
+        sb.append("Selecione a opção pretendida: ");
+        System.out.print(sb.toString());
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
+
+    public static void MenuAlteraValores(int id){
+        Scanner scanner = new Scanner(System.in);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Introduza os valores.\n\n");
+        System.out.print(sb.toString());
+
+        System.out.print("Preço Base para encomenda pequena: ");
+        double peq = scanner.nextDouble();
+        System.out.print("Preço Base para encomenda média: ");
+        double med = scanner.nextDouble();
+        System.out.print("Preço Base para encomenda grande: ");
+        double gra = scanner.nextDouble();
+        System.out.print("Margem de lucro em %: ");
+        int margem = scanner.nextInt();
+        ControladorTransporte.novoValores(peq, med, gra, margem, id);
+        return;
+    }
+
+    public static Double MenuAlteraValor(int i){
+        Scanner scanner = new Scanner(System.in);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Introduza os valores.\n\n");
+        System.out.print(sb.toString());
+        double v = 0;
+        if (i==1){System.out.print("Preço Base para encomenda pequena: ");
+        v = scanner.nextDouble();}
+        if (i==2){System.out.print("Preço Base para encomenda média: ");
+        v = scanner.nextDouble();}
+        if (i==3){System.out.print("Preço Base para encomenda grande: ");
+        v = scanner.nextDouble();}
+        if (i==4){System.out.print("Margem de lucro em %: ");
+        v = scanner.nextDouble();}
+        return v;
     }
 
     public static void avisos(int a){

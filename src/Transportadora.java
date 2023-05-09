@@ -5,7 +5,7 @@ public class Transportadora {
     private double valorBase_PEQ;
     private double valorBase_MED;
     private double valorBase_GRA;
-    private int margemLucro; // percentagem
+    private double margemLucro; // percentagem
     private boolean EncPremium; //aceita encomendas premium?
     private int idTransporte;
     private static int imposto = 23;
@@ -19,7 +19,7 @@ public class Transportadora {
         this.idTransporte = 0;
     }
 
-    public Transportadora(double baseMed,double basePeq,double baseGra,int margemLucro, boolean EncPremium, int idTransporte){
+    public Transportadora(double baseMed,double basePeq,double baseGra,double margemLucro, boolean EncPremium, int idTransporte){
         this.valorBase_MED = baseMed;
         this.valorBase_PEQ = basePeq;
         this.valorBase_GRA = baseGra;
@@ -49,10 +49,9 @@ public class Transportadora {
         return this.valorBase_GRA;
     }
 
-    public int getMargemLucro() {
+    public double getMargemLucro() {
         return this.margemLucro;
     }
-
 
     public void setValorBase_PEQ(double valorBase_PEQ) {
         this.valorBase_PEQ = valorBase_PEQ;
@@ -66,7 +65,7 @@ public class Transportadora {
         this.valorBase_GRA = valorBase_GRA;
     }
 
-    public void setMargemLucro(int margemlucro) {
+    public void setMargemLucro(Double margemlucro) {
         this.margemLucro = margemlucro;
     }
 
@@ -106,7 +105,7 @@ public class Transportadora {
         return  Double.compare(this.getValorBase_PEQ(), transportadora.getValorBase_PEQ()) == 0 &&
                 Double.compare(this.getValorBase_MED(), transportadora.getValorBase_MED()) == 0 &&
                 Double.compare(this.getValorBase_GRA(), transportadora.getValorBase_GRA()) == 0 &&
-                this.getMargemLucro() == transportadora.getMargemLucro() &&
+                Double.compare(this.getMargemLucro(),transportadora.getMargemLucro()) == 0 &&
                 this.EncPremium == transportadora.getEncPremium() &&
                 this.getIdTransporte() == transportadora.getIdTransporte();
     }

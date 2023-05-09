@@ -27,7 +27,7 @@ public class Vintage {
         Utilizador novo = new Utilizador(id, email, nome, morada, nif);
         if(this.utilizadores.existeConta(email) == false){
             this.utilizadores.addConta(novo);
-            //System.out.println(utilizadores);
+            System.out.println(utilizadores);
             return true;
         }
         else return false;
@@ -46,5 +46,31 @@ public class Vintage {
         }
         else return false;
     }
+
+    public void novoValorPEQ(double peq, int id){
+        Transportadora t = this.transportes.getTransportadoraById(id);
+        t.setValorBase_PEQ(peq);
+    }
     
+    public void novoValorMED(double med, int id){
+        Transportadora t = this.transportes.getTransportadoraById(id);
+        t.setValorBase_MED(med);
+    }
+
+    public void novoValorGRA(double gra, int id){
+        Transportadora t = this.transportes.getTransportadoraById(id);
+        t.setValorBase_GRA(gra);
+    }
+
+    public void novaMargemLucro(double margem, int id){
+        Transportadora t = this.transportes.getTransportadoraById(id);
+        t.setMargemLucro(margem);
+    }
+
+    public void novoValoresTransporte(double peq, double med, double gra, int margem, int id){
+        novoValorPEQ(peq, id);
+        novoValorMED(med, id);
+        novoValorGRA(gra, id);
+        novaMargemLucro(margem, id);
+    }
 }

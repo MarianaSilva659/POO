@@ -1,5 +1,5 @@
 public class ControladorUtilizador {
-    public static void run(){
+    public static void run(Vintage vintage){
         
         while(true){
             int opcaoEscolhida = -1;
