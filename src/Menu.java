@@ -29,6 +29,16 @@ public class Menu {
         return opcao;
     }
 
+    public int scannerInt(String message, Scanner s){
+        System.out.print(message);
+        return s.nextInt();
+    }
+
+    public double scannerDouble(String message, Scanner s){
+        System.out.print(message);
+        return s.nextDouble();
+    }
+
     public String MenuLoginUtilizador(boolean errorMessage){
         StringBuilder sb = new StringBuilder("\n\n\n------------INICIAR SESSAO---------\n\n");
         if(errorMessage) sb.append("Erro - Dados inválidos! Tente novamente!\n\n");
@@ -65,8 +75,7 @@ public class Menu {
         String email = scanner.nextLine();
         System.out.print("Morada: ");
         String morada = scanner.nextLine();
-        System.out.print("NIF: ");
-        int nif = scanner.nextInt();
+        int nif = scannerInt("NIF: ", scanner);
         return inter.novoUtilizador(email, nome, morada, nif);
     }
 
@@ -76,17 +85,12 @@ public class Menu {
         StringBuilder sb = new StringBuilder("\n\n\n------------REGISTAR TRANSPORTE---------\n\n");
         sb.append("Introduza os seguintes dados.\n\n");
 
-        sb.append("Identificador(inteiro): ");
         System.out.print(sb.toString());
-        int id = scanner.nextInt();
-        System.out.print("Preço Base para encomenda pequena: ");
-        double peq = scanner.nextDouble();
-        System.out.print("Preço Base para encomenda média: ");
-        double med = scanner.nextDouble();
-        System.out.print("Preço Base para encomenda grande: ");
-        double gra = scanner.nextDouble();
-        System.out.print("Margem de lucro em %: ");
-        int margem = scanner.nextInt();
+        int id = scannerInt("Identificador(inteiro): ", scanner);
+        double peq = scannerDouble("Preço Base para encomenda pequena: ", scanner);
+        double med = scannerDouble("Preço Base para encomenda média: ", scanner);
+        double gra = scannerDouble("Preço Base para encomenda grande: ", scanner);
+        int margem = scannerInt("Margem de lucro em %: ", scanner);
         System.out.print("Aceita encomendas Premium(true/false): ");
         boolean aceita = scanner.nextBoolean();
         return inter.novoTransporte(peq, med, gra, margem, aceita, id);
@@ -102,20 +106,16 @@ public class Menu {
         System.out.print(sb.toString());
 
         Scanner scanner = new Scanner(System.in);
-        sb.append("Avaliação: ");
-        double avaliacao = scanner.nextDouble();
-        sb.append("Número de Donos: ");
-        int donos = scanner.nextInt();
+        double avaliacao = scannerDouble("Avaliação: ", scanner);
+        int donos = scannerInt("Número de Donos: ", scanner);
         sb.append("Descrição: ");
         String descricao = scanner.nextLine();
         sb.append("Marca: ");
         String marca = scanner.nextLine();
         sb.append("Código Alfanumérico: ");
         String cod = scanner.nextLine();
-        sb.append("Preço Base: ");
-        double preco = scanner.nextDouble();
-        sb.append("Desconto em %: ");
-        double desconto = scanner.nextDouble();
+        double preco = scannerDouble("Preço Base: ", scanner);
+        double desconto = scannerDouble("Desconto em %: ", scanner);
         sb.append("Identificador do Transporte: ");
         return new Malas(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, 10, null, 1.1, 1.1, 1.1, null);
     }
@@ -126,8 +126,7 @@ public class Menu {
         System.out.print(sb.toString());
 
         Scanner scanner = new Scanner(System.in);
-        sb.append("Avaliação: ");
-        double avaliacao = scanner.nextDouble();
+        double avaliacao = scannerDouble("Avaliação: ", scanner);
         sb.append("Número de Donos: ");
         int donos = scanner.nextInt();
         sb.append("Descrição: ");
@@ -137,9 +136,9 @@ public class Menu {
         sb.append("Código Alfanumérico: ");
         String cod = scanner.nextLine();
         sb.append("Preço Base: ");
-        double preco = scanner.nextDouble();
+        double preco = scannerDouble("Preço Base: ", scanner);
         sb.append("Desconto em %: ");
-        double desconto = scanner.nextDouble();
+        double desconto = scannerDouble("Desconto em %: ", scanner);
         sb.append("Identificador do Transporte: ");
         return new MalasPremium(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, 10, null, 1.1, 1.1, 1.1, null,0);
     }
@@ -178,14 +177,10 @@ public class Menu {
         sb.append("Introduza os valores.\n\n");
         System.out.print(sb.toString());
 
-        System.out.print("Preço Base para encomenda pequena: ");
-        double peq = scanner.nextDouble();
-        System.out.print("Preço Base para encomenda média: ");
-        double med = scanner.nextDouble();
-        System.out.print("Preço Base para encomenda grande: ");
-        double gra = scanner.nextDouble();
-        System.out.print("Margem de lucro em %: ");
-        double margem = scanner.nextDouble();
+        double peq = scannerDouble("Preço Base para encomenda pequena: ", scanner);
+        double med = scannerDouble("Preço Base para encomenda média: ", scanner);
+        double gra = scannerDouble("Preço Base para encomenda grande: ", scanner);
+        double margem = scannerDouble("Margem de lucro em %: ", scanner);
         //this.novoValores(peq, med, gra, margem, id);
         return;
     }
