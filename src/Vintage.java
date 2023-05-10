@@ -41,7 +41,7 @@ public class Vintage {
         Transportadora novo = new Transportadora(peq, med, gra, margem, aceitaPremium, id);
         if(this.transportes.existe_Transportadora(id) == false){ 
             this.transportes.addTransporte(novo);
-           // System.out.println(transportes);
+            System.out.println(transportes);
             return true;
         }
         else return false;
@@ -50,27 +50,37 @@ public class Vintage {
     public void novoValorPEQ(double peq, int id){
         Transportadora t = this.transportes.getTransportadoraById(id);
         t.setValorBase_PEQ(peq);
+        this.transportes.setTransporte(t);
     }
     
     public void novoValorMED(double med, int id){
         Transportadora t = this.transportes.getTransportadoraById(id);
         t.setValorBase_MED(med);
+        this.transportes.setTransporte(t);
     }
 
     public void novoValorGRA(double gra, int id){
         Transportadora t = this.transportes.getTransportadoraById(id);
         t.setValorBase_GRA(gra);
+        this.transportes.setTransporte(t);
     }
 
     public void novaMargemLucro(double margem, int id){
         Transportadora t = this.transportes.getTransportadoraById(id);
         t.setMargemLucro(margem);
+        this.transportes.setTransporte(t);
     }
 
-    public void novoValoresTransporte(double peq, double med, double gra, int margem, int id){
-        novoValorPEQ(peq, id);
-        novoValorMED(med, id);
-        novoValorGRA(gra, id);
-        novaMargemLucro(margem, id);
+    public void novoValoresTransporte(double peq, double med, double gra, double margem, int id){
+        Transportadora t = this.transportes.getTransportadoraById(id);
+        t.setValorBase_PEQ(peq);
+        t.setValorBase_MED(med);
+        t.setValorBase_GRA(gra);
+        t.setMargemLucro(margem);
+        this.transportes.setTransporte(t);
+    }
+
+    public Transportadora getTransporte(int id){
+        return this.transportes.getTransportadoraById(id);
     }
 }

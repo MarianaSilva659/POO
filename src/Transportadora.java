@@ -54,6 +54,7 @@ public class Transportadora {
     }
 
     public void setValorBase_PEQ(double valorBase_PEQ) {
+        System.out.println("peqqq " + valorBase_PEQ);
         this.valorBase_PEQ = valorBase_PEQ;
     }
 
@@ -87,13 +88,13 @@ public class Transportadora {
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "Transportadora{" +
-                "valorBase_PEQ=" + valorBase_PEQ +
+        return "\nTRANSPORTADORA{" +
+                "INDETIFICADOR=" + idTransporte +
+                ", valorBase_PEQ=" + valorBase_PEQ +
                 ", valorBase_MED=" + valorBase_MED +
                 ", valorBase_GRA=" + valorBase_GRA +
                 ", margemLucro=" + margemLucro +
                 ", EncPremium=" + EncPremium +
-                ", idTransporte=" + idTransporte +
                 '}';
     }
 
@@ -116,7 +117,7 @@ public class Transportadora {
 
     @Override
     public int hashCode() {
-        return Objects.hash(valorBase_PEQ, valorBase_MED, valorBase_GRA, margemLucro);
+        return Objects.hash(super.hashCode(), getValorBase_PEQ(), getValorBase_MED(), getValorBase_GRA(), getMargemLucro());
     }
 
     public double getPrecoEncomendaPEQ(){

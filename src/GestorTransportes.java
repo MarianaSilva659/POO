@@ -85,7 +85,11 @@ public class GestorTransportes {
 
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("Transportes: ").append(transportes.toString()).append('\n');
+        sb.append("TRANSPORTES: ").append(transportes.toString()).append('\n');
         return sb.toString();
+    }
+
+    public void setTransporte(Transportadora t){
+        this.transportes.put(t.getIdTransporte(), t.clone());
     }
 }

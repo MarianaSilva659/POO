@@ -33,8 +33,8 @@ public class ControladorTransporte {
             }
         }
     }
-    public static void novoValores(double peq, double med, double gra, int margem, int id){
-        Vintage vintage = new Vintage();
+    public static void novoValores(double peq, double med, double gra, double margem, int id){
+       Vintage vintage = new Vintage();
         vintage.novoValoresTransporte(peq, med, gra, margem, id);
     }
 }

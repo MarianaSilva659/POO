@@ -30,10 +30,10 @@ public class ControladorCentral {
                     else ControladorTransporte.run(vintage, id);
                 break;
                 case 4:
-                    if(Menu.MenuNovoRegistoTransportadora() == false) Menu.avisos(4);
+                    if(Menu.MenuNovoRegistoTransportadora(vintage) == false) Menu.avisos(4);
                     else{
                         System.out.println("Foi resgistado com sucesso\n");
-                        Menu.MenuInicial();
+                        ControladorTransporte.run(vintage, 1);
                     }
                 break;
                 case 0:
@@ -50,8 +50,8 @@ public class ControladorCentral {
         return vintage.addContaVintage(email, nome, morada, nif);
     }
 
-    public static boolean novoTransporte(double peq, double med, double gra, int margem, boolean aceitaPremium, int id){
-        Vintage vintage = new Vintage();
+    public static boolean novoTransporte(double peq, double med, double gra, int margem, boolean aceitaPremium, int id, Vintage vintage){
+        //Vintage vintage = new Vintage();
         return vintage.addTransporteVintage(peq, med, gra, margem, aceitaPremium, id);
     }
 }

@@ -1,19 +1,19 @@
-public class TSirtLisa extends TShirt{
+public class TShirtLisa extends TShirt{
 
-    public TSirtLisa(){
+    public TShirtLisa(){
         super();
     }
 
-    public TSirtLisa(TSirtLisa t){
+    public TShirtLisa(TShirtLisa t){
         super(t);
     }
 
-    public TSirtLisa(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, Tamanho tamanho, String padrao) {
+    public TShirtLisa(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, Tamanho tamanho, String padrao) {
         super(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
     }
 
-    public TSirtLisa clone(){
-        return new TSirtLisa(this);
+    public TShirtLisa clone(){
+        return new TShirtLisa(this);
     }
 
     public double precoartigo(){

@@ -64,7 +64,7 @@ public class Menu {
         return ControladorCentral.novoUtilizador(email, nome, morada, nif);
     }
 
-    public static boolean MenuNovoRegistoTransportadora(){
+    public static boolean MenuNovoRegistoTransportadora(Vintage vintage){
         Scanner scanner = new Scanner(System.in);
 
         StringBuilder sb = new StringBuilder("\n\n\n------------REGISTAR TRANSPORTE---------\n\n");
@@ -83,7 +83,7 @@ public class Menu {
         int margem = scanner.nextInt();
         System.out.print("Aceita encomendas Premium(true/false): ");
         boolean aceita = scanner.nextBoolean();
-        return ControladorCentral.novoTransporte(peq, med, gra, margem, aceita, id);
+        return ControladorCentral.novoTransporte(peq, med, gra, margem, aceita, id,vintage);
     }
 
     public static void MostraTodosArtigos(){
@@ -155,7 +155,7 @@ public class Menu {
         System.out.print("Preço Base para encomenda grande: ");
         double gra = scanner.nextDouble();
         System.out.print("Margem de lucro em %: ");
-        int margem = scanner.nextInt();
+        double margem = scanner.nextDouble();
         ControladorTransporte.novoValores(peq, med, gra, margem, id);
         return;
     }
@@ -167,13 +167,13 @@ public class Menu {
         sb.append("Introduza os valores.\n\n");
         System.out.print(sb.toString());
         double v = 0;
-        if (i==1){System.out.print("Preço Base para encomenda pequena: ");
+        if (i==2){System.out.print("Preço Base para encomenda pequena: ");
         v = scanner.nextDouble();}
-        if (i==2){System.out.print("Preço Base para encomenda média: ");
+        if (i==3){System.out.print("Preço Base para encomenda média: ");
         v = scanner.nextDouble();}
-        if (i==3){System.out.print("Preço Base para encomenda grande: ");
+        if (i==4){System.out.print("Preço Base para encomenda grande: ");
         v = scanner.nextDouble();}
-        if (i==4){System.out.print("Margem de lucro em %: ");
+        if (i==5){System.out.print("Margem de lucro em %: ");
         v = scanner.nextDouble();}
         return v;
     }
