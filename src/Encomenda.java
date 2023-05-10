@@ -13,33 +13,23 @@ public class Encomenda {
     }
     private Dimensao dimensao;
     private LocalDate dataCriacao;
-    public enum Estado{
-        P, //pendente
-        F, //finalizada
-        E; //expedida
-    }
-    private Estado estado;
-
 
     public Encomenda(){
         this.encomenda = new TreeSet<>();
         this.dimensao = null;
         this.dataCriacao = null;
-        this.estado = null;
     }
 
     public Encomenda(Encomenda e){
         this.encomenda = e.getEncomenda();
         this.dimensao = null;
         this.dataCriacao = LocalDate.now();
-        this.estado = e.getEstado();
     }
 
-    public Encomenda(Set<String> encomenda, Dimensao dimensao, Estado estado){
+    public Encomenda(Set<String> encomenda, Dimensao dimensao){
         this.encomenda = encomenda;
         this.dimensao = null;
         this.dataCriacao = LocalDate.now();
-        this.estado = estado;
     }
 
     public Set<String> getEncomenda() {
@@ -77,14 +67,6 @@ public class Encomenda {
         this.dataCriacao = dataCriacao;
     }
 
-    public Estado getEstado() {
-        return this.estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
@@ -92,12 +74,11 @@ public class Encomenda {
         Encomenda encomenda1 = (Encomenda) object;
         return this.getEncomenda().equals(encomenda1.getEncomenda()) 
         && getDimensao() == encomenda1.getDimensao() 
-        && this.getDataCriacao().equals(encomenda1.getDataCriacao()) 
-        && this.getEstado() == encomenda1.getEstado();
+        && this.getDataCriacao().equals(encomenda1.getDataCriacao());
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getEncomenda(), getDimensao(), getDataCriacao(), getEstado());
+        return Objects.hash(super.hashCode(), getEncomenda(), getDimensao(), getDataCriacao());
     }
 
     @java.lang.Override
@@ -106,7 +87,6 @@ public class Encomenda {
                 "encomenda=" + encomenda +
                 ", dimensao=" + dimensao +
                 ", dataCriacao=" + dataCriacao +
-                ", estado=" + estado +
                 '}';
     }
 
@@ -130,5 +110,10 @@ public class Encomenda {
         if(dimensao == 1) this.dimensao = Dimensao.PEQ;
         else if((dimensao > 1) && (dimensao < 5)) this.dimensao = Dimensao.MED;
         else this.dimensao = Dimensao.GRA;
+    }
+
+    public int calculaPreço(ControladorCentral controlador){
+        int preço = 0;
+        return preço;
     }
 }
