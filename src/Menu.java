@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-    public static int MenuInicial(){
+    private Interface inter;
+
+    public void setInterface(Interface inter){
+        this.inter = inter;
+    }
+
+    public  int MenuInicial(){
         int opcao;
         StringBuilder str = new StringBuilder("          Seja bem vindo á Vintege\n\n");
         
@@ -23,7 +29,7 @@ public class Menu {
         return opcao;
     }
 
-    public static String MenuLoginUtilizador(boolean errorMessage){
+    public String MenuLoginUtilizador(boolean errorMessage){
         StringBuilder sb = new StringBuilder("\n\n\n------------INICIAR SESSAO---------\n\n");
         if(errorMessage) sb.append("Erro - Dados inválidos! Tente novamente!\n\n");
         sb.append("Insira os seus dados.\n\n");
@@ -35,7 +41,7 @@ public class Menu {
         return email;
     }
 
-    public static int MenuUtilizador(){
+    public int MenuUtilizador(){
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU UTILIZADOR-----------\n\n");
         sb.append("1 -> Deseja comprar\n");
         sb.append("2 -> Deseja vender\n");
@@ -47,7 +53,7 @@ public class Menu {
         return scanner.nextInt();
     }
 
-    public static boolean MenuNovoRegisto(){
+    public boolean MenuNovoRegisto(){
         Scanner scanner = new Scanner(System.in);
 
         StringBuilder sb = new StringBuilder("\n\n\n------------REGISTAR UTLIZADOR---------\n\n");
@@ -61,10 +67,10 @@ public class Menu {
         String morada = scanner.nextLine();
         System.out.print("NIF: ");
         int nif = scanner.nextInt();
-        return ControladorCentral.novoUtilizador(email, nome, morada, nif);
+        return inter.novoUtilizador(email, nome, morada, nif);
     }
 
-    public static boolean MenuNovoRegistoTransportadora(Vintage vintage){
+    public boolean MenuNovoRegistoTransportadora(){
         Scanner scanner = new Scanner(System.in);
 
         StringBuilder sb = new StringBuilder("\n\n\n------------REGISTAR TRANSPORTE---------\n\n");
@@ -83,14 +89,14 @@ public class Menu {
         int margem = scanner.nextInt();
         System.out.print("Aceita encomendas Premium(true/false): ");
         boolean aceita = scanner.nextBoolean();
-        return ControladorCentral.novoTransporte(peq, med, gra, margem, aceita, id,vintage);
+        return inter.novoTransporte(peq, med, gra, margem, aceita, id);
     }
 
-    public static void MostraTodosArtigos(){
+    public void MostraTodosArtigos(){
         System.out.println("Artigos para venda: ");
     }
 
-    public static Malas menuArtigoNovo(int id_utilizador){
+    public Malas MenuArtigoMalas(int id_utilizador){
         StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
         sb.append("Insira os dados. n\n");
         System.out.print(sb.toString());
@@ -111,10 +117,34 @@ public class Menu {
         sb.append("Desconto em %: ");
         double desconto = scanner.nextDouble();
         sb.append("Identificador do Transporte: ");
-        return new Malas(donos, descricao, marca, cod, preco, desconto, avaliacao,id_utilizador, 10, null, 1.1, 1.1, 1.1, null);
+        return new Malas(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, 10, null, 1.1, 1.1, 1.1, null);
     }
 
-    public static int MenuLoginTransportadora(boolean errorMessage){
+    public MalasPremium MenuArtigoMalasP(int id_utilizador){
+        StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
+        sb.append("Insira os dados. n\n");
+        System.out.print(sb.toString());
+
+        Scanner scanner = new Scanner(System.in);
+        sb.append("Avaliação: ");
+        double avaliacao = scanner.nextDouble();
+        sb.append("Número de Donos: ");
+        int donos = scanner.nextInt();
+        sb.append("Descrição: ");
+        String descricao = scanner.nextLine();
+        sb.append("Marca: ");
+        String marca = scanner.nextLine();
+        sb.append("Código Alfanumérico: ");
+        String cod = scanner.nextLine();
+        sb.append("Preço Base: ");
+        double preco = scanner.nextDouble();
+        sb.append("Desconto em %: ");
+        double desconto = scanner.nextDouble();
+        sb.append("Identificador do Transporte: ");
+        return new MalasPremium(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, 10, null, 1.1, 1.1, 1.1, null,0);
+    }
+
+    public int MenuLoginTransportadora(boolean errorMessage){
         StringBuilder sb = new StringBuilder("\n\n\n------------INICIAR SESSAO---------\n\n");
         if(errorMessage) sb.append("Erro - Dados inválidos! Tente novamente!\n\n");
         sb.append("Insira os seus dados.\n\n");
@@ -126,7 +156,7 @@ public class Menu {
         return id;
     }
 
-    public static int MenuTransportes(){
+    public int MenuTransportes(){
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU TRANSPORTE----------\n\n");
         sb.append("1 -> Deseja alterar todos os valores de cálculo?\n");
         sb.append("2 -> Deseja alterar o valor base para encomendas pequenas?\n");
@@ -141,7 +171,7 @@ public class Menu {
         return scanner.nextInt();
     }
 
-    public static void MenuAlteraValores(int id){
+    public void MenuAlteraValores(int id){
         Scanner scanner = new Scanner(System.in);
 
         StringBuilder sb = new StringBuilder();
@@ -156,11 +186,11 @@ public class Menu {
         double gra = scanner.nextDouble();
         System.out.print("Margem de lucro em %: ");
         double margem = scanner.nextDouble();
-        ControladorTransporte.novoValores(peq, med, gra, margem, id);
+        //this.novoValores(peq, med, gra, margem, id);
         return;
     }
 
-    public static Double MenuAlteraValor(int i){
+    public Double MenuAlteraValor(int i){
         Scanner scanner = new Scanner(System.in);
 
         StringBuilder sb = new StringBuilder();
@@ -178,7 +208,7 @@ public class Menu {
         return v;
     }
 
-    public static void avisos(int a){
+    public void avisos(int a){
         StringBuilder sb = new StringBuilder();
         if (a==1) sb.append("!!!Email Inválido!!!").append("\n");
         if (a==2) sb.append("!!!Email já existe!!!").append("\n");

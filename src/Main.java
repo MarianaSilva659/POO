@@ -1,6 +1,7 @@
 
-public class Main extends ControladorCentral{
+public class Main{
     public static void main(String[] args) {
-        ControladorCentral.correrPrograma();;
+        ControladorCentral controladorCentral = new ControladorCentral();
+        controladorCentral.correrPrograma();;
     }
 }

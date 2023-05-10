@@ -1,29 +1,31 @@
-public class ControladorTransporte {
-    public static void run(Vintage vintage, int id){
+public class ControladorTransporte{
+    private Menu menu;
+    public void run(Vintage vintage, int id){
         
         while(true){
             int opcaoEscolhida = -1;
             while(opcaoEscolhida < 0 || opcaoEscolhida > 3){
-                opcaoEscolhida = Menu.MenuTransportes();
+                opcaoEscolhida = menu.MenuTransportes();
             }
             switch(opcaoEscolhida){
                 case 1:
-                    Menu.MenuAlteraValores(id);
+                    menu.MenuAlteraValores(id);
                 break;
                 case 2:
-                    vintage.novoValorPEQ(Menu.MenuAlteraValor(opcaoEscolhida), id);
+                    vintage.novoValorPEQ(menu.MenuAlteraValor(opcaoEscolhida), id);
+                    //menu.MenuNovoRegistoTransportadora();
                 break;
                 case 3:
-                    vintage.novoValorMED(Menu.MenuAlteraValor(opcaoEscolhida), id);
+                    vintage.novoValorMED(menu.MenuAlteraValor(opcaoEscolhida), id);
                 break;
                 case 4:
-                    vintage.novoValorGRA(Menu.MenuAlteraValor(opcaoEscolhida), id);
+                    vintage.novoValorGRA(menu.MenuAlteraValor(opcaoEscolhida), id);
                 break;
                 case 5:
-                    vintage.novaMargemLucro(Menu.MenuAlteraValor(opcaoEscolhida), id);
+                    vintage.novaMargemLucro(menu.MenuAlteraValor(opcaoEscolhida), id);
                 break;
                 case 6:
-                    ControladorCentral.correrPrograma();
+                   // ControladorCentral.correrPrograma();
                 break;
                 case 0:
                     System.out.println("\nTerminada a sessão");
@@ -33,7 +35,7 @@ public class ControladorTransporte {
             }
         }
     }
-    public static void novoValores(double peq, double med, double gra, double margem, int id){
+    public void novoValores(double peq, double med, double gra, double margem, int id){
        Vintage vintage = new Vintage();
         vintage.novoValoresTransporte(peq, med, gra, margem, id);
     }

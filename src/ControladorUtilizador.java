@@ -1,10 +1,11 @@
 public class ControladorUtilizador {
-    public static void run(Vintage vintage){
+    private Menu menu;
+    public void run(Vintage vintage){
         
         while(true){
             int opcaoEscolhida = -1;
             while(opcaoEscolhida < 0 || opcaoEscolhida > 3){
-                opcaoEscolhida = Menu.MenuUtilizador();
+                opcaoEscolhida = menu.MenuUtilizador();
             }
             switch(opcaoEscolhida){
                 case 1:
@@ -16,7 +17,7 @@ public class ControladorUtilizador {
                 //escolher uma transportadora para transportar o artigo
                 break;
                 case 3:
-                ControladorCentral.correrPrograma();
+              //  ControladorCentral.correrPrograma();
                 break;
                 case 0:
                     System.out.println("\nTerminada a sessão");
