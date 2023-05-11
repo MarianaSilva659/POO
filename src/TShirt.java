@@ -67,5 +67,14 @@ public abstract class TShirt extends Artigo{
     public abstract TShirt clone();
 
     public abstract double precoartigo();
+
+    @Override
+    public String toString() {
+        return "{" + super.toString() +
+            " tamanho='" + getTamanho() + "'" +
+            ", padrao='" + getPadrao() + "'" +
+            "}";
+    }
+
 }
 

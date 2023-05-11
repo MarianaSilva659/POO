@@ -26,4 +26,11 @@ public class TShirtRiscas extends TShirt{
         }
         return preco;
     }
+
+    @Override
+    public String toString() {
+        return "{" + super.toString() +
+            "}";
+    }
+
 }

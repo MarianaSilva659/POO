@@ -44,7 +44,7 @@ public class MalasPremium extends Malas{
 
     @Override
     public String toString() {
-        return "{" +
+        return "{" + super.toString() +
             " valorizacao='" + getValorizacao() + "'" +
             "}";
     }
@@ -52,4 +52,6 @@ public class MalasPremium extends Malas{
     public double precoartigo(){
         return getPrecoBase() + (getPrecoBase() * ((100 - this.getValorizacao())/100));
     }
+
+    
 }

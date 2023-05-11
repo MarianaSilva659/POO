@@ -47,4 +47,12 @@ public class SapatilhasPremium extends Sapatilhas{
         return getPrecoBase() + (getPrecoBase() / getNumeroDonos() * (anoAtual - getAno()));
         
     }
+
+    @Override
+    public String toString() {
+        return "{" + super.toString() +
+            " autores='" + getAutores() + "'" +
+            "}";
+    }
+
 }

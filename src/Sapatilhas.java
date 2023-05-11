@@ -5,7 +5,7 @@ public class Sapatilhas extends Artigo {
     private String detalhe;
     private int tamanho;
     private String cor;
-    private Year ano;
+    private int ano;
 
 
     public Sapatilhas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String detalhe , int tamanho, String cor, int ano){
@@ -13,7 +13,7 @@ public class Sapatilhas extends Artigo {
         this.detalhe = detalhe;
         this.tamanho = tamanho;
         this.cor = cor;
-        this.ano = Year.of(ano);
+        this.ano = ano;
     }
 
     public Sapatilhas(Sapatilhas s){
@@ -21,7 +21,7 @@ public class Sapatilhas extends Artigo {
         this.detalhe = s.getDetalhe();
         this.tamanho = s.getTamanho();
         this.cor = s.getCor();
-        this.ano = Year.of(s.getAno());
+        this.ano = s.getAno();
     }
 
     public Sapatilhas(){
@@ -29,7 +29,7 @@ public class Sapatilhas extends Artigo {
         this.detalhe = null;
         this.tamanho = 0;
         this.cor = null;
-        this.ano = null;
+        this.ano = 0;
     }
 
     public String getDetalhe() {
@@ -57,11 +57,11 @@ public class Sapatilhas extends Artigo {
     }
 
     public int getAno(){
-        return this.ano.getValue();
+        return this.ano;
     }
 
     public void setAno(int ano) {
-        this.ano = Year.of(ano);
+        this.ano = ano;
     }
 
     @Override
@@ -98,5 +98,16 @@ public class Sapatilhas extends Artigo {
         }
         return preco;
     }
+
+    @Override
+    public String toString() {
+        return "{" + super.toString()+
+            " detalhe='" + getDetalhe() + "'" +
+            ", tamanho='" + getTamanho() + "'" +
+            ", cor='" + getCor() + "'" +
+            ", ano='" + getAno() + "'" +
+            "}";
+    }
+
 
 }

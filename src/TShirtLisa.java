@@ -19,4 +19,11 @@ public class TShirtLisa extends TShirt{
     public double precoartigo(){
         return getPrecoBase();
     }
+
+    @Override
+    public String toString() {
+        return "{" + super.toString() +
+            "}";
+    }
+
 }
