@@ -112,8 +112,10 @@ public class Encomenda {
         else this.dimensao = Dimensao.GRA;
     }
 
-    public int calculaPreço(ControladorCentral controlador){
+    public int calculaPreço(Vintage vintage){
         int preço = 0;
+        Set<String> artigos = this.getEncomenda(); 
+        //vintage.getInfoArtigos();
         return preço;
     }
 }
