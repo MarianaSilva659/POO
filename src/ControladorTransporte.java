@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+
 public class ControladorTransporte implements InterfaceTransportes{
     
     private MenuTransportes menu;
@@ -13,9 +15,19 @@ public class ControladorTransporte implements InterfaceTransportes{
         
         while(true){
             int opcaoEscolhida = -1;
-            while(opcaoEscolhida < 0 || opcaoEscolhida > 5){
-                opcaoEscolhida = menu.MenuTransportes();
-            }
+            do{
+                try {
+                    opcaoEscolhida = menu.MenuTransportes();
+                    if (opcaoEscolhida < 0 || opcaoEscolhida > 5) {
+                        throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 2\n");
+                    }
+                }catch (InputMismatchException e) {
+                    System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
+                }catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 5);
+            
             switch(opcaoEscolhida){
                 case 1:
                     vintage.novoValorPEQ(menu.MenuAlteraValor(opcaoEscolhida), id);

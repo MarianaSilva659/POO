@@ -35,6 +35,7 @@ public class Vintage {
     }
 
     public boolean existeContaT(int id){
+        System.out.println(transportes);
         return this.transportes.existe_Transportadora(id);
     }
 
@@ -95,7 +96,6 @@ public class Vintage {
         if(this.artigos.existe_Artigo(cod) == false){
             Malas a = new Malas(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material);
             this.artigos.addPra_venda(a, id_utilizador);
-            System.out.println(a);
             return true;
         }else return false;
     }
@@ -140,6 +140,7 @@ public class Vintage {
         if(this.artigos.existe_Artigo(cod) == false){
             TShirtLisa t = new TShirtLisa(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte,tamanho, padrao);
             this.artigos.addPra_venda(t, id_transporte);
+            System.out.println(artigos);
             return true;
         }else return false;
     }

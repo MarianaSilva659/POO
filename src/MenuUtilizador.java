@@ -54,6 +54,7 @@ public class MenuUtilizador {
     }
 
     public boolean MenuArtigoMalas(int id_utilizador, int opcao){
+        boolean a = false;
         StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
         sb.append("Insira os dados. \n");
         System.out.print(sb.toString());
@@ -65,7 +66,7 @@ public class MenuUtilizador {
         String cod = scannerString("Código Alfanumérico: ", scanner);
         String descricao = scannerString("Descrição: ", scanner);
         double preco = scannerDouble("Preço Base: ", scanner);
-        double avaliacao = scannerDouble("Avaliação: ", scanner);
+        double avaliacao = scannerDouble("Avaliação(0...5): ", scanner);
         int donos = scannerInt("Número de Donos: ", scanner);
         double desconto = scannerDouble("Desconto em %: ", scanner);
         int ano = scannerInt("Ano da coleção: ", scanner);
@@ -74,14 +75,16 @@ public class MenuUtilizador {
         double profundidade = scannerDouble("Profundidade da mala(cm): ", scanner);
         scanner.nextLine();
         String material = scannerString("Material da mala: ", scanner);
-        if(opcao == 1) return inter.addMalaPadrao(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material);
+        if(opcao == 1) a = inter.addMalaPadrao(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material);
         else if(opcao == 2){
             double valorizacao = scannerDouble("\nValorização da mala: ", scanner);
-           return inter.addMalaPremium(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material, valorizacao);
+            a = inter.addMalaPremium(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material, valorizacao);
         }
+        return a;
     }
 
     public boolean MenuArtigoSapatilhas(int id_utilizador, int opcao){
+        boolean r = false;
         StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
         sb.append("Insira os dados. n\n");
         System.out.print(sb.toString());
@@ -95,45 +98,46 @@ public class MenuUtilizador {
         scanner.nextLine();
         String detalhe = scannerString("Detalhes: ", scanner);
         String descricao = scannerString("Descrição: ", scanner);
-        double avaliacao = scannerDouble("Avaliação: ", scanner);
+        double avaliacao = scannerDouble("Avaliação(0..5): ", scanner);
         int donos = scannerInt("Número de Donos: ", scanner);
         double desconto = scannerDouble("Desconto em %: ", scanner);
         int ano = scannerInt("Ano da coleção: ", scanner);
         int tamanho = scannerInt("Número das Sapatilhas: ", scanner);
         scanner.nextLine();
         String cor = scannerString("Cor das Sapatilhas: ", scanner);
-        if(opcao == 3) return inter.addSapatilhasPadrao(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, detalhe, tamanho, cor, ano);
+        if(opcao == 3) r = inter.addSapatilhasPadrao(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, detalhe, tamanho, cor, ano);
         else if(opcao == 4){
             String autore = scannerString("\nAutor das Sapatilhas: ", scanner);
-            return inter.addSapatilhasPremium(donos, descricao, marca, cod, preco, avaliacao, id_utilizador, id_transporte, detalhe, tamanho, cor, ano, autore);
+            r = inter.addSapatilhasPremium(donos, descricao, marca, cod, preco, avaliacao, id_utilizador, id_transporte, detalhe, tamanho, cor, ano, autore);
         }
+        return r;
     }
-}
 
-
-
-/*Malas
-StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
-        sb.append("Insira os dados. \n");
+    public boolean MenuArtigoTShit(int id_utilizador, int opcao){
+        boolean r = false;
+        StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
+        sb.append("Insira os dados. n\n");
         System.out.print(sb.toString());
 
         Scanner scanner = new Scanner(System.in);
         int id_transporte = scannerInt("Escolha um identificador do transporte que vai entregar o artigo: ", scanner);
+        scanner.nextLine();
         String marca = scannerString("Marca: ", scanner);
         String cod = scannerString("Código Alfanumérico: ", scanner);
         double preco = scannerDouble("Preço Base: ", scanner);
-        double avaliacao = scannerDouble("Avaliação: ", scanner);
-        int donos = scannerInt("Número de Donos: ", scanner);
+        scanner.nextLine();
+        String detalhe = scannerString("Detalhes: ", scanner);
         String descricao = scannerString("Descrição: ", scanner);
+        String padrao = scannerString("Padrão: ", scanner);
+        double avaliacao = scannerDouble("Avaliação(0..5): ", scanner);
+        int donos = scannerInt("Número de Donos: ", scanner);
         double desconto = scannerDouble("Desconto em %: ", scanner);
-        int ano = scannerInt("Ano da coleção: ", scanner);
-        double altura = scannerDouble("Altura da mala(cm): ", scanner);
-        double largura = scannerDouble("Largura da mala(cm): ", scanner);
-        double profundidade = scannerDouble("Profundidade da mala(cm): ", scanner);
-        String material = scannerString("Material da mala: ", scanner);
-        if(opcao == 1) inter.addMalaPadrao(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material);
-        else if(opcao == 2){
-            double valorizacao = scannerDouble("\nValorização da mala: ", scanner);
-            inter.addMalaPremium(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material, valorizacao);
-    
-        } */
+        scanner.nextLine();
+        String tamanho = scannerString("Tamanho(S/M/L/XL): ", scanner);
+        if(opcao == 5) r = inter.addTShirt(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
+        else if(opcao == 6) r = inter.addTShirtLisa(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
+        else if(opcao == 7) r = inter.addTShirtRiscas(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
+        else if(opcao == 8) r = inter.addTShirtPalmeiras(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
+        return r;
+    }
+}

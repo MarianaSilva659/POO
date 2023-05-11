@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 
 public class ControladorCentral implements Interface{
 
@@ -18,9 +19,19 @@ public class ControladorCentral implements Interface{
         boolean errorMessage = false;
         while(true){
             int opcaoEscolhida = -1;
-            while(opcaoEscolhida < 0 || opcaoEscolhida > 4){
-                opcaoEscolhida = menu.MenuInicial();
-            }
+            do{
+                try {
+                    opcaoEscolhida = menu.MenuInicial();
+                    if (opcaoEscolhida < 0 || opcaoEscolhida > 4) {
+                        throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 2\n");
+                    }
+                }catch (InputMismatchException e) {
+                    System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
+                }catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 4);
+            
             switch(opcaoEscolhida){
 
                 case 1:
@@ -39,7 +50,7 @@ public class ControladorCentral implements Interface{
                 break;
                 case 3:
                     int identificadorI = menu.MenuLoginTransportadora(errorMessage);
-                    if(vintage.existeContaT(identificadorI) == true) menu.avisos(3);    
+                    if(vintage.existeContaT(identificadorI) == false) menu.avisos(3);    
                     else cT.run(vintage, identificadorI);
                 break;
                 case 4:

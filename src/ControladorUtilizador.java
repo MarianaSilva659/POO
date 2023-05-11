@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+
 public class ControladorUtilizador implements InterfaceUtilizadores{
     private MenuUtilizador menu;
     private Vintage vintage;
@@ -12,9 +14,19 @@ public class ControladorUtilizador implements InterfaceUtilizadores{
         
         while(true){
             int opcaoEscolhida = -1;
-            while(opcaoEscolhida < 0 || opcaoEscolhida > 2){
-                opcaoEscolhida = menu.MenuUtilizador();
-            }
+            do{
+                try {
+                    opcaoEscolhida = menu.MenuUtilizador();
+                    if (opcaoEscolhida < 0 || opcaoEscolhida > 2) {
+                        throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 2\n");
+                    }
+                }catch (InputMismatchException e) {
+                    System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
+                }catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 2);
+            
             switch(opcaoEscolhida){
                 case 1:
                 //comprar
@@ -22,12 +34,15 @@ public class ControladorUtilizador implements InterfaceUtilizadores{
                 case 2:
                     int opcao = menu.MenuTipoDoArtigo();
                     vintage.mostraTransportes();
-                    if(opcao == 1 || opcao == 2){
-                         if(menu.MenuArtigoMalas(vintage.getIdUtilizador(email), opcao)){
-
-                        }
+                    if((opcao == 1) || (opcao == 2)){
+                         if(menu.MenuArtigoMalas(vintage.getIdUtilizador(email), opcao) == false) System.out.println("!!!!ARTIGO JÁ EXISTE!!!");
                     }
-                    else if(opcao == 3 || opcao == 4) menu.MenuArtigoSapatilhas(vintage.getIdUtilizador(email), opcao);
+                    else if((opcao == 3) || (opcao == 4)){
+                        if(menu.MenuArtigoSapatilhas(vintage.getIdUtilizador(email), opcao) == false) System.out.println("!!!!ARTIGO JÁ EXISTE!!!");
+                    }
+                    else if((opcao >= 5) && (opcao <= 8)){
+                        if((menu.MenuArtigoTShit(vintage.getIdUtilizador(email), opcao)) == false) System.out.println("!!!!ARTIGO JÁ EXISTE!!!");
+                    }
                 break;
                 case 0:
                     System.out.println("\nTerminada a sessão");
@@ -55,5 +70,17 @@ public class ControladorUtilizador implements InterfaceUtilizadores{
 
     public boolean addTShirt(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao){
         return vintage.addTShirt(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
+    }
+
+    public boolean addTShirtLisa(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao){
+        return vintage.addTShirtLisa(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
+    }
+
+    public boolean addTShirtRiscas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao){
+        return vintage.addTShirtRiscas(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
+    }
+
+    public boolean addTShirtPalmeiras(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao){
+        return vintage.addTShirtPalmeiras(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
     }
 }
