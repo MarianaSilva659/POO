@@ -23,7 +23,6 @@ public class Vintage {
 
     public String addContaVintage(String email, String nome, String morada, int nif){
         int id = this.utilizadores.getIdNewUtilizador();
-        System.out.println("id " + id);
         Utilizador novo = new Utilizador(id, email, nome, morada, nif);
         if(this.utilizadores.existeConta(email) == false){
             this.utilizadores.addConta(novo);
@@ -84,5 +83,19 @@ public class Vintage {
 
     public Transportadora getTransporte(int id){
         return this.transportes.getTransportadoraById(id);
+    }
+
+    public int getIdUtilizador(String email){
+        return this.utilizadores.getIdByEmail(email);
+    }
+
+    public void addArtigoMalaPadrao(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, int ano, double altura, double largura, double profundidade, String material){
+        Malas a = new Malas(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material);
+        this.artigos.addPra_venda(a, id_utilizador);
+    }
+
+    public void addArtigoMalaPremium(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, int ano, double altura, double largura, double profundidade, String material, double valorizacao){
+        MalasPremium a = new MalasPremium(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material, valorizacao);
+        this.artigos.addPra_venda(a, id_utilizador);
     }
 }

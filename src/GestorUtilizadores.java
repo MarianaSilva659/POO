@@ -103,4 +103,18 @@ public class GestorUtilizadores{
         return sb.toString();
     }
 
+    public int getIdByEmail(String email){
+            Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
+            Map.Entry<Integer,Utilizador> c;
+            int id = -1;
+            while(iterator.hasNext()){
+                c = iterator.next();
+    
+                if(email.equals(c.getValue().getEmail())){
+                     id = c.getKey();
+                }
+            }
+            return id;
+    }
+
 }

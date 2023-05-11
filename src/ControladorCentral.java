@@ -59,10 +59,6 @@ public class ControladorCentral implements Interface{
         }
     }
 
-    public Vintage getVintage(){
-        return vintage;
-    }
-
     public String novoUtilizador(String email, String nome, String morada, int nif){
         return vintage.addContaVintage(email, nome, morada, nif);
     }

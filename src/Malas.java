@@ -3,18 +3,18 @@ import java.util.Objects;
 
 
 public class Malas extends Artigo{
-    private Year ano;
+    private int ano;
     private double altura;
     private double largura;
     private double profundidade;
     private String material;
 
     public int getAno(){
-        return this.ano.getValue();
+        return this.ano;
     }
 
     public void setAno(int ano) {
-        this.ano = Year.of(ano);
+        this.ano = ano;
     }
 
     public double getAltura() {
@@ -54,10 +54,10 @@ public class Malas extends Artigo{
         this.altura = 0;
         this.largura = 0;
         this.profundidade = 0;
-        this.ano = null;
+        this.ano = 0;
     }
 
-    public Malas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, Year ano, double altura, double largura, double profundidade, String material) {
+    public Malas(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, int ano, double altura, double largura, double profundidade, String material) {
         super(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador, id_transporte);
         this.ano = ano;
         this.altura = altura;
@@ -68,7 +68,7 @@ public class Malas extends Artigo{
 
     public Malas(Malas m) {
         super(m);
-        this.ano = Year.of(m.getAno());
+        this.ano = m.getAno();
         this.altura = m.getAltura();
         this.largura = m.getLargura();
         this.profundidade = m.getProfundidade();
