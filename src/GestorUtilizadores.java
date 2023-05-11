@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
@@ -85,16 +86,8 @@ public class GestorUtilizadores{
     }
 
     public int getIdNewUtilizador(){
-        int newId = 1;
-        Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
-        Map.Entry<Integer,Utilizador> c;
-        
-        while(iterator.hasNext()){
-            c = iterator.next();
-            
-                newId = c.getKey();
-        }
-        return newId++;
+        int newId = this.contas.size() +1;
+        return newId;
     }
 
     public String toString() {

@@ -30,6 +30,7 @@ public class ControladorCentral implements Interface{
                 break;
                 case 2:
                     String emailR = menu.MenuNovoRegisto();
+                  String emai = menu.MenuNovoRegisto();
                     if(vintage.existeContaU(emailR) == false) menu.avisos(2);
                     else{
                         System.out.println("Foi resgistado com sucesso\n");

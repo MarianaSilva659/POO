@@ -22,7 +22,9 @@ public class Vintage {
     }
 
     public String addContaVintage(String email, String nome, String morada, int nif){
+        System.out.println("idd");
         int id = this.utilizadores.getIdNewUtilizador();
+        System.out.println("idd" + id);
         Utilizador novo = new Utilizador(id, email, nome, morada, nif);
         if(this.utilizadores.existeConta(email) == false){
             this.utilizadores.addConta(novo);
