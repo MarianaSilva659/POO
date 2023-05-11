@@ -19,13 +19,10 @@ public class Menu {
         str.append("3 -> Iniciar sessão para Transportadora\n");
         str.append("4 -> Registar nova conta para Transportadora\n");
         str.append("0 -> Sair\n\n");
-
         str.append("Selecione um número para prosseguir: ");
-
         System.out.print(str.toString());
         Scanner input = new Scanner(System.in);
         opcao = input.nextInt();
-        
         return opcao;
     }
 
@@ -39,47 +36,35 @@ public class Menu {
         return s.nextDouble();
     }
 
+    public String scannerString(String message, Scanner s){
+        System.out.print(message);
+        return s.nextLine();
+    }
+
     public String MenuLoginUtilizador(boolean errorMessage){
         StringBuilder sb = new StringBuilder("\n\n\n------------INICIAR SESSAO---------\n\n");
         if(errorMessage) sb.append("Erro - Dados inválidos! Tente novamente!\n\n");
         sb.append("Insira os seus dados.\n\n");
-        sb.append("Endereço de e-mail: ");
         System.out.print(sb.toString());
-        Scanner input = new Scanner(System.in);
-        String email = input.nextLine();
-       
+        Scanner scanner = new Scanner(System.in);
+        String email = scannerString("Endereço de e-mail: ", scanner);
         return email;
     }
 
-    public int MenuUtilizador(){
-        StringBuilder sb = new StringBuilder("\n\n\n-----------MENU UTILIZADOR-----------\n\n");
-        sb.append("1 -> Deseja comprar\n");
-        sb.append("2 -> Deseja vender\n");
-        sb.append("3 -> Voltar ao Menu Principal\n");
-        sb.append("0 -> Sair\n");
-        sb.append("Selecione a opção pretendida: ");
-        System.out.print(sb.toString());
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
-    }
-
-    public boolean MenuNovoRegisto(){
+    public String MenuNovoRegisto(){
         Scanner scanner = new Scanner(System.in);
 
         StringBuilder sb = new StringBuilder("\n\n\n------------REGISTAR UTLIZADOR---------\n\n");
         sb.append("Introduza os seguintes dados.\n\n");
-        sb.append("Nome: ");
         System.out.print(sb.toString());
-        String nome = scanner.nextLine();
-        System.out.print("E-mail: ");
-        String email = scanner.nextLine();
-        System.out.print("Morada: ");
-        String morada = scanner.nextLine();
+        String nome = scannerString("Nome: ", scanner);
+        String email = scannerString("E-mail: ", scanner);
+        String morada = scannerString("Morada: ", scanner);
         int nif = scannerInt("NIF: ", scanner);
         return inter.novoUtilizador(email, nome, morada, nif);
     }
 
-    public boolean MenuNovoRegistoTransportadora(){
+    public int MenuNovoRegistoTransportadora(){
         Scanner scanner = new Scanner(System.in);
 
         StringBuilder sb = new StringBuilder("\n\n\n------------REGISTAR TRANSPORTE---------\n\n");
@@ -96,111 +81,15 @@ public class Menu {
         return inter.novoTransporte(peq, med, gra, margem, aceita, id);
     }
 
-    public void MostraTodosArtigos(){
-        System.out.println("Artigos para venda: ");
-    }
-
-    public Malas MenuArtigoMalas(int id_utilizador){
-        StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
-        sb.append("Insira os dados. n\n");
-        System.out.print(sb.toString());
-
-        Scanner scanner = new Scanner(System.in);
-        double avaliacao = scannerDouble("Avaliação: ", scanner);
-        int donos = scannerInt("Número de Donos: ", scanner);
-        sb.append("Descrição: ");
-        String descricao = scanner.nextLine();
-        sb.append("Marca: ");
-        String marca = scanner.nextLine();
-        sb.append("Código Alfanumérico: ");
-        String cod = scanner.nextLine();
-        double preco = scannerDouble("Preço Base: ", scanner);
-        double desconto = scannerDouble("Desconto em %: ", scanner);
-        sb.append("Identificador do Transporte: ");
-        return new Malas(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, 10, null, 1.1, 1.1, 1.1, null);
-    }
-
-    public MalasPremium MenuArtigoMalasP(int id_utilizador){
-        StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
-        sb.append("Insira os dados. n\n");
-        System.out.print(sb.toString());
-
-        Scanner scanner = new Scanner(System.in);
-        double avaliacao = scannerDouble("Avaliação: ", scanner);
-        sb.append("Número de Donos: ");
-        int donos = scanner.nextInt();
-        sb.append("Descrição: ");
-        String descricao = scanner.nextLine();
-        sb.append("Marca: ");
-        String marca = scanner.nextLine();
-        sb.append("Código Alfanumérico: ");
-        String cod = scanner.nextLine();
-        sb.append("Preço Base: ");
-        double preco = scannerDouble("Preço Base: ", scanner);
-        sb.append("Desconto em %: ");
-        double desconto = scannerDouble("Desconto em %: ", scanner);
-        sb.append("Identificador do Transporte: ");
-        return new MalasPremium(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, 10, null, 1.1, 1.1, 1.1, null,0);
-    }
-
     public int MenuLoginTransportadora(boolean errorMessage){
         StringBuilder sb = new StringBuilder("\n\n\n------------INICIAR SESSAO---------\n\n");
         if(errorMessage) sb.append("Erro - Dados inválidos! Tente novamente!\n\n");
         sb.append("Insira os seus dados.\n\n");
-        sb.append("Identificador: ");
         System.out.print(sb.toString());
-        Scanner input = new Scanner(System.in);
-        int id = input.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int id = scannerInt("Identificador: ", scanner);
        
         return id;
-    }
-
-    public int MenuTransportes(){
-        StringBuilder sb = new StringBuilder("\n\n\n-----------MENU TRANSPORTE----------\n\n");
-        sb.append("1 -> Deseja alterar todos os valores de cálculo?\n");
-        sb.append("2 -> Deseja alterar o valor base para encomendas pequenas?\n");
-        sb.append("3 -> Deseja alterar o valor base para encomendas médias?\n");
-        sb.append("4 -> Deseja alterar o valor base para encomendas grandes?\n");
-        sb.append("5 -> Deseja alterar o valor da margem de Lucro?\n");
-        sb.append("6 -> Voltar ao Menu Principal\n");
-        sb.append("0 -> Sair\n");
-        sb.append("Selecione a opção pretendida: ");
-        System.out.print(sb.toString());
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
-    }
-
-    public void MenuAlteraValores(int id){
-        Scanner scanner = new Scanner(System.in);
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("Introduza os valores.\n\n");
-        System.out.print(sb.toString());
-
-        double peq = scannerDouble("Preço Base para encomenda pequena: ", scanner);
-        double med = scannerDouble("Preço Base para encomenda média: ", scanner);
-        double gra = scannerDouble("Preço Base para encomenda grande: ", scanner);
-        double margem = scannerDouble("Margem de lucro em %: ", scanner);
-        //this.novoValores(peq, med, gra, margem, id);
-        return;
-    }
-
-    public Double MenuAlteraValor(int i){
-        Scanner scanner = new Scanner(System.in);
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("Introduza os valores.\n\n");
-        System.out.print(sb.toString());
-        double v = 0;
-        if (i==2){System.out.print("Preço Base para encomenda pequena: ");
-        v = scanner.nextDouble();}
-        if (i==3){System.out.print("Preço Base para encomenda média: ");
-        v = scanner.nextDouble();}
-        if (i==4){System.out.print("Preço Base para encomenda grande: ");
-        v = scanner.nextDouble();}
-        if (i==5){System.out.print("Margem de lucro em %: ");
-        v = scanner.nextDouble();}
-        return v;
     }
 
     public void avisos(int a){

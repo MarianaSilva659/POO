@@ -1,10 +1,17 @@
 public class ControladorUtilizador {
-    private Menu menu;
-    public void run(Vintage vintage){
+    private MenuUtilizador menu;
+    private Vintage vintage;
+
+    public ControladorUtilizador(Vintage vintage){
+        this.vintage = vintage;
+        this.menu = new MenuUtilizador();
+    }
+    
+    public void run(Vintage vintage, String email){
         
         while(true){
             int opcaoEscolhida = -1;
-            while(opcaoEscolhida < 0 || opcaoEscolhida > 3){
+            while(opcaoEscolhida < 0 || opcaoEscolhida > 2){
                 opcaoEscolhida = menu.MenuUtilizador();
             }
             switch(opcaoEscolhida){
@@ -15,9 +22,6 @@ public class ControladorUtilizador {
                 //inserir dados dos artigos a vender
                 //mostrar transportadoras 
                 //escolher uma transportadora para transportar o artigo
-                break;
-                case 3:
-              //  ControladorCentral.correrPrograma();
                 break;
                 case 0:
                     System.out.println("\nTerminada a sessão");

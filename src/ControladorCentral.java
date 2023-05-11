@@ -4,17 +4,17 @@ public class ControladorCentral implements Interface{
     private Menu menu;
     private Vintage vintage;
     private ControladorTransporte cT;
+    private ControladorUtilizador cU;
     
     public ControladorCentral(){
         this.menu = new Menu();
         this.menu.setInterface(this);
         this.vintage = new Vintage();
-        this.cT = new ControladorTransporte();
+        this.cT = new ControladorTransporte(vintage);
+        this.cU = new ControladorUtilizador(vintage);
     }
 
-    public void correrPrograma(){
-        Vintage vintage = new Vintage();
-        
+    public void correrPrograma(){        
         boolean errorMessage = false;
         while(true){
             int opcaoEscolhida = -1;
@@ -24,28 +24,29 @@ public class ControladorCentral implements Interface{
             switch(opcaoEscolhida){
 
                 case 1:
-                    String email = menu.MenuLoginUtilizador(errorMessage);
-                    
-                    if(vintage.existeContaU(email) == false) menu.avisos(1);
-                  //  else ControladorUtilizador.run(vintage);
+                    String emailI = menu.MenuLoginUtilizador(errorMessage);
+                    if(vintage.existeContaU(emailI) == false) menu.avisos(1);
+                    else cU.run(vintage, emailI);
                 break;
                 case 2:
-                    if(menu.MenuNovoRegisto() == false) menu.avisos(2);
+                    String emailR = menu.MenuNovoRegisto();
+                    if(vintage.existeContaU(emailR) == false) menu.avisos(2);
                     else{
                         System.out.println("Foi resgistado com sucesso\n");
-                     //   ControladorUtilizador.run(vintage);
+                        cU.run(vintage, emailR);
                     }
                 break;
                 case 3:
-                    int id = menu.MenuLoginTransportadora(errorMessage);
-                    if(vintage.existeContaT(id) == false) menu.avisos(3);    
-                   // else ControladorTransporte.run(vintage, id);
+                    int identificadorI = menu.MenuLoginTransportadora(errorMessage);
+                    if(vintage.existeContaT(identificadorI) == true) menu.avisos(3);    
+                    else cT.run(vintage, identificadorI);
                 break;
                 case 4:
-                    if(menu.MenuNovoRegistoTransportadora() == false) menu.avisos(4);
+                    int identificadorR = menu.MenuNovoRegistoTransportadora();
+                    if(identificadorR < 0) menu.avisos(4);
                     else{
                         System.out.println("Foi resgistado com sucesso\n");
-                      //  ControladorTransporte.run(vintage, 1);
+                        cT.run(vintage, identificadorR);
                     }
                 break;
                 case 0:
@@ -57,13 +58,16 @@ public class ControladorCentral implements Interface{
             }
         }
     }
-    public boolean novoUtilizador(String email, String nome, String morada, int nif){
-       // Vintage vintage  = new Vintage();
+
+    public Vintage getVintage(){
+        return vintage;
+    }
+
+    public String novoUtilizador(String email, String nome, String morada, int nif){
         return vintage.addContaVintage(email, nome, morada, nif);
     }
 
-    public boolean novoTransporte(double peq, double med, double gra, int margem, boolean aceitaPremium, int id){
-        //Vintage vintage = new Vintage();
+    public int novoTransporte(double peq, double med, double gra, int margem, boolean aceitaPremium, int id){
         return vintage.addTransporteVintage(peq, med, gra, margem, aceitaPremium, id);
     }
 }

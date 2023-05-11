@@ -54,7 +54,6 @@ public class Transportadora {
     }
 
     public void setValorBase_PEQ(double valorBase_PEQ) {
-        System.out.println("peqqq " + valorBase_PEQ);
         this.valorBase_PEQ = valorBase_PEQ;
     }
 
@@ -88,8 +87,8 @@ public class Transportadora {
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "\nTRANSPORTADORA{" +
-                "INDETIFICADOR=" + idTransporte +
+        return "TRANSPORTADORA{" +
+                "\nINDETIFICADOR=" + idTransporte +
                 ", valorBase_PEQ=" + valorBase_PEQ +
                 ", valorBase_MED=" + valorBase_MED +
                 ", valorBase_GRA=" + valorBase_GRA +

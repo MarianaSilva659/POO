@@ -21,30 +21,30 @@ public class Vintage {
         return this.utilizadores.existeConta(email);
     }
 
-    public boolean addContaVintage(String email, String nome, String morada, int nif){
+    public String addContaVintage(String email, String nome, String morada, int nif){
         int id = this.utilizadores.getIdNewUtilizador();
         System.out.println("id " + id);
         Utilizador novo = new Utilizador(id, email, nome, morada, nif);
         if(this.utilizadores.existeConta(email) == false){
             this.utilizadores.addConta(novo);
             System.out.println(utilizadores);
-            return true;
+            return email;
         }
-        else return false;
+        else return null;
     }
 
     public boolean existeContaT(int id){
         return this.transportes.existe_Transportadora(id);
     }
 
-    public boolean addTransporteVintage(double peq, double med, double gra, int margem, boolean aceitaPremium, int id){
+    public int addTransporteVintage(double peq, double med, double gra, int margem, boolean aceitaPremium, int id){
         Transportadora novo = new Transportadora(peq, med, gra, margem, aceitaPremium, id);
         if(this.transportes.existe_Transportadora(id) == false){ 
             this.transportes.addTransporte(novo);
             System.out.println(transportes);
-            return true;
+            return id;
         }
-        else return false;
+        return -1;
     }
 
     public void novoValorPEQ(double peq, int id){
@@ -69,6 +69,7 @@ public class Vintage {
         Transportadora t = this.transportes.getTransportadoraById(id);
         t.setMargemLucro(margem);
         this.transportes.setTransporte(t);
+        System.out.println(transportes);
     }
 
     public void novoValoresTransporte(double peq, double med, double gra, double margem, int id){
@@ -78,6 +79,7 @@ public class Vintage {
         t.setValorBase_GRA(gra);
         t.setMargemLucro(margem);
         this.transportes.setTransporte(t);
+        System.out.println(transportes);
     }
 
     public Transportadora getTransporte(int id){

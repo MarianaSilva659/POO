@@ -47,18 +47,7 @@ public class GestorTransportes {
     }
 
     boolean existe_Transportadora(int id){
-        boolean existe = false;
-        Iterator<Map.Entry<Integer, Transportadora>> iterator = transportes.entrySet().iterator();
-        Map.Entry<Integer, Transportadora> n;
-        
-        while(iterator.hasNext()){
-            n = iterator.next();
-
-            if(id == n.getKey()){
-                existe = true;
-            }
-        }
-        return existe;
+        return transportes.containsKey(id);
     }
 
     public void addTransporte(Transportadora t){
@@ -91,5 +80,9 @@ public class GestorTransportes {
 
     public void setTransporte(Transportadora t){
         this.transportes.put(t.getIdTransporte(), t.clone());
+    }
+
+    public int QuantidadeTransportes(){
+        return this.transportes.size();
     }
 }
