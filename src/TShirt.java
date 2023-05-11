@@ -1,17 +1,11 @@
 import java.util.Objects;
 
-public abstract class TShirt extends Artigo{
-    public enum Tamanho{
-        S,
-        M,
-        L,
-        XL
-    }
-    private Tamanho tamanho;
+public class TShirt extends Artigo{
+    private String tamanho;
 
     private String padrao;
 
-    public TShirt(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, Tamanho tamanho, String padrao) {
+    public TShirt(int numeroDonos, String descricao, String marca, String id, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao) {
         super(numeroDonos, descricao, marca, id, precoBase, desconto, avaliacao, id_utilizador, id_transporte);
         this.tamanho = tamanho;
         this.padrao = padrao;
@@ -28,11 +22,11 @@ public abstract class TShirt extends Artigo{
         this.padrao = null;
     }
 
-    public Tamanho getTamanho() {
+    public String getTamanho() {
         return this.tamanho;
     }
 
-    public void setTamanho(Tamanho tamanho) {
+    public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
     }
 
@@ -59,9 +53,13 @@ public abstract class TShirt extends Artigo{
         return Objects.hash(super.hashCode(), getTamanho(), getPadrao());
     }
 
-    public abstract TShirt clone();
+    public TShirt clone(){
+        return new TShirt(this);
+    }
 
-    public abstract double precoartigo();
+    public double precoartigo(){
+        return getPrecoBase()*((100-getDesconto())/100);
+    }
 
     @Override
     public String toString() {

@@ -162,6 +162,10 @@ public class GestorArtigos{
         return new GestorArtigos(this);
     }
 
+    public boolean existe_Artigo(String id){
+        return this.produtos_comprados.containsKey(id) || this.produtos_para_venda.containsKey(id) || this.produtos_vendidos.containsKey(id);
+    }
+
     public Artigo getArtigoById(String id_artigo){
         Artigo artigo = null;
         Iterator<Map.Entry<String,Artigo>> iterator = produtos_para_venda.entrySet().iterator();

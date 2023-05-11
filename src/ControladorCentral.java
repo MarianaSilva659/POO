@@ -33,8 +33,8 @@ public class ControladorCentral implements Interface{
                     if(vintage.existeContaU(emailR) == false) menu.avisos(2);
                     else{
                         System.out.println("Foi resgistado com sucesso\n");
-                        correrPrograma();
-                      //  cU.run(vintage, emailR);
+                        //correrPrograma();
+                        cU.run(vintage, emailR);
                     }
                 break;
                 case 3:
