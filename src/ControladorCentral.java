@@ -30,11 +30,11 @@ public class ControladorCentral implements Interface{
                 break;
                 case 2:
                     String emailR = menu.MenuNovoRegisto();
-                  String emai = menu.MenuNovoRegisto();
                     if(vintage.existeContaU(emailR) == false) menu.avisos(2);
                     else{
                         System.out.println("Foi resgistado com sucesso\n");
-                        cU.run(vintage, emailR);
+                        correrPrograma();
+                      //  cU.run(vintage, emailR);
                     }
                 break;
                 case 3:
@@ -47,7 +47,8 @@ public class ControladorCentral implements Interface{
                     if(identificadorR < 0) menu.avisos(4);
                     else{
                         System.out.println("Foi resgistado com sucesso\n");
-                        cT.run(vintage, identificadorR);
+                        correrPrograma();
+                       // cT.run(vintage, identificadorR);
                     }
                 break;
                 case 0:
