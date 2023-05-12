@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class GestorArtigos{
+public class GestorArtigos implements Serializable {
     private Map<String, Artigo> produtos_comprados;
     private Map<String, Artigo> produtos_vendidos;
     private Map<String, Artigo> produtos_para_venda;

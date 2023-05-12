@@ -1,5 +1,11 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Vintage {
+public class Vintage implements Serializable {
     private GestorArtigos artigos;
     private GestorUtilizadores utilizadores;
     private GestorTransportes transportes;
@@ -169,4 +175,19 @@ public class Vintage {
             return true;
         }else return false;
     }
+
+    public static Vintage loadState (String filename) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename));
+        Vintage f = (Vintage) ois.readObject();
+        ois.close();
+        return f;
+    }
+
+    public void saveState (String filename) throws IOException{
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
+        oos.writeObject(this);
+        oos.flush();
+        oos.close();
+    }
+
 }

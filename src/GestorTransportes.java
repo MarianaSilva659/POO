@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Iterator;
 
-public class GestorTransportes {
+public class GestorTransportes implements Serializable {
     private Map<Integer, Transportadora> transportes;
 
 

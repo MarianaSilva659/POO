@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.NotSerializableException;
 import java.util.InputMismatchException;
 
 public class ControladorCentral implements Interface{
@@ -15,14 +18,14 @@ public class ControladorCentral implements Interface{
         this.cU = new ControladorUtilizador(vintage, this);
     }
 
-    public void correrPrograma(){        
+    public void correrPrograma(){
         boolean errorMessage = false;
         while(true){
             int opcaoEscolhida = -1;
             do{
                 try {
                     opcaoEscolhida = menu.MenuInicial();
-                    if (opcaoEscolhida < 0 || opcaoEscolhida > 4) {
+                    if (opcaoEscolhida < 0 || opcaoEscolhida > 6) {
                         throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 1 e 8\n");
                     }
                 }catch (InputMismatchException e) {
@@ -30,7 +33,7 @@ public class ControladorCentral implements Interface{
                 }catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
-            } while (opcaoEscolhida < 0 || opcaoEscolhida > 4);
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 6);
             
             switch(opcaoEscolhida){
 
@@ -62,7 +65,39 @@ public class ControladorCentral implements Interface{
                        // cT.run(vintage, identificadorR);
                     }
                 break;
+                case 5:
+                    try {
+                        vintage = Vintage.loadState("state.obj");
+                        System.out.println("Foi atualizado com sucesso\n");
+                    }
+
+                    catch(ClassNotFoundException a) {
+                        System.out.println("ClassNotFoundException");
+                    }
+
+                    catch(IOException a){
+                        menu.avisos(5);
+                    }
+                    correrPrograma();
+                    break;
+
+                case 6:
+                    try {
+                        vintage.saveState("state.obj");
+                        System.out.println("Foi gravado com sucesso\n");
+                    }
+                    catch(NotSerializableException a){
+                        System.out.println("NotSerializableException");
+                    }
+
+                    catch(IOException a) {
+                        menu.avisos(6);
+                    }
+                    correrPrograma();
+                    break;
+
                 case 0:
+
                     System.out.println("\nTerminada a sessão");
                     System.exit(0);
                     break;
@@ -79,5 +114,8 @@ public class ControladorCentral implements Interface{
     public int novoTransporte(double peq, double med, double gra, int margem, boolean aceitaPremium, int id){
         return vintage.addTransporteVintage(peq, med, gra, margem, aceitaPremium, id);
     }
+
+
+
 }
 

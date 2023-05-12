@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,6 +19,8 @@ public class Menu {
         str.append("2 -> Registar nova conta como Utilizador\n");
         str.append("3 -> Iniciar sessão para Transportadora\n");
         str.append("4 -> Registar nova conta para Transportadora\n");
+        str.append("5 -> Atualizar para a última versão guardada\n");
+        str.append("6 -> Gravar versão\n");
         str.append("0 -> Sair\n\n");
         str.append("Selecione um número para prosseguir: ");
         System.out.print(str.toString());
@@ -98,11 +101,13 @@ public class Menu {
         if (a==2) sb.append("!!!Email já existe!!!").append("\n");
         if (a==3) sb.append("!!!Identificador Inválido!!!").append("\n");
         if (a==4) sb.append("!!!Identificador já existe!!!").append("\n");
+        if (a==5) sb.append("!!!Load falhou!!!").append("\n");
+        if (a==6) sb.append("!!!Save falhou!!!").append("\n");
         sb.append("\nPressione no enter...");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
-}
+    }
 
 

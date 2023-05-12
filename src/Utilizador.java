@@ -1,7 +1,9 @@
 import java.util.Set;
 import java.util.Objects;
 import java.util.TreeSet;
-public class Utilizador{
+import java.io.Serializable;
+
+public class Utilizador implements Serializable{
     private int id;
     private String email;
     private String nome;

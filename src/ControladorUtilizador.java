@@ -1,6 +1,6 @@
 import java.util.InputMismatchException;
 
-public class ControladorUtilizador implements InterfaceUtilizadores{
+public class ControladorUtilizador implements InterfaceUtilizadores {
     private MenuUtilizador menu;
     private Vintage vintage;
     private ControladorCentral controladorCentral;

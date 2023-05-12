@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Artigo{
+public abstract class Artigo implements Serializable {
     private double avaliacao;
     private int numeroDonos;
     private String descricao;
