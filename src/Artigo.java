@@ -141,17 +141,16 @@ public abstract class Artigo{
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "Artigo{" +
-                "avaliacao=" + avaliacao +
+        return "{\nARTIGO: " +
+                ", CÓDIGO DO ARTIGO='" + id_artigo + '\'' +
+                ", avaliacao=" + avaliacao +
                 ", numeroDonos=" + numeroDonos +
                 ", descricao='" + descricao + '\'' +
                 ", marca='" + marca + '\'' +
-                ", id_artigo='" + id_artigo + '\'' +
                 ", precoBase=" + precoBase +
                 ", desconto=" + desconto +
                 ", id_utilizador=" + id_utilizador +
-                ", id_transporte=" + id_transporte +
-                '}';
+                ", id_transporte=" + id_transporte;
     }
 
     public abstract Artigo clone();

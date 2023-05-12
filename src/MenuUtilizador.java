@@ -78,7 +78,7 @@ public class MenuUtilizador {
         String material = scannerString("Material da mala: ", scanner);
         if(opcao == 1) a = inter.addMalaPadrao(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material);
         else if(opcao == 2){
-            double valorizacao = scannerDouble("\nValorização da mala: ", scanner);
+            double valorizacao = scannerDouble("Valorização da mala: ", scanner);
             a = inter.addMalaPremium(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material, valorizacao);
         }
         return a;
@@ -140,5 +140,15 @@ public class MenuUtilizador {
         else if(opcao == 7) r = inter.addTShirtRiscas(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
         else if(opcao == 8) r = inter.addTShirtPalmeiras(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, tamanho, padrao);
         return r;
+    }
+
+    public void avisos(int a){
+        StringBuilder sb = new StringBuilder();
+        if (a==1) sb.append("\n!!!!Digite um número inteiro válido!!!!").append("\n");
+        if (a==2) sb.append("\n!!!!ARTIGO JÁ EXISTE OU TRANSPORTADORA INVÁLIDA!!!").append("\n");
+        sb.append("\nPressione no enter...");
+        System.out.print(sb.toString());
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 }

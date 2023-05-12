@@ -87,13 +87,14 @@ public class Transportadora {
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "\nTRANSPORTADORA" +
-                "\nINDETIFICADOR=" + idTransporte +
+        return "\nTRANSPORTADORA:" +
+                " INDETIFICADOR=" + idTransporte +
                 ", valorBase_PEQ=" + valorBase_PEQ +
                 ", valorBase_MED=" + valorBase_MED +
                 ", valorBase_GRA=" + valorBase_GRA +
                 ", margemLucro=" + margemLucro +
-                ", EncPremium=" + EncPremium;
+                ", EncPremium=" + EncPremium +
+                "               ";
     }
 
     @Override

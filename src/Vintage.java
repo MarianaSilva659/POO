@@ -93,15 +93,16 @@ public class Vintage {
     }
 
     public boolean addMalaPadrao(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, int ano, double altura, double largura, double profundidade, String material){
-        if(this.artigos.existe_Artigo(cod) == false){
+        if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             Malas a = new Malas(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material);
             this.artigos.addPra_venda(a, id_utilizador);
+            System.out.println(artigos);
             return true;
         }else return false;
     }
 
     public boolean addMalaPremium(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, int ano, double altura, double largura, double profundidade, String material, double valorizacao){
-        if(this.artigos.existe_Artigo(cod) == false){
+        if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             MalasPremium a = new MalasPremium(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material, valorizacao);
             this.artigos.addPra_venda(a, id_utilizador);
             return true;
@@ -109,7 +110,7 @@ public class Vintage {
     }
 
     public boolean addSapatilhasPadrao(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String detalhe , int tamanho, String cor, int ano){
-            if(this.artigos.existe_Artigo(cod) == false){
+        if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             Sapatilhas s = new Sapatilhas(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte, detalhe, tamanho, cor, ano);
             this.artigos.addPra_venda(s, id_utilizador);
             return true;
@@ -117,7 +118,7 @@ public class Vintage {
     }
 
     public boolean addSapatilhasPremium(int numeroDonos, String descricao, String marca, String cod, double precoBase, double avaliacao, int id_utilizador, int id_transporte, String detalhe , int tamanho, String cor, int ano, String autores){
-            if(this.artigos.existe_Artigo(cod) == false){
+        if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             Sapatilhas s = new SapatilhasPremium(numeroDonos, descricao, marca, cod, precoBase, avaliacao, id_utilizador, id_transporte, detalhe, tamanho, cor, ano, autores);
             this.artigos.addPra_venda(s, id_utilizador);
             return true;
@@ -131,7 +132,7 @@ public class Vintage {
     }
 
     public boolean addTShirt(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao){
-        if(this.artigos.existe_Artigo(cod) == false){
+        if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             TShirt t = new TShirt(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte,tamanho, padrao);
             this.artigos.addPra_venda(t, id_transporte);
             return true;
@@ -139,7 +140,7 @@ public class Vintage {
     }
 
     public boolean addTShirtLisa(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao){
-        if(this.artigos.existe_Artigo(cod) == false){
+        if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             TShirtLisa t = new TShirtLisa(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte,tamanho, padrao);
             this.artigos.addPra_venda(t, id_transporte);
             System.out.println(artigos);
@@ -148,7 +149,7 @@ public class Vintage {
     }
 
     public boolean addTShirtRiscas(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao){
-        if(this.artigos.existe_Artigo(cod) == false){
+        if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             TShirtRiscas t = new TShirtRiscas(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte,tamanho, padrao);
             this.artigos.addPra_venda(t, id_transporte);
             return true;
@@ -156,7 +157,7 @@ public class Vintage {
     }
 
     public boolean addTShirtPalmeiras(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao){
-        if(this.artigos.existe_Artigo(cod) == false){
+        if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             TShirtPalmeiras t = new TShirtPalmeiras(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte,tamanho, padrao);
             this.artigos.addPra_venda(t, id_transporte);
             return true;

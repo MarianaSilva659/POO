@@ -23,7 +23,7 @@ public class ControladorUtilizador implements InterfaceUtilizadores{
                         throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 2\n");
                     }
                 }catch (InputMismatchException e) {
-                    System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
+                    menu.avisos(1);
                 }catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
@@ -42,7 +42,7 @@ public class ControladorUtilizador implements InterfaceUtilizadores{
                                 throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 8\n");
                             }
                         }catch (InputMismatchException e) {
-                            System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
+                            menu.avisos(1);
                         }catch (IllegalArgumentException e) {
                             System.out.println(e.getMessage());
                         }
@@ -50,13 +50,13 @@ public class ControladorUtilizador implements InterfaceUtilizadores{
                     
                     vintage.mostraTransportes(opcao);
                     if((opcao == 1) || (opcao == 2)){
-                         if(menu.MenuArtigoMalas(vintage.getIdUtilizador(email), opcao) == false) System.out.println("!!!!ARTIGO JÁ EXISTE!!!");
+                         if(menu.MenuArtigoMalas(vintage.getIdUtilizador(email), opcao) == false) menu.avisos(2);
                     }
                     else if((opcao == 3) || (opcao == 4)){
-                        if(menu.MenuArtigoSapatilhas(vintage.getIdUtilizador(email), opcao) == false) System.out.println("!!!!ARTIGO JÁ EXISTE!!!");
+                        if(menu.MenuArtigoSapatilhas(vintage.getIdUtilizador(email), opcao) == false) menu.avisos(2);
                     }
                     else if((opcao >= 5) && (opcao <= 8)){
-                        if((menu.MenuArtigoTShit(vintage.getIdUtilizador(email), opcao)) == false) System.out.println("!!!!ARTIGO JÁ EXISTE!!!");
+                        if((menu.MenuArtigoTShit(vintage.getIdUtilizador(email), opcao)) == false) menu.avisos(2);
                     }
                 break;
                 case 3:
