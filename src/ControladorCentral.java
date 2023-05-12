@@ -11,8 +11,8 @@ public class ControladorCentral implements Interface{
         this.menu = new Menu();
         this.menu.setInterface(this);
         this.vintage = new Vintage();
-        this.cT = new ControladorTransporte(vintage);
-        this.cU = new ControladorUtilizador(vintage);
+        this.cT = new ControladorTransporte(vintage, this);
+        this.cU = new ControladorUtilizador(vintage, this);
     }
 
     public void correrPrograma(){        
@@ -23,7 +23,7 @@ public class ControladorCentral implements Interface{
                 try {
                     opcaoEscolhida = menu.MenuInicial();
                     if (opcaoEscolhida < 0 || opcaoEscolhida > 4) {
-                        throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 2\n");
+                        throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 1 e 8\n");
                     }
                 }catch (InputMismatchException e) {
                     System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");

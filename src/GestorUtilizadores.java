@@ -98,7 +98,7 @@ public class GestorUtilizadores{
 
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("Contas: ").append(contas.toString()).append('\n');
+        sb.append("UTILIZADORES: ").append(contas.toString()).append('\n');
         return sb.toString();
     }
 

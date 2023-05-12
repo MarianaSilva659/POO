@@ -33,6 +33,7 @@ public class MenuTransportes{
         sb.append("3 -> Deseja alterar o valor base para encomendas grandes?\n");
         sb.append("4 -> Deseja alterar o valor da margem de Lucro?\n");
         sb.append("5 -> Deseja alterar todos valores?\n");
+        sb.append("6 -> Voltar ao Menu Inicial\n");
         sb.append("0 -> Sair\n");
         sb.append("Selecione a opção pretendida: ");
         System.out.print(sb.toString());

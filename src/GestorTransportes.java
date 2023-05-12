@@ -78,11 +78,28 @@ public class GestorTransportes {
         return sb.toString();
     }
 
+   
+
     public void setTransporte(Transportadora t){
         this.transportes.put(t.getIdTransporte(), t.clone());
     }
 
     public int QuantidadeTransportes(){
         return this.transportes.size();
+    }
+
+    public Map<Integer,Transportadora> getTransportesPremium(){
+        Map<Integer, Transportadora> transportesPremium = new TreeMap<>();
+        Iterator<Map.Entry<Integer, Transportadora>> iterator = transportes.entrySet().iterator();
+        Map.Entry<Integer, Transportadora> t;
+        while (iterator.hasNext()){
+            t = iterator.next();
+            Transportadora transportadora = t.getValue();
+
+            if (transportadora.getEncPremium() == true) {
+                transportesPremium.put(t.getKey(), transportadora);
+            }
+        }
+        return transportesPremium;
     }
 }

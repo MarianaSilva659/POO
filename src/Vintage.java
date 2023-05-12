@@ -124,8 +124,10 @@ public class Vintage {
         }else return false;
     }
 
-    public void mostraTransportes(){
-        System.out.println(transportes);
+    public void mostraTransportes(int opcao){
+        if(opcao == 2 || opcao == 4)
+        System.out.println(transportes.getTransportesPremium().toString());
+        else System.out.println(transportes.toString());
     }
 
     public boolean addTShirt(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao){

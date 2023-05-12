@@ -139,10 +139,10 @@ public class Utilizador{
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
+        return "\n{" +
+            " NOME='" + getNome() + "'" +
             ", email='" + getEmail() + "'" +
-            ", nome='" + getNome() + "'" +
+            ", id='" + getId() + "'" +
             ", morada='" + getMorada() + "'" +
             ", nif='" + getNif() + "'" +
             ", artigos_comprados='" + getArtigos_comprados() + "'" +

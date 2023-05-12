@@ -26,6 +26,7 @@ public class MenuUtilizador {
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU UTILIZADOR-----------\n\n");
         sb.append("1 -> Deseja comprar\n");
         sb.append("2 -> Deseja vender\n");
+        sb.append("3 -> Voltar ao Menu Inicial\n");
         sb.append("0 -> Sair\n");
         sb.append("Selecione a opção pretendida: ");
         System.out.print(sb.toString());
@@ -86,7 +87,7 @@ public class MenuUtilizador {
     public boolean MenuArtigoSapatilhas(int id_utilizador, int opcao){
         boolean r = false;
         StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
-        sb.append("Insira os dados. n\n");
+        sb.append("Insira os dados. \n");
         System.out.print(sb.toString());
 
         Scanner scanner = new Scanner(System.in);
@@ -116,7 +117,7 @@ public class MenuUtilizador {
     public boolean MenuArtigoTShit(int id_utilizador, int opcao){
         boolean r = false;
         StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
-        sb.append("Insira os dados. n\n");
+        sb.append("Insira os dados. \n");
         System.out.print(sb.toString());
 
         Scanner scanner = new Scanner(System.in);
