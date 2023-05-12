@@ -86,8 +86,14 @@ public class GestorUtilizadores{
     }
 
     public int getIdNewUtilizador(){
-        int newId = this.contas.size() +1;
-        return newId;
+        int newId = 0;
+        Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
+        Map.Entry<Integer,Utilizador> c;
+        while(iterator.hasNext()){
+            c = iterator.next();
+            newId = c.getKey();
+        }
+        return newId+1;
     }
 
     public String toString() {
