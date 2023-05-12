@@ -141,14 +141,14 @@ public abstract class Artigo{
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "{\nARTIGO: " +
-                ", CÓDIGO DO ARTIGO='" + id_artigo + '\'' +
-                ", avaliacao=" + avaliacao +
-                ", numeroDonos=" + numeroDonos +
-                ", descricao='" + descricao + '\'' +
-                ", marca='" + marca + '\'' +
-                ", precoBase=" + precoBase +
-                ", desconto=" + desconto +
+        return "\n" +
+                " CÓDIGO DO ARTIGO='" + id_artigo + '\'' +
+                ", Avaliacao=" + avaliacao +
+                ", NumeroDonos=" + numeroDonos +
+                ", Descricao='" + descricao + '\'' +
+                ", Marca='" + marca + '\'' +
+                ", PrecoBase=" + precoBase +
+                ", Desconto=" + desconto +
                 ", id_utilizador=" + id_utilizador +
                 ", id_transporte=" + id_transporte;
     }

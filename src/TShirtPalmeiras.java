@@ -28,8 +28,7 @@ public class TShirtPalmeiras extends TShirt{
 
     @Override
     public String toString() {
-        return "{" + super.toString() +
-            "}";
+        return "\nTSHIRT PALMEIRAS: " + super.toString();
     }
 
 }

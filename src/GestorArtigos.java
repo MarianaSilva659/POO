@@ -151,11 +151,10 @@ public class GestorArtigos{
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "ARTIGOS DISPONÍVEIS{" +
-                "\nprodutos_comprados=" + produtos_comprados +
-                "\n produtos_vendidos=" + produtos_vendidos +
-                "\n produtos_para_venda=" + produtos_para_venda +
-                '}';
+        return "ARTIGOS DISPONÍVEIS: \n" +
+                "\nprodutos_comprados=" + produtos_comprados.values() +
+                "\n produtos_vendidos=" + produtos_vendidos.values() +
+                "\n produtos_para_venda=" + produtos_para_venda.values();
     }
 
     public GestorArtigos clone(){

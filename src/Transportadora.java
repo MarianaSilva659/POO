@@ -89,12 +89,12 @@ public class Transportadora {
     public java.lang.String toString() {
         return "\nTRANSPORTADORA:" +
                 " INDETIFICADOR=" + idTransporte +
-                ", valorBase_PEQ=" + valorBase_PEQ +
-                ", valorBase_MED=" + valorBase_MED +
-                ", valorBase_GRA=" + valorBase_GRA +
-                ", margemLucro=" + margemLucro +
+                ", ValorBase_PEQ=" + valorBase_PEQ +
+                ", ValorBase_MED=" + valorBase_MED +
+                ", ValorBase_GRA=" + valorBase_GRA +
+                ", MargemLucro=" + margemLucro +
                 ", EncPremium=" + EncPremium +
-                "               ";
+                "\n";
     }
 
     @Override

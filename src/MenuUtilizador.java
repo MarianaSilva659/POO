@@ -26,7 +26,8 @@ public class MenuUtilizador {
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU UTILIZADOR-----------\n\n");
         sb.append("1 -> Deseja comprar\n");
         sb.append("2 -> Deseja vender\n");
-        sb.append("3 -> Voltar ao Menu Inicial\n");
+        sb.append("3 -> Ver todos os artigos dispiníveis\n");
+        sb.append("4 -> Voltar ao Menu Inicial\n");
         sb.append("0 -> Sair\n");
         sb.append("Selecione a opção pretendida: ");
         System.out.print(sb.toString());
@@ -35,7 +36,7 @@ public class MenuUtilizador {
     }
 
     public int MenuTipoDoArtigo(){
-        StringBuilder sb = new StringBuilder("\n\n\n-----------MENU UTILIZADOR-----------\n\n");
+        StringBuilder sb = new StringBuilder("\n\n\n-----------MENU VENDAS-----------\n\n");
         sb.append("1 -> Deseja vender uma Mala padrão?\n");
         sb.append("2 -> Deseja vender uma Mala Premium?\n");
         sb.append("3 -> Deseja vender Sapatilhas padrão?\n");
@@ -61,7 +62,7 @@ public class MenuUtilizador {
         System.out.print(sb.toString());
 
         Scanner scanner = new Scanner(System.in);
-        int id_transporte = scannerInt("Escolha um identificador do transporte que vai entregar o artigo: ", scanner);
+        int id_transporte = scannerInt("Escolha um transporte a partir do IDENTIFICADOR para a entrega do artigo: ", scanner);
         scanner.nextLine();
         String marca = scannerString("Marca: ", scanner);
         String cod = scannerString("Código Alfanumérico: ", scanner);
@@ -91,7 +92,7 @@ public class MenuUtilizador {
         System.out.print(sb.toString());
 
         Scanner scanner = new Scanner(System.in);
-        int id_transporte = scannerInt("Escolha um identificador do transporte que vai entregar o artigo: ", scanner);
+        int id_transporte = scannerInt("Escolha um transporte a partir do IDENTIFICADOR para a entrega do artigo: ", scanner);
         scanner.nextLine();
         String marca = scannerString("Marca: ", scanner);
         String cod = scannerString("Código Alfanumérico: ", scanner);
@@ -121,7 +122,7 @@ public class MenuUtilizador {
         System.out.print(sb.toString());
 
         Scanner scanner = new Scanner(System.in);
-        int id_transporte = scannerInt("Escolha um identificador do transporte que vai entregar o artigo: ", scanner);
+        int id_transporte = scannerInt("Escolha um transporte a partir do IDENTIFICADOR para a entrega do artigo: ", scanner);
         scanner.nextLine();
         String marca = scannerString("Marca: ", scanner);
         String cod = scannerString("Código Alfanumérico: ", scanner);

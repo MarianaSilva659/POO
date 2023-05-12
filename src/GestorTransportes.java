@@ -74,7 +74,7 @@ public class GestorTransportes {
 
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("TRANSPORTES: ").append(transportes.toString()).append('\n');
+        sb.append("TRANSPORTES: \n").append(transportes.values().toString()).append('\n');
         return sb.toString();
     }
 

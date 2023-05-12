@@ -50,9 +50,8 @@ public class SapatilhasPremium extends Sapatilhas{
 
     @Override
     public String toString() {
-        return "{" + super.toString() +
-            " autores='" + getAutores() + "'" +
-            "}";
+        return "\nSAPATILHAS PREMIUM: " + super.toString() +
+            " autores='" + getAutores() + "'";
     }
 
 }

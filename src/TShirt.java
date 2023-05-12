@@ -63,10 +63,9 @@ public class TShirt extends Artigo{
 
     @Override
     public String toString() {
-        return "{" + super.toString() +
+        return "\nTShirt: " + super.toString() +
             " tamanho='" + getTamanho() + "'" +
-            ", padrao='" + getPadrao() + "'" +
-            "}";
+            ", padrao='" + getPadrao() + "'";
     }
 
 }

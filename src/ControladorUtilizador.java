@@ -19,7 +19,7 @@ public class ControladorUtilizador implements InterfaceUtilizadores{
             do{
                 try {
                     opcaoEscolhida = menu.MenuUtilizador();
-                    if (opcaoEscolhida < 0 || opcaoEscolhida > 3) {
+                    if (opcaoEscolhida < 0 || opcaoEscolhida > 4) {
                         throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 2\n");
                     }
                 }catch (InputMismatchException e) {
@@ -27,7 +27,7 @@ public class ControladorUtilizador implements InterfaceUtilizadores{
                 }catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
-            } while (opcaoEscolhida < 0 || opcaoEscolhida > 3);
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 4);
             
             switch(opcaoEscolhida){
                 case 1:
@@ -60,6 +60,9 @@ public class ControladorUtilizador implements InterfaceUtilizadores{
                     }
                 break;
                 case 3:
+                    vintage.mostraTodosArtigos();
+                break;
+                case 4:
                     controladorCentral.correrPrograma();
                 break;
                 case 0:

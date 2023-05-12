@@ -90,13 +90,12 @@ public class Malas extends Artigo{
 
     @Override
     public String toString() {
-        return "{" + super.toString() +
+        return "\nMALAS: " + super.toString() +
             " ano='" + getAno() + "'" +
             ", altura='" + getAltura() + "'" +
             ", largura='" + getLargura() + "'" +
             ", profundidade='" + getProfundidade() + "'" +
-            ", material='" + getMaterial() + "'" +
-            "}";
+            ", material='" + getMaterial() + "'";
     }
 
 }

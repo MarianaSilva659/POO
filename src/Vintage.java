@@ -22,20 +22,17 @@ public class Vintage {
     }
 
     public String addContaVintage(String email, String nome, String morada, int nif){
-        System.out.println("idd");
         int id = this.utilizadores.getIdNewUtilizador();
-        System.out.println("idd" + id);
         Utilizador novo = new Utilizador(id, email, nome, morada, nif);
         if(this.utilizadores.existeConta(email) == false){
             this.utilizadores.addConta(novo);
-            System.out.println(utilizadores);
+            System.out.println(novo);
             return email;
         }
         else return null;
     }
 
     public boolean existeContaT(int id){
-        System.out.println(transportes);
         return this.transportes.existe_Transportadora(id);
     }
 
@@ -43,7 +40,7 @@ public class Vintage {
         Transportadora novo = new Transportadora(peq, med, gra, margem, aceitaPremium, id);
         if(this.transportes.existe_Transportadora(id) == false){ 
             this.transportes.addTransporte(novo);
-            System.out.println(transportes);
+            System.out.println(novo);
             return id;
         }
         return -1;
@@ -81,7 +78,7 @@ public class Vintage {
         t.setValorBase_GRA(gra);
         t.setMargemLucro(margem);
         this.transportes.setTransporte(t);
-        System.out.println(transportes);
+        System.out.println(t);
     }
 
     public Transportadora getTransporte(int id){
@@ -96,7 +93,7 @@ public class Vintage {
         if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             Malas a = new Malas(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material);
             this.artigos.addPra_venda(a, id_utilizador);
-            System.out.println(artigos);
+            System.out.println(a);
             return true;
         }else return false;
     }
@@ -105,6 +102,7 @@ public class Vintage {
         if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             MalasPremium a = new MalasPremium(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material, valorizacao);
             this.artigos.addPra_venda(a, id_utilizador);
+            System.out.println(a);
             return true;
         }else return false;
     }
@@ -113,6 +111,7 @@ public class Vintage {
         if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             Sapatilhas s = new Sapatilhas(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte, detalhe, tamanho, cor, ano);
             this.artigos.addPra_venda(s, id_utilizador);
+            System.out.println(s);
             return true;
         }else return false;
     }
@@ -121,20 +120,26 @@ public class Vintage {
         if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             Sapatilhas s = new SapatilhasPremium(numeroDonos, descricao, marca, cod, precoBase, avaliacao, id_utilizador, id_transporte, detalhe, tamanho, cor, ano, autores);
             this.artigos.addPra_venda(s, id_utilizador);
+            System.out.println(s);
             return true;
         }else return false;
     }
 
     public void mostraTransportes(int opcao){
         if(opcao == 2 || opcao == 4)
-        System.out.println(transportes.getTransportesPremium().toString());
+        System.out.println(transportes.getTransportesPremium().values().toString());
         else System.out.println(transportes.toString());
+    }
+
+    public void mostraTodosArtigos(){
+        System.out.println(artigos.getProdutos_pra_venda());
     }
 
     public boolean addTShirt(int numeroDonos, String descricao, String marca, String cod, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte, String tamanho, String padrao){
         if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             TShirt t = new TShirt(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte,tamanho, padrao);
             this.artigos.addPra_venda(t, id_transporte);
+            System.out.println(t);
             return true;
         }else return false;
     }
@@ -143,7 +148,7 @@ public class Vintage {
         if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             TShirtLisa t = new TShirtLisa(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte,tamanho, padrao);
             this.artigos.addPra_venda(t, id_transporte);
-            System.out.println(artigos);
+            System.out.println(t);
             return true;
         }else return false;
     }
@@ -152,6 +157,7 @@ public class Vintage {
         if(this.artigos.existe_Artigo(cod) == false && existeContaT(id_transporte) == true){
             TShirtRiscas t = new TShirtRiscas(numeroDonos, descricao, marca, cod, precoBase, desconto, avaliacao, id_utilizador, id_transporte,tamanho, padrao);
             this.artigos.addPra_venda(t, id_transporte);
+            System.out.println(t);
             return true;
         }else return false;
     }
