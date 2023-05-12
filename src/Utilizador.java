@@ -161,4 +161,16 @@ public class Utilizador implements Serializable{
     public boolean verificaId(int id_utilizador){
         return (this.id == id_utilizador);
     }
+
+    public void addArtigoCompra(String cod){
+        this.artigos_comprados.add(cod);
+    }
+
+    public void addArtigoVendidos(String cod){
+        this.artigos_vendidos.add(cod);
+    }
+
+    public void addArtigoParaVenda(String cod){
+        this.artigos_pra_venda.add(cod);
+    }
 }
