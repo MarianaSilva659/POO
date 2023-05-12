@@ -1,11 +1,10 @@
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class GestorUtilizadores implements Serializable {
+public class GestorUtilizadores{
     private Map<Integer, Utilizador> contas;
 
     public GestorUtilizadores(){
@@ -117,4 +116,7 @@ public class GestorUtilizadores implements Serializable {
             }
             return id;
     }
+
+
+
 }

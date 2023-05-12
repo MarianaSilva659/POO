@@ -37,6 +37,7 @@ public class Vintage implements Serializable {
         }
         else return null;
     }
+    
 
     public boolean existeContaT(int id){
         return this.transportes.existe_Transportadora(id);

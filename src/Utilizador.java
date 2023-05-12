@@ -1,9 +1,7 @@
 import java.util.Set;
 import java.util.Objects;
 import java.util.TreeSet;
-import java.io.Serializable;
-
-public class Utilizador implements Serializable{
+public class Utilizador{
     private int id;
     private String email;
     private String nome;
@@ -173,4 +171,6 @@ public class Utilizador implements Serializable{
     public void addArtigoParaVenda(String cod){
         this.artigos_pra_venda.add(cod);
     }
+
+
 }
