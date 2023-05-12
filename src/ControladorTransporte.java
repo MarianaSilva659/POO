@@ -26,7 +26,7 @@ public class ControladorTransporte implements InterfaceTransportes{
                 }catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
-            } while (opcaoEscolhida < 0 || opcaoEscolhida > 5);
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 2);
             
             switch(opcaoEscolhida){
                 case 1:
