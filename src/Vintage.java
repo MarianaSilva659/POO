@@ -303,7 +303,7 @@ public class Vintage implements Serializable {
 
     public boolean finalizarEnc(int id_comprador){
         if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().EncomendaVazia() == false){
-            this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this, id_comprador);
+      //      this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this, id_comprador);
         return true;
         }
         else return false;
@@ -313,12 +313,14 @@ public class Vintage implements Serializable {
         return this.utilizadores.getContaByCod(id_comprador).getEncomenda().calculaPreço(this);
     }
 
+    //MAIOR VENDEDOR DE SEMPRE
     public void getMaiorVendedor(){
         Utilizador vendedorMaisfaturou = this.utilizadores.getMaiorVendedor();
         
         System.out.println(vendedorMaisfaturou.getNome() + " faturou um total de " + vendedorMaisfaturou.getDinheiro_faturado() + '€');
     }
 
+    //ARTIGOS VENDIDOS DE UM UTILIZADOR
     public void encomendaEmitidasVendedor(int id_vendedor){
         Set<String> artigos = this.utilizadores.getContaByCod(id_vendedor).getArtigos_vendidos();
         Iterator<String> iterator = artigos.iterator();
@@ -328,4 +330,6 @@ public class Vintage implements Serializable {
             System.out.println(this.artigos.getArtigoById(id_artigo));
         }
     }
+
+
 }
