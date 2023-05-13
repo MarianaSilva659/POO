@@ -274,14 +274,15 @@ public class Vintage implements Serializable {
         return this.artigos.getVendedores(artigosID);
      }
 
-    public void devolverArtigos(Collection<Pair <String ,Integer>> dados_de_devolução, Collection<String> conjuntoDeArtigos){
-        utilizadores.devolverArtigos(dados_de_devolução);
-        artigos.devolveArtigos(conjuntoDeArtigos);
+    public void devolverArtigos(Collection<Pair <String ,Integer>> dados_de_devolução, Collection<String> conjuntoDeArtigos, int id){
+        utilizadores.devolverArtigosVendedor(dados_de_devolução);
+        utilizadores.devolverArtigosComprador(conjuntoDeArtigos, id);
+        artigos.devolverArtigos(conjuntoDeArtigos);
     }
 
-    public void devolverArtigos(Pair < String ,Integer> dados_de_devolução){
-        utilizadores.devolverArtigos(dados_de_devolução);
-        artigos.devolveArtigos(dados_de_devolução.getFirst());
+    public void cancelarArtigo(Pair < String ,Integer> dados_de_devolução, int id){
+        utilizadores.devolverArtigosComprador(dados_de_devolução.getFirst(), id);
+        artigos.devolverArtigos(dados_de_devolução.getFirst());
     }
 
     public void updateArtigo(String id){
@@ -300,7 +301,7 @@ public class Vintage implements Serializable {
     }
 
     public void devolverEncomenda(int id_comprador){
-        this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);;
+        this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);; 
     }
 
     public void mostraEncomenda(int id){

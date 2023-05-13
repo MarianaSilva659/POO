@@ -234,7 +234,7 @@ public class GestorArtigos{
         return pair;
     }
 
-    public void devolveArtigos(Collection<String> artigosID){
+    public void cancelarEncomendaArtigo(Collection<String> artigosID){
         Iterator<String> it = artigosID.iterator();
         String aux;
         Artigo artigo;
@@ -246,17 +246,48 @@ public class GestorArtigos{
         }
     }
 
-    public void devolveArtigos(String artigosID){
+    public void cancelarEncomendaArtigo(String artigosID){
         Artigo artigo;
             artigo = produtos_pendentes.get(artigosID);
             produtos_pendentes.remove(artigosID);
             produtos_para_venda.put(artigosID, artigo);
     }
 
+    public void devolverArtigos(Collection<String> artigosID){
+        Iterator<String> it = artigosID.iterator();
+        String aux;
+        Artigo artigo;
+        while(it.hasNext()){
+            aux = it.next();
+            artigo = produtos_vendidos.get(aux);
+            produtos_vendidos.remove(aux);
+            produtos_para_venda.put(aux, artigo);
+        }
+    }
+
+    public void devolverArtigos(String artigosID){
+        Artigo artigo;
+            artigo = produtos_vendidos.get(artigosID);
+            produtos_vendidos.remove(artigosID);
+            produtos_para_venda.put(artigosID, artigo);
+    }
+
     public void updateArtigo(String id){
         Artigo artigo = produtos_para_venda.get(id);
         produtos_para_venda.remove(id);
-        produtos_para_venda.put(id, artigo);
+        produtos_pendentes.put(id, artigo);
+    }
+
+    public void finalizarArtigos(Collection <String> artigosID){
+        Iterator<String> it = artigosID.iterator();
+        String aux;
+        Artigo artigo;
+        while(it.hasNext()){
+            aux = it.next();
+            artigo = produtos_pendentes.get(aux);
+            produtos_pendentes.remove(aux);
+            produtos_vendidos.put(aux, artigo);
+        }
     }
 
 }

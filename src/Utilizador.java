@@ -23,7 +23,7 @@ public class Utilizador{
         this.artigos_vendidos = new HashSet<>();
         this.artigos_para_venda = new HashSet<>();
         this.dinheiro_faturado = 0;
-        this.encomenda = new Encomenda();
+        this.encomenda = new Encomenda(this.id);
     }
 
     public Utilizador(int id, String email, String nome, String morada, int nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda, double dinheiro) {
@@ -36,7 +36,7 @@ public class Utilizador{
         this.artigos_vendidos = vendidas;
         this.artigos_para_venda = pra_venda;
         this.dinheiro_faturado = 0;
-        this.encomenda = null;
+        this.encomenda = new Encomenda(this.id);
     }
     public Utilizador(int id, String email, String nome, String morada, int nif) {
         this.id = id;
@@ -48,7 +48,7 @@ public class Utilizador{
         this.artigos_vendidos = new HashSet<>();
         this.artigos_para_venda = new HashSet<>();
         this.dinheiro_faturado = 0;
-        this.encomenda = null;
+        this.encomenda = new Encomenda(id);
     }
 
     public Utilizador(Utilizador u) {
@@ -211,8 +211,17 @@ public class Utilizador{
         add(artigo_id);
     }
 
-    public void devolveArtigo(String artigo){
-        artigos_para_venda.remove(artigo);
-        artigos_vendidos.add(artigo);
+    public void devolverArtigoVendedor(String artigo){
+        artigos_vendidos.remove(artigo);
+        artigos_para_venda.add(artigo);
     }
+
+    public void devolverArtigoUtilizador(String artigo){
+        artigos_comprados.remove(artigo);
+    }
+
+    public void removeArtigoFromComprados(String artigo){
+        artigos_comprados.remove(artigo);
+    }
+    
 }

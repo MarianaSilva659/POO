@@ -1,10 +1,7 @@
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.Collection;
-import java.util.Collections;
 
 public class GestorUtilizadores{
     private Map<Integer, Utilizador> contas;
@@ -131,21 +128,36 @@ public class GestorUtilizadores{
         }
     }
 
-    public void devolverArtigos(Collection<Pair < String ,Integer>> dados_de_devolução){
+    public void devolverArtigosVendedor(Collection<Pair < String ,Integer>> dados_de_devolução){
         Iterator<Pair<String, Integer>> it = dados_de_devolução.iterator();
         Pair<String, Integer> pair = new Pair<>(); 
         Utilizador utilizador;
         while(it.hasNext()){
             pair = it.next();
             utilizador = getContaById(pair.getSecond());
-            utilizador.devolveArtigo(pair.getFirst());
+            utilizador.devolverArtigoVendedor(pair.getFirst());
         }
     }
 
-    public void devolverArtigos(Pair < String ,Integer> dados_de_devolução){
+    public void devolverArtigosVendedor(Pair < String ,Integer> dados_de_devolução){
         Utilizador utilizador;
             utilizador = getContaById(dados_de_devolução.getSecond());
-            utilizador.devolveArtigo(dados_de_devolução.getFirst());
+            utilizador.devolverArtigoVendedor(dados_de_devolução.getFirst());
+    }
+
+    public void devolverArtigosComprador(Collection<String> artigosID, int id_comprador){
+        Iterator<String> it = artigosID.iterator();
+        String aux;
+        Utilizador utilizador = this.getContaById(id_comprador);
+        while(it.hasNext()){
+            aux = it.next();
+            utilizador.removeArtigoFromComprados(aux);
+        }
+    }
+
+    public void devolverArtigosComprador(String artigosID, int id_comprador){
+        Utilizador utilizador = this.getContaById(id_comprador);
+            utilizador.removeArtigoFromComprados(artigosID);
     }
 
     public String getEmailById(int id){

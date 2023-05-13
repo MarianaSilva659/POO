@@ -9,21 +9,33 @@ import java.util.Iterator;
 
 public class Encomenda {
     private Set<String> encomenda;
-    private LocalDate dataCompra;
+    private int id_comprador;
+    private LocalDate dataCriacao;
 
-    public Encomenda(){
+    public int getId_comprador() {
+        return this.id_comprador;
+    }
+
+    public void setId_comprador(int id) {
+        this.id_comprador = id;
+    }
+
+    public Encomenda(int id){
         this.encomenda = new HashSet<>();
-        this.dataCompra = null;
+        this.dataCriacao = null;
+        this.id_comprador = id;
     }
 
     public Encomenda(Encomenda e){
         this.encomenda = e.getEncomenda();
-        this.dataCompra = LocalDate.now();
+        this.dataCriacao = LocalDate.now();
+        this.id_comprador = e.getId_comprador();
     }
 
-    public Encomenda(Set<String> encomenda){
+    public Encomenda(Set<String> encomenda, int id){
         this.encomenda = encomenda;
-        this.dataCompra = LocalDate.now();
+        this.dataCriacao = LocalDate.now();
+        this.id_comprador = id;
     }
 
     public Set<String> getEncomenda() {
@@ -45,12 +57,12 @@ public class Encomenda {
         }
     }
 
-    public LocalDate getDataCompra() {
-        return this.dataCompra;
+    public LocalDate getDataCriacao() {
+        return this.dataCriacao;
     }
 
-    public void setDataCompra(LocalDate dataCriacao) {
-        this.dataCompra = dataCriacao;
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
     public boolean equals(Object object) {
@@ -59,18 +71,18 @@ public class Encomenda {
         if (!super.equals(object)) return false;
         Encomenda encomenda1 = (Encomenda) object;
         return this.getEncomenda().equals(encomenda1.getEncomenda()) 
-        && this.getDataCompra().equals(encomenda1.getDataCompra());
+        && this.getDataCriacao().equals(encomenda1.getDataCriacao());
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getEncomenda(), getDataCompra());
+        return Objects.hash(super.hashCode(), getEncomenda(), getDataCriacao());
     }
 
     @java.lang.Override
     public java.lang.String toString() {
         return "Encomenda{" +
                 "encomenda=" + encomenda +
-                ",dataCriacao=" + dataCompra +
+                ",dataCriacao=" + dataCriacao +
                 '}';
     }
 
@@ -116,17 +128,18 @@ public class Encomenda {
     public void finalizarCompra(Vintage vintage){
         Collection<Pair<Integer, Pair <String, Double>>> dadosDeVenda = vintage.getDadosDeVenda(getEncomenda());
         vintage.updateVendedores(dadosDeVenda);
+        vintage.finalizarArtigos(this.getEncomenda());
     }
 
     public void devolverEncomenda(Vintage vintage){
         Collection<Pair <String ,Integer>> dados_de_devolução = vintage.getVendedores(getEncomenda());
-        vintage.devolverArtigos(dados_de_devolução, getEncomenda());
+        vintage.devolverArtigos(dados_de_devolução, getEncomenda(), this.id_comprador);
         this.encomenda = new HashSet<>();
     }
 
     public void cancelarArtigo(Vintage vintage, String id){
        Pair <String ,Integer> dados_de_devolução = vintage.getVendedores(id);
-        vintage.devolverArtigos(dados_de_devolução);
+        vintage.cancelarArtigo(dados_de_devolução, this.id_comprador);
         this.encomenda.remove(id);
     }
 
