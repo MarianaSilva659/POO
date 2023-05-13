@@ -79,7 +79,7 @@ public class MenuUtilizador {
         String material = scannerString("Material da mala: ", scanner);
         if(opcao == 1) a = inter.addMalaPadrao(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material);
         else if(opcao == 2){
-            double valorizacao = scannerDouble("Valorização da mala: ", scanner);
+            double valorizacao = scannerDouble("Valorização da mala em %: ", scanner);
             a = inter.addMalaPremium(donos, descricao, marca, cod, preco, desconto, avaliacao, id_utilizador, id_transporte, ano, altura, largura, profundidade, material, valorizacao);
         }
         return a;

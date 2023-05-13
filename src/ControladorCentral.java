@@ -25,7 +25,7 @@ public class ControladorCentral implements Interface{
             do{
                 try {
                     opcaoEscolhida = menu.MenuInicial();
-                    if (opcaoEscolhida < 0 || opcaoEscolhida > 6) {
+                    if (opcaoEscolhida < 0 || opcaoEscolhida > 7) {
                         throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 1 e 8\n");
                     }
                 }catch (InputMismatchException e) {
@@ -33,7 +33,7 @@ public class ControladorCentral implements Interface{
                 }catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
-            } while (opcaoEscolhida < 0 || opcaoEscolhida > 6);
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 7);
             
             switch(opcaoEscolhida){
 
@@ -62,11 +62,13 @@ public class ControladorCentral implements Interface{
                     else{
                         System.out.println("Foi resgistado com sucesso\n");
                         correrPrograma();
-                       // cT.run(vintage, identificadorR);
                     }
                 break;
                 case 5:
-                    try {
+                    vintage.getMaiorVendedor();
+                break;
+                case 6:
+                     try {
                         vintage = Vintage.loadState("state.obj");
                         System.out.println("Foi atualizado com sucesso\n");
                     }
@@ -79,9 +81,8 @@ public class ControladorCentral implements Interface{
                         menu.avisos(5);
                     }
                     correrPrograma();
-                    break;
-
-                case 6:
+                break;
+                case 7: 
                     try {
                         vintage.saveState("state.obj");
                         System.out.println("Foi gravado com sucesso\n");
@@ -94,8 +95,7 @@ public class ControladorCentral implements Interface{
                         menu.avisos(6);
                     }
                     correrPrograma();
-                    break;
-
+                break;
                 case 0:
 
                     System.out.println("\nTerminada a sessão");

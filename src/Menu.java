@@ -19,8 +19,9 @@ public class Menu {
         str.append("2 -> Registar nova conta como Utilizador\n");
         str.append("3 -> Iniciar sessão para Transportadora\n");
         str.append("4 -> Registar nova conta para Transportadora\n");
-        str.append("5 -> Atualizar para a última versão guardada\n");
-        str.append("6 -> Gravar versão\n");
+        str.append("5 -> Qual o Vendedor que mais faturou?\n");
+        str.append("6 -> Atualizar para a última versão guardada\n");
+        str.append("7 -> Gravar versão\n");
         str.append("0 -> Sair\n\n");
         str.append("Selecione um número para prosseguir: ");
         System.out.print(str.toString());

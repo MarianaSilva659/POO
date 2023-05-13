@@ -216,7 +216,7 @@ public class Vintage implements Serializable {
         return valorArtigosVendidos;
     }
 //. qual é o vendedor que mais facturou
-    public Utilizador getMaiorVendedor(){
+    public void getMaiorVendedor(){
         Map<Integer, Utilizador> aqui = this.utilizadores.getContas();
         Iterator<Map.Entry<Integer, Utilizador>> iterator = aqui.entrySet().iterator();
         Map.Entry<Integer,Utilizador> c;
@@ -226,12 +226,14 @@ public class Vintage implements Serializable {
         while(iterator.hasNext()){
             c = iterator.next();
             vendedor = c.getValue();
-            valor = getValorTotalArtigosVendidos(vendedor.getArtigos_vendidos());
+
+            valor = getValorTotalArtigosVendidos(vendedor.getArtigos_pra_venda());
+            System.out.println(vendedor.getNome() + "faturou " + valor + '€');
             if(valor > maior){
                 maisFaturou = vendedor.clone();
                 maior = valor;
             }
         }
-        return maisFaturou;
+        System.out.println(maisFaturou.getNome() + " faturou um total de " + maior + '€');
     }
 }
