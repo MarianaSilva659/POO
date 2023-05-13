@@ -23,7 +23,7 @@ public class Utilizador{
         this.artigos_vendidos = new HashSet<>();
         this.artigos_para_venda = new HashSet<>();
         this.dinheiro_faturado = 0;
-        this.encomenda = null;
+        this.encomenda = new Encomenda();
     }
 
     public Utilizador(int id, String email, String nome, String morada, int nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda, double dinheiro) {

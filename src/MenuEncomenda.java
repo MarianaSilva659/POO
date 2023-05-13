@@ -34,7 +34,8 @@ public class MenuEncomenda {
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU VENDAS-----------\n\n");
         sb.append("1 -> Deseja adicionar um artigo há encomenda?\n");
         sb.append("2 -> Deseja finalizar a encomenda?\n");
-        sb.append("3 -> Deseja voltar atrás?\n");
+        sb.append("3 -> Deseja devolver a encomenda?\n");
+        sb.append("4 -> Deseja voltar atrás?\n");
         sb.append("0 -> Sair\n");
         sb.append("Selecione a opção pretendida: ");
         System.out.print(sb.toString());

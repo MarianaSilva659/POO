@@ -22,9 +22,12 @@ public class ControladorEncomenda implements InterfaceEncomendas{
                     String artigo = menuE.MenuEscolheArtigo();
                     vintage.addArtigoEncomenda(artigo, id);
                 break;
-                case 2: //finalizar a encomenda
+                case 2:
+
                 break;
                 case 3:
+                break;
+                case 4:
                     controladorUtilizador.run(vintage, vintage.getEmailById(id));
                 break;
                 case 0:
