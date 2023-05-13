@@ -52,5 +52,7 @@ public class MalasPremium extends Malas{
         return getPrecoBase() + (getPrecoBase() * ((100 - this.getValorizacao())/100));
     }
 
-    
+    public boolean isPremium(){
+        return true;
+    }
 }

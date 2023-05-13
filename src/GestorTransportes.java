@@ -103,4 +103,13 @@ public class GestorTransportes implements Serializable {
         }
         return transportesPremium;
     }
+
+    public double getPreçoTransportadora(int id, int num_artigos){
+        Transportadora t = getTransportadoraById(id);
+        if(num_artigos == 1){
+           return t.getPrecoEncomendaPEQ();
+    }else if(num_artigos <= 5){
+        return t.getPrecoEncomendaMED();
+    }else return t.getPrecoEncomendaGRA();
+}
 }

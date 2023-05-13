@@ -3,9 +3,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.Collection;
+import java.util.Collections;
 
 public class GestorUtilizadores{
     private Map<Integer, Utilizador> contas;
+    private int id;
 
     public GestorUtilizadores(){
         this.contas = new TreeMap<>();
@@ -56,6 +59,11 @@ public class GestorUtilizadores{
         else return null;
     }
 
+    private Utilizador getContaById(int id){
+        if(contas.containsKey(id)) return contas.get(id);
+        else return null;
+    }
+
     public Utilizador getContaByEmail(String email){
         Utilizador conta = null;
         Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
@@ -87,14 +95,8 @@ public class GestorUtilizadores{
     }
 
     public int getIdNewUtilizador(){
-        int newId = 0;
-        Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
-        Map.Entry<Integer,Utilizador> c;
-        while(iterator.hasNext()){
-            c = iterator.next();
-            newId = c.getKey();
-        }
-        return newId+1;
+        id++;
+        return id;
     }
 
     public String toString() {
@@ -118,5 +120,32 @@ public class GestorUtilizadores{
     }
 
 
+    public void updateVendedores(Collection<Pair<Integer, Pair <String,Double>>> dadosDeVenda){
+        Iterator<Pair<Integer, Pair<String,Double>>> it = dadosDeVenda.iterator();
+        Pair<Integer, Pair<String,Double>> pair = new Pair<>();
+        Utilizador utilizador;
+        while(it.hasNext()){
+            pair = it.next();
+            utilizador = getContaById(pair.getFirst());
+            utilizador.finalização_de_encomenda(pair.getSecond().getSecond(), pair.getSecond().getFirst());
+        }
+    }
+
+    public void devolverArtigos(Collection<Pair < String ,Integer>> dados_de_devolução){
+        Iterator<Pair<String, Integer>> it = dados_de_devolução.iterator();
+        Pair<String, Integer> pair = new Pair<>(); 
+        Utilizador utilizador;
+        while(it.hasNext()){
+            pair = it.next();
+            utilizador = getContaById(pair.getSecond());
+            utilizador.devolveArtigo(pair.getFirst());
+        }
+    }
+
+    public void devolverArtigos(Pair < String ,Integer> dados_de_devolução){
+        Utilizador utilizador;
+            utilizador = getContaById(dados_de_devolução.getSecond());
+            utilizador.devolveArtigo(dados_de_devolução.getFirst());
+    }
 
 }

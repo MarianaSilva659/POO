@@ -1,6 +1,6 @@
 import java.util.Set;
 import java.util.Objects;
-import java.util.TreeSet;
+import java.util.HashSet;
 public class Utilizador{
     private int id;
     private String email;
@@ -9,7 +9,8 @@ public class Utilizador{
     private int nif;
     private Set<String> artigos_comprados;
     private Set<String> artigos_vendidos;
-    private Set<String> artigos_pra_venda;
+    private Set<String> artigos_para_venda;
+    private double dinheiro_faturado;
 
     public Utilizador(){
         this.id = 0;
@@ -17,12 +18,13 @@ public class Utilizador{
         this.nome = "";
         this.morada = "";
         this.nif = 0;
-        this.artigos_comprados = new TreeSet<>();
-        this.artigos_vendidos = new TreeSet<>();
-        this.artigos_pra_venda = new TreeSet<>();
+        this.artigos_comprados = new HashSet<>();
+        this.artigos_vendidos = new HashSet<>();
+        this.artigos_para_venda = new HashSet<>();
+        this.dinheiro_faturado = 0;
     }
 
-    public Utilizador(int id, String email, String nome, String morada, int nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda) {
+    public Utilizador(int id, String email, String nome, String morada, int nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda, double dinheiro) {
         this.id = id;
         this.email = email;
         this.nome = nome;
@@ -30,7 +32,8 @@ public class Utilizador{
         this.nif = nif;
         this.artigos_comprados = compras;
         this.artigos_vendidos = vendidas;
-        this.artigos_pra_venda = pra_venda;
+        this.artigos_para_venda = pra_venda;
+        this.dinheiro_faturado = dinheiro;
     }
     public Utilizador(int id, String email, String nome, String morada, int nif) {
         this.id = id;
@@ -38,9 +41,9 @@ public class Utilizador{
         this.nome = nome;
         this.morada = morada;
         this.nif = nif;
-        this.artigos_comprados = new TreeSet<>();
-        this.artigos_vendidos = new TreeSet<>();
-        this.artigos_pra_venda = new TreeSet<>();
+        this.artigos_comprados = new HashSet<>();
+        this.artigos_vendidos = new HashSet<>();
+        this.artigos_para_venda = new HashSet<>();
     }
     public Utilizador(Utilizador u) {
         this.id = u.getId();
@@ -50,7 +53,16 @@ public class Utilizador{
         this.nif = u.getNif();
         this.artigos_comprados = u.getArtigos_comprados();
         this.artigos_vendidos = u.getArtigos_vendidos();
-        this.artigos_pra_venda = u.getArtigos_pra_venda();
+        this.artigos_para_venda = u.getArtigos_para_venda();
+        this.dinheiro_faturado = u.getDinheiro_faturado();
+    }
+
+    public double getDinheiro_faturado() {
+        return this.dinheiro_faturado;
+    }
+
+    public void setDinheiro_faturado(double dinheiro_faturado) {
+        this.dinheiro_faturado = dinheiro_faturado;
     }
 
     public int getId() {
@@ -109,12 +121,12 @@ public class Utilizador{
         this.artigos_vendidos = artigos_vendidos;
     }
 
-    public Set<String> getArtigos_pra_venda() {
-        return this.artigos_pra_venda;
+    public Set<String> getArtigos_para_venda() {
+        return this.artigos_para_venda;
     }
 
-    public void setArtigos_pra_venda(Set<String> artigos_pra_venda) {
-        this.artigos_pra_venda = artigos_pra_venda;
+    public void setArtigos_para_venda(Set<String> artigos_para_venda) {
+        this.artigos_para_venda = artigos_para_venda;
     }
 
     public boolean equals(Object object) {
@@ -129,11 +141,11 @@ public class Utilizador{
             && this.nif == that.getNif()
             && this.artigos_comprados.equals(that.getArtigos_comprados()) 
             && this.artigos_vendidos.equals(that.getArtigos_vendidos()) 
-            && this.artigos_pra_venda.equals(that.getArtigos_pra_venda());
+            && this.artigos_para_venda.equals(that.getArtigos_para_venda());
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getId(), getEmail(), getNome(), getMorada(), getNif(), getArtigos_comprados(), getArtigos_vendidos(), getArtigos_pra_venda());
+        return Objects.hash(super.hashCode(), getId(), getEmail(), getNome(), getMorada(), getNif(), getArtigos_comprados(), getArtigos_vendidos(), getArtigos_para_venda());
     }
 
 
@@ -147,8 +159,13 @@ public class Utilizador{
             ", nif='" + getNif() + "'" +
             ", artigos_comprados='" + getArtigos_comprados() + "'" +
             ", artigos_vendidos='" + getArtigos_vendidos() + "'" +
-            ", artigos_pra_venda='" + getArtigos_pra_venda() + "'" +
+            ", artigos_para_venda='" + getArtigos_para_venda() + "'" +
             "}";
+    }
+
+    private void updatePreço(double preço){
+        double dinheiro = getDinheiro_faturado();
+        setDinheiro_faturado(dinheiro + preço);
     }
 
 
@@ -160,6 +177,7 @@ public class Utilizador{
         return (this.id == id_utilizador);
     }
 
+<<<<<<< HEAD
     public void addArtigoCompra(String cod){
         this.artigos_comprados.add(cod);
     }
@@ -173,4 +191,17 @@ public class Utilizador{
     }
 
 
+=======
+    public void finalização_de_encomenda(double preço, String artigo_id){
+        updatePreço(preço);
+        artigos_para_venda.remove(artigo_id);
+        artigos_vendidos.
+        add(artigo_id);
+    }
+
+    public void devolveArtigo(String artigo){
+        artigos_para_venda.remove(artigo);
+        artigos_vendidos.add(artigo);
+    }
+>>>>>>> 8293e3b (Adição das encomendas e ligeiras otimizações)
 }

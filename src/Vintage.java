@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,6 +8,9 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 import java.util.Iterator;
+=======
+import java.util.Collection;
+>>>>>>> 8293e3b (Adição das encomendas e ligeiras otimizações)
 
 public class Vintage implements Serializable {
     private GestorArtigos artigos;
@@ -95,6 +99,7 @@ public class Vintage implements Serializable {
         return this.transportes.getTransportadoraById(id);
     }
 
+<<<<<<< HEAD
     public int getIdUtilizador(String email){
         return this.utilizadores.getIdByEmail(email);
     }
@@ -235,5 +240,47 @@ public class Vintage implements Serializable {
             }
         }
         System.out.println(maisFaturou.getNome() + " faturou um total de " + maior + '€');
+=======
+    public Collection<Double> getPreçoArtigos(Collection<String> collection){
+        return this.artigos.getPreçoArtigos(collection);
+    }
+
+    public Collection<Integer> getTransportadoras(Collection<String> collection){
+        return artigos.getTransportadoras(collection);
+    }
+
+    public double getPreçoTransportadora(int id, int num_artigos){
+        return transportes.getPreçoTransportadora(id, num_artigos);
+    }
+
+    public Collection<Pair<Integer, Pair <String,Double>>> getDadosDeVenda(Collection<String> collection){
+        return artigos.getDadosDeVenda(collection);
+    }
+
+    public void updateVendedores(Collection<Pair<Integer, Pair <String,Double>>> dadosDeVenda){
+        utilizadores.updateVendedores(dadosDeVenda);
+    }
+
+    public  Collection<Pair < String , Integer>> getVendedores(Collection<String> artigosID){
+       return this.artigos.getVendedores(artigosID);
+    }
+
+    public  Pair < String , Integer> getVendedores(String artigosID){
+        return this.artigos.getVendedores(artigosID);
+     }
+
+    public void devolverArtigos(Collection<Pair < String ,Integer>> dados_de_devolução, Collection<String> conjuntoDeArtigos){
+        utilizadores.devolverArtigos(dados_de_devolução);
+        artigos.devolveArtigos(conjuntoDeArtigos);
+    }
+
+    public void devolverArtigos(Pair < String ,Integer> dados_de_devolução){
+        utilizadores.devolverArtigos(dados_de_devolução);
+        artigos.devolveArtigos(dados_de_devolução.getFirst());
+    }
+
+    public void updateArtigo(String id){
+        artigos.updateArtigo(id);
+>>>>>>> 8293e3b (Adição das encomendas e ligeiras otimizações)
     }
 }

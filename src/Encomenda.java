@@ -1,39 +1,33 @@
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Iterator;
 
 public class Encomenda {
     private Set<String> encomenda;
-    public enum Dimensao{
-        PEQ,
-        MED,
-        GRA;
-    }
-    private Dimensao dimensao;
     private LocalDate dataCriacao;
 
     public Encomenda(){
-        this.encomenda = new TreeSet<>();
-        this.dimensao = null;
+        this.encomenda = new HashSet<>();
         this.dataCriacao = null;
     }
 
     public Encomenda(Encomenda e){
         this.encomenda = e.getEncomenda();
-        this.dimensao = null;
         this.dataCriacao = LocalDate.now();
     }
 
-    public Encomenda(Set<String> encomenda, Dimensao dimensao){
+    public Encomenda(Set<String> encomenda){
         this.encomenda = encomenda;
-        this.dimensao = null;
         this.dataCriacao = LocalDate.now();
     }
 
     public Set<String> getEncomenda() {
-        TreeSet<String> copia = new TreeSet<>();
+        Set<String> copia = new HashSet<>();
         Iterator<String> iterator = encomenda.iterator();
         while (iterator.hasNext()) {
                 String artigo = iterator.next();
@@ -43,20 +37,12 @@ public class Encomenda {
     }
 
     public void setEncomenda(Set<String> encomenda) {
-        this.encomenda = new TreeSet<>();
+        this.encomenda = new HashSet<>();
         Iterator<String> iterator = encomenda.iterator();
         while (iterator.hasNext()) {
                 String artigo = iterator.next();
                 this.encomenda.add(new String(artigo)); // Clonar a String
         }
-    }
-
-    public Dimensao getDimensao() {
-        return this.dimensao;
-    }
-
-    public void setDimensao(Dimensao dimensao) {
-        this.dimensao = dimensao;
     }
 
     public LocalDate getDataCriacao() {
@@ -73,19 +59,17 @@ public class Encomenda {
         if (!super.equals(object)) return false;
         Encomenda encomenda1 = (Encomenda) object;
         return this.getEncomenda().equals(encomenda1.getEncomenda()) 
-        && getDimensao() == encomenda1.getDimensao() 
         && this.getDataCriacao().equals(encomenda1.getDataCriacao());
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getEncomenda(), getDimensao(), getDataCriacao());
+        return Objects.hash(super.hashCode(), getEncomenda(), getDataCriacao());
     }
 
     @java.lang.Override
     public java.lang.String toString() {
         return "Encomenda{" +
                 "encomenda=" + encomenda +
-                ", dimensao=" + dimensao +
                 ", dataCriacao=" + dataCriacao +
                 '}';
     }
@@ -93,29 +77,57 @@ public class Encomenda {
     public Encomenda clone(){
         return new Encomenda(this);
     }
-    public void removeArtigoEnc(String idartigo){
-        this.encomenda.remove(idartigo);
+
+    public void addArtigo(String id, Vintage vintage){
+        vintage.updateArtigo(id);
+        this.encomenda.add(id);
     }
 
-    public void addArtigoEnc(String idartigo){
-        this.encomenda.add(idartigo);
-    }
-
-    public void getdimensaoEnc(){
-        int dimensao = 0;
-        Iterator<String> iterator = encomenda.iterator();
-        while (iterator.hasNext()) {
-                dimensao++;
-        }
-        if(dimensao == 1) this.dimensao = Dimensao.PEQ;
-        else if((dimensao > 1) && (dimensao < 5)) this.dimensao = Dimensao.MED;
-        else this.dimensao = Dimensao.GRA;
-    }
-
-    public int calculaPreço(Vintage vintage){
-        int preço = 0;
+    public double calculaPreço(Vintage vintage){
+        double preço = 0;
         Set<String> artigos = this.getEncomenda(); 
-        //vintage.getInfoArtigos();
+        Collection<Double> listaDePreços = vintage.getPreçoArtigos(artigos);
+        Iterator<Double> it_preços = listaDePreços.iterator();
+        while(it_preços.hasNext()){
+            preço += it_preços.next();
+        }
+        Collection<Integer> listaDeTransportadorasDeArtigosNãoPremiumComRepetição = vintage.getTransportadoras(artigos);
+        Iterator<Integer> it_transpotadoras = listaDeTransportadorasDeArtigosNãoPremiumComRepetição.iterator();
+        Map<Integer, Integer> listadeTransportadoras = new HashMap<>();
+        Integer aux;
+        while(it_transpotadoras.hasNext()){
+            aux = it_transpotadoras.next();
+            if(listadeTransportadoras.containsKey(aux)){
+                int currentvalue = listadeTransportadoras.get(aux);
+                listadeTransportadoras.put(aux, currentvalue+1);
+            }else{
+                listadeTransportadoras.put(aux, 1);
+            }
+        }
+        Iterator<Map.Entry<Integer, Integer>> transportadora_aux = listadeTransportadoras.entrySet().iterator();
+        Map.Entry<Integer, Integer> a;
+        while(transportadora_aux.hasNext()){
+        a = transportadora_aux.next();
+        preço += vintage.getPreçoTransportadora(a.getKey().intValue(), a.getValue().intValue());
+        }
         return preço;
     }
+
+    public void finalizarCompra(Vintage vintage){
+        Collection<Pair<Integer, Pair <String, Double>>> dadosDeVenda = vintage.getDadosDeVenda(getEncomenda());
+        vintage.updateVendedores(dadosDeVenda);
+    }
+
+    public void devolverEncomenda(Vintage vintage){
+        Collection<Pair <String ,Integer>> dados_de_devolução = vintage.getVendedores(getEncomenda());
+        vintage.devolverArtigos(dados_de_devolução, getEncomenda());
+        this.encomenda = new HashSet<>();
+    }
+
+    public void devolverArtigo(Vintage vintage, String id){
+       Pair <String ,Integer> dados_de_devolução = vintage.getVendedores(id);
+        vintage.devolverArtigos(dados_de_devolução);
+        this.encomenda.remove(id);
+    }
+
 }

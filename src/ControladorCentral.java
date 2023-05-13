@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.NotSerializableException;
 import java.util.InputMismatchException;
+=======
+import java.util.Collection;
+>>>>>>> 8293e3b (Adição das encomendas e ligeiras otimizações)
 
 public class ControladorCentral implements Interface{
 
@@ -115,7 +119,13 @@ public class ControladorCentral implements Interface{
         return vintage.addTransporteVintage(peq, med, gra, margem, aceitaPremium, id);
     }
 
+<<<<<<< HEAD
 
 
+=======
+    public Collection<Double>  getPreçoArtigos(Collection<String> collection){
+        return vintage.getPreçoArtigos(collection);
+    }
+>>>>>>> 8293e3b (Adição das encomendas e ligeiras otimizações)
 }
 

@@ -9,7 +9,7 @@ public abstract class Artigo implements Serializable {
     private String id_artigo;
     private double precoBase;
     private double desconto;
-    private int id_utilizador;
+    private int id_vendedor;
     private int id_transporte;
 
     public  Artigo(){
@@ -20,7 +20,7 @@ public abstract class Artigo implements Serializable {
         this.precoBase = 0;
         this.desconto = 0;
         this.avaliacao = 0;
-        this.id_utilizador = 0;
+        this.id_vendedor = 0;
         this.id_transporte = 0;
     }
     public  Artigo(Artigo a){
@@ -31,11 +31,11 @@ public abstract class Artigo implements Serializable {
         this.precoBase = a.getPrecoBase();
         this.desconto = a.getDesconto();
         this.avaliacao = a.getAvaliacao();
-        this.id_utilizador = a.getId_Utilizador();
+        this.id_vendedor = a.getId_vendedor();
         this.id_transporte = a.getId_transporte();
         
     }
-    public Artigo(int numeroDonos, String descricao, String marca, String id_artigo, double precoBase, double desconto, double avaliacao, int id_utilizador, int id_transporte){
+    public Artigo(int numeroDonos, String descricao, String marca, String id_artigo, double precoBase, double desconto, double avaliacao, int id_vendedor, int id_transporte){
         this.numeroDonos = numeroDonos;
         this.descricao = descricao;
         this.marca = marca;
@@ -43,7 +43,7 @@ public abstract class Artigo implements Serializable {
         this.precoBase = precoBase;
         this.desconto = desconto;
         this.avaliacao = avaliacao;
-        this.id_utilizador = id_utilizador;
+        this.id_vendedor = id_vendedor;
         this.id_transporte = id_transporte;
     }
 
@@ -103,12 +103,12 @@ public abstract class Artigo implements Serializable {
         this.avaliacao = avaliacao;
     }
 
-    public int getId_Utilizador(){
-        return this.id_utilizador;
+    public int getId_vendedor(){
+        return this.id_vendedor;
     }
 
-    public void setId_Utilizador(int id_utilizador){
-        this.id_utilizador = id_utilizador;
+    public void setId_vendedor(int id_vendedor){
+        this.id_vendedor = id_vendedor;
     }
 
     public int getId_transporte() {
@@ -117,6 +117,10 @@ public abstract class Artigo implements Serializable {
 
     public void setId_transporte(int id_transporte) {
         this.id_transporte = id_transporte;
+    }
+
+    public boolean isPremium(){
+        return false;
     }
 
     @Override
@@ -132,16 +136,17 @@ public abstract class Artigo implements Serializable {
                this.getId().equals(a.getId()) &&
                Double.compare(this.getPrecoBase(), a.getPrecoBase()) == 0 &&
                Double.compare(this.getDesconto(), a.getDesconto()) == 0 &&
-               this.getId_Utilizador() == a.getId_Utilizador() &&
+               this.getId_vendedor() == a.getId_vendedor() &&
                this.getId_transporte() == a.getId_transporte();
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getAvaliacao(), getNumeroDonos(), getDescricao(), getMarca(), id_artigo, getPrecoBase(), getDesconto(), id_utilizador, getId_transporte());
+        return Objects.hash(super.hashCode(), getAvaliacao(), getNumeroDonos(), getDescricao(), getMarca(), id_artigo, getPrecoBase(), getDesconto(), id_vendedor, getId_transporte());
     }
 
     @java.lang.Override
     public java.lang.String toString() {
+<<<<<<< HEAD
         return "\n" +
                 " CÓDIGO DO ARTIGO='" + id_artigo + '\'' +
                 ", Avaliacao=" + avaliacao +
@@ -152,6 +157,19 @@ public abstract class Artigo implements Serializable {
                 ", Desconto=" + desconto +
                 ", id_utilizador=" + id_utilizador +
                 ", id_transporte=" + id_transporte;
+=======
+        return "Artigo{" +
+                "avaliacao=" + avaliacao +
+                ", numeroDonos=" + numeroDonos +
+                ", descricao='" + descricao + '\'' +
+                ", marca='" + marca + '\'' +
+                ", id_artigo='" + id_artigo + '\'' +
+                ", precoBase=" + precoBase +
+                ", desconto=" + desconto +
+                ", id_vendedor=" + id_vendedor +
+                ", id_transporte=" + id_transporte +
+                '}';
+>>>>>>> 8293e3b (Adição das encomendas e ligeiras otimizações)
     }
 
     public abstract Artigo clone();

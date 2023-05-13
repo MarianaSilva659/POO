@@ -44,8 +44,11 @@ public class SapatilhasPremium extends Sapatilhas{
     public double precoartigo(){
         Year ano = Year.now();
         int anoAtual = ano.getValue();
-        return getPrecoBase() + (getPrecoBase() / getNumeroDonos() * (anoAtual - getAno()));
-        
+        return getPrecoBase() + (getPrecoBase() / getNumeroDonos() * (anoAtual - getAno()));   
+    }
+
+    public boolean isPremium(){
+        return true;
     }
 
     @Override
