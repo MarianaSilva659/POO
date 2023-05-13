@@ -13,6 +13,7 @@ public class Vintage implements Serializable {
     private GestorArtigos artigos;
     private GestorUtilizadores utilizadores;
     private GestorTransportes transportes;
+    private static double imposto = 23;
 
     public Vintage() {
         this.artigos = new GestorArtigos();
@@ -24,6 +25,14 @@ public class Vintage implements Serializable {
         this.artigos = v.artigos;
         this.utilizadores = v.utilizadores;
         this.transportes = v.transportes;
+    }
+
+    public static double getImposto(){
+        return imposto;
+    }
+
+    public static void setImposto(double novoimposto){
+        imposto = novoimposto;
     }
 
     public boolean existeContaU(String email){
@@ -294,4 +303,15 @@ public class Vintage implements Serializable {
         this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);;
     }
 
+    public void mostraEncomenda(int id){
+        System.out.println(this.utilizadores.getContaByCod(id).getEncomenda());
+    }
+
+    public boolean cancelaArtigoEnc(int id, String cod){
+        if(this.utilizadores.getContaByCod(id).getEncomenda().existe_Artigo(cod) == true){
+            this.utilizadores.getContaByCod(id).getEncomenda().cancelarArtigo(this, cod);
+        return true;
+        }
+        else return false;
+    }
 }

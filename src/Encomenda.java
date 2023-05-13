@@ -124,11 +124,13 @@ public class Encomenda {
         this.encomenda = new HashSet<>();
     }
 
-    public void devolverArtigo(Vintage vintage, String id){
+    public void cancelarArtigo(Vintage vintage, String id){
        Pair <String ,Integer> dados_de_devolução = vintage.getVendedores(id);
         vintage.devolverArtigos(dados_de_devolução);
         this.encomenda.remove(id);
     }
 
-
+    public boolean existe_Artigo(String cod){
+        return this.encomenda.contains(cod);
+    }
 }

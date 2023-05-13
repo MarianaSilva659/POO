@@ -26,9 +26,6 @@ public class ControladorCentral implements Interface{
             do{
                 try {
                     opcaoEscolhida = menu.MenuInicial();
-                    if (opcaoEscolhida < 0 || opcaoEscolhida > 7) {
-                        throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 1 e 8\n");
-                    }
                 }catch (InputMismatchException e) {
                     System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
                 }catch (IllegalArgumentException e) {

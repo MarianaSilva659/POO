@@ -149,6 +149,7 @@ public class MenuUtilizador {
         if (a==1) sb.append("\n!!!!Digite um número inteiro válido!!!!").append("\n");
         if (a==2) sb.append("\n!!!!ARTIGO JÁ EXISTE OU TRANSPORTADORA INVÁLIDA!!!").append("\n");
         if (a==3) sb.append("\n!!!!ARTIGO INDISPONÍVEL!!!").append("\n");
+        if (a==4) sb.append("\n!!!!ARTIGO NÃO EXISTE NA SUA ENCOMENDA!!!").append("\n");
         sb.append("\nPressione no enter...");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);

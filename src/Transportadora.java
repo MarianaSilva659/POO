@@ -9,7 +9,6 @@ public class Transportadora implements Serializable {
     private double margemLucro; // percentagem
     private boolean EncPremium; //aceita encomendas premium?
     private int idTransporte;
-    private static int imposto = 23;
 
     public Transportadora(){
         this.valorBase_MED = 0;
@@ -121,20 +120,20 @@ public class Transportadora implements Serializable {
     }
 
     public double getPrecoEncomendaPEQ(){
-        if(getEncPremium() == false) return getValorBase_PEQ() * getMargemLucro() * (1 + imposto) * 0.9;
+        if(getEncPremium() == false) return getValorBase_PEQ() * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
         
-        else return (getValorBase_PEQ() * 3) * getMargemLucro() * (1 + imposto) * 0.9;
+        else return (getValorBase_PEQ() * 3) * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
     }
 
     public double getPrecoEncomendaMED(){
-        if(getEncPremium() == false) return getValorBase_MED() * getMargemLucro() * (1 + imposto) * 0.9;
+        if(getEncPremium() == false) return getValorBase_MED() * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
 
-        else return (getValorBase_MED() * 3) * getMargemLucro() * (1 + imposto) * 0.9;
+        else return (getValorBase_MED() * 3) * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
     }
 
     public double getPrecoEncomendaGRA(){
-        if(getEncPremium() == false) return getValorBase_GRA() * getMargemLucro() * (1 + imposto) * 0.9;
+        if(getEncPremium() == false) return getValorBase_GRA() * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
         
-        else return (getValorBase_MED() * 3) * getMargemLucro() * (1 + imposto) * 0.9;
+        else return (getValorBase_MED() * 3) * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
     }
 }

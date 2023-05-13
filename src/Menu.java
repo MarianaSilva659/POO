@@ -11,7 +11,7 @@ public class Menu {
         this.inter = inter;
     }
 
-    public  int MenuInicial(){
+    public  int MenuInicial() throws IllegalArgumentException{
         int opcao;
         StringBuilder str = new StringBuilder("          Seja bem vindo á Vintege\n\n");
         

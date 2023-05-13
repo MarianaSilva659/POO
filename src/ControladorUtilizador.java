@@ -33,7 +33,7 @@ public class ControladorUtilizador implements InterfaceUtilizadores {
             
             switch(opcaoEscolhida){
                 case 1:
-                    cE.run(vintage, vintage.getIdUtilizador(email));
+                   cE.run(vintage, vintage.getIdUtilizador(email));
                 break;
                 case 2:
                     int opcao = -1;
