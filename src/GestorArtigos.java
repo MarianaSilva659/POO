@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 
-public class GestorArtigos{
+public class GestorArtigos implements Serializable{
     private Map<String, Artigo> produtos_pendentes;
     private Map<String, Artigo> produtos_vendidos;
     private Map<String, Artigo> produtos_para_venda;

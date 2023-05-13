@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Collection;
 
-public class GestorUtilizadores{
+public class GestorUtilizadores implements Serializable{
     private Map<Integer, Utilizador> contas;
     private int id;
 

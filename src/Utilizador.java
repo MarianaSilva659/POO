@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.Set;
 import java.util.Objects;
 import java.util.HashSet;
-public class Utilizador{
+public class Utilizador implements Serializable{
     private int id;
     private String email;
     private String nome;

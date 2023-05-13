@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
@@ -7,7 +8,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Iterator;
 
-public class Encomenda {
+public class Encomenda implements Serializable{
     private Set<String> encomenda;
     private int id_comprador;
     private LocalDate dataCriacao;
@@ -125,7 +126,7 @@ public class Encomenda {
         return preço;
     }
 
-    public void finalizarCompra(Vintage vintage, int id){
+    public void finalizarCompra(Vintage vintage){
         Collection<Pair<Integer, Pair <String, Double>>> dadosDeVenda = vintage.getDadosDeVenda(getEncomenda());
         vintage.updateVendedores(dadosDeVenda);
         vintage.finalizarArtigos(this.getEncomenda());
