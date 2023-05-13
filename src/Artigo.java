@@ -146,7 +146,6 @@ public abstract class Artigo implements Serializable {
 
     @java.lang.Override
     public java.lang.String toString() {
-<<<<<<< HEAD
         return "\n" +
                 " CÓDIGO DO ARTIGO='" + id_artigo + '\'' +
                 ", Avaliacao=" + avaliacao +
@@ -155,21 +154,8 @@ public abstract class Artigo implements Serializable {
                 ", Marca='" + marca + '\'' +
                 ", PrecoBase=" + precoBase +
                 ", Desconto=" + desconto +
-                ", id_utilizador=" + id_utilizador +
-                ", id_transporte=" + id_transporte;
-=======
-        return "Artigo{" +
-                "avaliacao=" + avaliacao +
-                ", numeroDonos=" + numeroDonos +
-                ", descricao='" + descricao + '\'' +
-                ", marca='" + marca + '\'' +
-                ", id_artigo='" + id_artigo + '\'' +
-                ", precoBase=" + precoBase +
-                ", desconto=" + desconto +
                 ", id_vendedor=" + id_vendedor +
-                ", id_transporte=" + id_transporte +
-                '}';
->>>>>>> 8293e3b (Adição das encomendas e ligeiras otimizações)
+                ", id_transporte=" + id_transporte;
     }
 
     public abstract Artigo clone();
