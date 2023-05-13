@@ -202,7 +202,7 @@ public class Vintage implements Serializable {
         oos.flush();
         oos.close();
     }
-
+//devolve o valor total do artigos que um utilizador vendeu
     public double getValorTotalArtigosVendidos(Set<String> vendidos){
         Iterator<String> iteratorartigos = vendidos.iterator();
         String codArtigo;
@@ -215,7 +215,7 @@ public class Vintage implements Serializable {
         }
         return valorArtigosVendidos;
     }
-
+//. qual é o vendedor que mais facturou
     public Utilizador getMaiorVendedor(){
         Map<Integer, Utilizador> aqui = this.utilizadores.getContas();
         Iterator<Map.Entry<Integer, Utilizador>> iterator = aqui.entrySet().iterator();
