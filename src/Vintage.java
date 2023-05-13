@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,9 +7,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 import java.util.Iterator;
-=======
 import java.util.Collection;
->>>>>>> 8293e3b (Adição das encomendas e ligeiras otimizações)
 
 public class Vintage implements Serializable {
     private GestorArtigos artigos;
@@ -99,7 +96,6 @@ public class Vintage implements Serializable {
         return this.transportes.getTransportadoraById(id);
     }
 
-<<<<<<< HEAD
     public int getIdUtilizador(String email){
         return this.utilizadores.getIdByEmail(email);
     }
@@ -232,7 +228,7 @@ public class Vintage implements Serializable {
             c = iterator.next();
             vendedor = c.getValue();
 
-            valor = getValorTotalArtigosVendidos(vendedor.getArtigos_pra_venda());
+            valor = getValorTotalArtigosVendidos(vendedor.getArtigos_para_venda());
             System.out.println(vendedor.getNome() + "faturou " + valor + '€');
             if(valor > maior){
                 maisFaturou = vendedor.clone();
@@ -240,7 +236,8 @@ public class Vintage implements Serializable {
             }
         }
         System.out.println(maisFaturou.getNome() + " faturou um total de " + maior + '€');
-=======
+    }
+    
     public Collection<Double> getPreçoArtigos(Collection<String> collection){
         return this.artigos.getPreçoArtigos(collection);
     }
@@ -281,6 +278,5 @@ public class Vintage implements Serializable {
 
     public void updateArtigo(String id){
         artigos.updateArtigo(id);
->>>>>>> 8293e3b (Adição das encomendas e ligeiras otimizações)
     }
 }
