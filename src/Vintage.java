@@ -213,41 +213,7 @@ public class Vintage implements Serializable {
         oos.flush();
         oos.close();
     }
-//devolve o valor total do artigos que um utilizador vendeu
-    public double getValorTotalArtigosVendidos(Set<String> vendidos){
-        Iterator<String> iteratorartigos = vendidos.iterator();
-        String codArtigo;
-        Artigo artigo;
-        double valorArtigosVendidos = 0;
-        while(iteratorartigos.hasNext()){
-            codArtigo = iteratorartigos.next();
-            artigo = this.artigos.getArtigoById(codArtigo);
-            valorArtigosVendidos += artigo.precoartigo();
-        }
-        return valorArtigosVendidos;
-    }
-//. qual é o vendedor que mais facturou
-    public void getMaiorVendedor(){
-        Map<Integer, Utilizador> aqui = this.utilizadores.getContas();
-        Iterator<Map.Entry<Integer, Utilizador>> iterator = aqui.entrySet().iterator();
-        Map.Entry<Integer,Utilizador> c;
-        Utilizador maisFaturou = new Utilizador();
-        Utilizador vendedor;
-        double valor, maior = 0;
-        while(iterator.hasNext()){
-            c = iterator.next();
-            vendedor = c.getValue();
 
-            valor = getValorTotalArtigosVendidos(vendedor.getArtigos_para_venda());
-            System.out.println(vendedor.getNome() + "faturou " + valor + '€');
-            if(valor > maior){
-                maisFaturou = vendedor.clone();
-                maior = valor;
-            }
-        }
-        System.out.println(maisFaturou.getNome() + " faturou um total de " + maior + '€');
-    }
-    
     public Collection<Double> getPreçoArtigos(Collection<String> collection){
         return this.artigos.getPreçoArtigos(collection);
     }
@@ -282,7 +248,7 @@ public class Vintage implements Serializable {
         artigos.devolverArtigos(conjuntoDeArtigos);
     }
 
-    public void cancelarArtigo(Pair < String ,Integer> dados_de_devolução, int id){
+    public void cancelarArtigo(Pair <String ,Integer> dados_de_devolução, int id){
         utilizadores.devolverArtigosComprador(dados_de_devolução.getFirst(), id);
         artigos.devolverArtigos(dados_de_devolução.getFirst());
     }
@@ -337,7 +303,7 @@ public class Vintage implements Serializable {
 
     public boolean finalizarEnc(int id_comprador){
         if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().EncomendaVazia() == false){
-            this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this);
+            this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this, id_comprador);
         return true;
         }
         else return false;
@@ -345,5 +311,21 @@ public class Vintage implements Serializable {
 
     public double getPrecoEncomenda(int id_comprador){
         return this.utilizadores.getContaByCod(id_comprador).getEncomenda().calculaPreço(this);
+    }
+
+    public void getMaiorVendedor(){
+        Utilizador vendedorMaisfaturou = this.utilizadores.getMaiorVendedor();
+        
+        System.out.println(vendedorMaisfaturou.getNome() + " faturou um total de " + vendedorMaisfaturou.getDinheiro_faturado() + '€');
+    }
+
+    public void encomendaEmitidasVendedor(int id_vendedor){
+        Set<String> artigos = this.utilizadores.getContaByCod(id_vendedor).getArtigos_vendidos();
+        Iterator<String> iterator = artigos.iterator();
+        String id_artigo;
+        while(iterator.hasNext()){
+            id_artigo = iterator.next();
+            System.out.println(this.artigos.getArtigoById(id_artigo));
+        }
     }
 }

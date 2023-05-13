@@ -167,4 +167,19 @@ public class GestorUtilizadores implements Serializable{
         return email;
     }
 
+    public Utilizador getMaiorVendedor(){
+        Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
+        Map.Entry<Integer,Utilizador> c;
+        Utilizador maiorvendedor = new Utilizador();
+        double valor;
+        double maior = 0;
+            while(iterator.hasNext()){
+                c = iterator.next();
+                valor = c.getValue().getDinheiro_faturado();
+                if(valor > maior){
+                    maiorvendedor = c.getValue().clone();
+                }
+            }
+        return maiorvendedor;
+    }
 }
