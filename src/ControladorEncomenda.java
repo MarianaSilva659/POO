@@ -1,24 +1,26 @@
-public class ControladorEncomenda {
+public class ControladorEncomenda implements InterfaceEncomendas{
     private MenuUtilizador menu;
+    private MenuEncomenda menuE;
     private Vintage vintage;
     private ControladorUtilizador controladorUtilizador;
 
     public ControladorEncomenda(Vintage vintage, ControladorUtilizador controlador){
         this.vintage = vintage;
         this.menu = new MenuUtilizador();
-       // this.menu.setInterface(this);
+        this.menuE.setInterface(this);
         this.controladorUtilizador = controlador;
+        this.menuE = new MenuEncomenda();
     }
 
     public void run(Vintage vintage, int id){
         while(true){
-            int opcao = menu.MenuEncomenda();
+            int opcao = menuE.MenuEncomenda();
 
             switch(opcao){
                 case 1:
                     vintage.mostraTodosArtigos();
-                    String artigo = menu.MenuEscolheArtigo();
-                    vintage.addArtigoEncomenda(artigo);
+                    String artigo = menuE.MenuEscolheArtigo();
+                    vintage.addArtigoEncomenda(artigo, id);
                 break;
                 case 2: //finalizar a encomenda
                 break;
@@ -26,6 +28,8 @@ public class ControladorEncomenda {
                     controladorUtilizador.run(vintage, vintage.getEmailById(id));
                 break;
                 case 0:
+                    System.out.println("\nTerminada a sessão");
+                    System.exit(0);
                 break;
             }
         }

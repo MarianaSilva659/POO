@@ -11,6 +11,7 @@ public class Utilizador{
     private Set<String> artigos_vendidos;
     private Set<String> artigos_para_venda;
     private double dinheiro_faturado;
+    private Encomenda encomenda;
 
     public Utilizador(){
         this.id = 0;
@@ -22,6 +23,7 @@ public class Utilizador{
         this.artigos_vendidos = new HashSet<>();
         this.artigos_para_venda = new HashSet<>();
         this.dinheiro_faturado = 0;
+        this.encomenda = null;
     }
 
     public Utilizador(int id, String email, String nome, String morada, int nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda, double dinheiro) {
@@ -33,7 +35,8 @@ public class Utilizador{
         this.artigos_comprados = compras;
         this.artigos_vendidos = vendidas;
         this.artigos_para_venda = pra_venda;
-        this.dinheiro_faturado = dinheiro;
+        this.dinheiro_faturado = 0;
+        this.encomenda = null;
     }
     public Utilizador(int id, String email, String nome, String morada, int nif) {
         this.id = id;
@@ -44,6 +47,8 @@ public class Utilizador{
         this.artigos_comprados = new HashSet<>();
         this.artigos_vendidos = new HashSet<>();
         this.artigos_para_venda = new HashSet<>();
+        this.dinheiro_faturado = 0;
+        this.encomenda = null;
     }
 
     public Utilizador(Utilizador u) {
@@ -56,6 +61,7 @@ public class Utilizador{
         this.artigos_vendidos = u.getArtigos_vendidos();
         this.artigos_para_venda = u.getArtigos_para_venda();
         this.dinheiro_faturado = u.getDinheiro_faturado();
+        this.encomenda  = u.getEncomenda();
     }
 
     public double getDinheiro_faturado() {
@@ -130,6 +136,14 @@ public class Utilizador{
         this.artigos_para_venda = artigos_para_venda;
     }
 
+    public Encomenda getEncomenda() {
+        return this.encomenda;
+    }
+
+    public void setEncomenda(Encomenda encomenda) {
+        this.encomenda = encomenda;
+    }
+    
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
@@ -146,7 +160,7 @@ public class Utilizador{
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getId(), getEmail(), getNome(), getMorada(), getNif(), getArtigos_comprados(), getArtigos_vendidos(), getArtigos_para_venda());
+        return Objects.hash(super.hashCode(), getId(), getEmail(), getNome(), getMorada(), getNif(), getArtigos_comprados(), getArtigos_vendidos(), getArtigos_para_venda(), getDinheiro_faturado(), getEncomenda());
     }
 
 
