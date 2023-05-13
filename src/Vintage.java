@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Set;
 import java.util.Iterator;
@@ -300,8 +302,20 @@ public class Vintage implements Serializable {
         return this.utilizadores.getEmailById(id);
     }
 
-    public void devolverEncomenda(int id_comprador){
-        this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);; 
+    public boolean devolverEncomenda(int id_comprador){
+        LocalDate dataAtual = LocalDate.now();
+        if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().EncomendaVazia() == false) && (podeDevolverEnc(dataAtual, this.utilizadores.getContaByCod(id_comprador).getEncomenda().getDataCriacao()) == true)){
+            this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);
+            return true;
+        }
+        else return false;
+    }
+
+    public boolean podeDevolverEnc(LocalDate dataFinalizacao, LocalDate dataAtual){
+        Duration duracao = Duration.between(dataFinalizacao.atStartOfDay(), dataAtual.atStartOfDay());
+        long diferencaHoras = duracao.toHours();
+
+        return (diferencaHoras <= 48);
     }
 
     public void mostraEncomenda(int id){
@@ -313,10 +327,23 @@ public class Vintage implements Serializable {
     }
 
     public boolean cancelaArtigoEnc(int id, String cod){
-        if(this.utilizadores.getContaByCod(id).getEncomenda().existe_Artigo(cod) == true){
+        if(this.utilizadores.getContaByCod(id).getEncomenda().existe_ArtigoEnc(cod) == true){
             this.utilizadores.getContaByCod(id).getEncomenda().cancelarArtigo(this, cod);
+            System.out.println(this.utilizadores.getContaByCod(id).getEncomenda());
         return true;
         }
         else return false;
+    }
+
+    public boolean finalizarEnc(int id_comprador){
+        if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().EncomendaVazia() == false){
+            this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this);
+        return true;
+        }
+        else return false;
+    }
+
+    public double getPrecoEncomenda(int id_comprador){
+        return this.utilizadores.getContaByCod(id_comprador).getEncomenda().calculaPreço(this);
     }
 }

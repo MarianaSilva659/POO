@@ -30,7 +30,7 @@ public class ControladorEncomenda implements InterfaceEncomendas{
                     if(vintage.cancelaArtigoEnc(id, cod) == false) menu.avisos(4);
                 break;
                 case 3:
-                    //devolver
+                    if(vintage.devolverEncomenda(id) == false) menu.avisos(5);
                 break;
                 case 4:
                     LocalDate datacompra = LocalDate.now();

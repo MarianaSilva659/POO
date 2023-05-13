@@ -143,7 +143,11 @@ public class Encomenda {
         this.encomenda.remove(id);
     }
 
-    public boolean existe_Artigo(String cod){
+    public boolean existe_ArtigoEnc(String cod){
         return this.encomenda.contains(cod);
+    }
+
+    public boolean EncomendaVazia(){
+        return this.encomenda.isEmpty();
     }
 }
