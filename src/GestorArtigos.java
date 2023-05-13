@@ -141,18 +141,8 @@ public class GestorArtigos{
         this.produtos_vendidos.put(a.getId(), a); //com id de quem vendeu
     }
 
-    public boolean existe_Artigo_pra_venda_id(Artigo a){
-        boolean existe = false;
-        Iterator<Map.Entry<String,Artigo>> iterator = produtos_para_venda.entrySet().iterator();
-        Map.Entry<String,Artigo> e;
-       while(iterator.hasNext()){
-        e = iterator.next();
-                String id_produto = e.getKey();
-                if(id_produto.equals(a.getId()) == true){
-                    existe = true;
-                }
-        }
-        return existe;
+    public boolean existe_Artigo_pra_venda_id(String a){
+       return this.produtos_para_venda.containsKey(a);
     }
 
     @java.lang.Override

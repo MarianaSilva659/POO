@@ -148,4 +148,10 @@ public class GestorUtilizadores{
             utilizador.devolveArtigo(dados_de_devolução.getFirst());
     }
 
+    public String getEmailById(int id){
+        Utilizador utilizador = contas.get(id);
+        String email = utilizador.getEmail();
+        return email;
+    }
+
 }

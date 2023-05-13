@@ -4,12 +4,14 @@ public class ControladorUtilizador implements InterfaceUtilizadores {
     private MenuUtilizador menu;
     private Vintage vintage;
     private ControladorCentral controladorCentral;
+    private ControladorEncomenda cE;
 
     public ControladorUtilizador(Vintage vintage, ControladorCentral controladorCentral){
         this.vintage = vintage;
         this.menu = new MenuUtilizador();
         this.menu.setInterface(this);
         this.controladorCentral = controladorCentral;
+        this.cE = new ControladorEncomenda(vintage, this);
     }
     
     public void run(Vintage vintage, String email){
@@ -31,7 +33,7 @@ public class ControladorUtilizador implements InterfaceUtilizadores {
             
             switch(opcaoEscolhida){
                 case 1:
-                //comprar
+                    cE.run(vintage, vintage.getIdUtilizador(email));
                 break;
                 case 2:
                     int opcao = -1;

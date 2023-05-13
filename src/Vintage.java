@@ -13,6 +13,7 @@ public class Vintage implements Serializable {
     private GestorArtigos artigos;
     private GestorUtilizadores utilizadores;
     private GestorTransportes transportes;
+    private Encomenda encomenda;
 
 
     public Vintage() {
@@ -278,5 +279,15 @@ public class Vintage implements Serializable {
 
     public void updateArtigo(String id){
         artigos.updateArtigo(id);
+    }
+
+    public boolean addArtigoEncomenda(String cod){
+        boolean valido = this.artigos.existe_Artigo_pra_venda_id(cod);
+        this.encomenda.addArtigo(cod, this);
+        return valido; //falso não pode comprar
+    }
+
+    public String getEmailById(int id){
+        return this.utilizadores.getEmailById(id);
     }
 }

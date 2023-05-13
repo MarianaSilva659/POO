@@ -45,6 +45,7 @@ public class Utilizador{
         this.artigos_vendidos = new HashSet<>();
         this.artigos_para_venda = new HashSet<>();
     }
+
     public Utilizador(Utilizador u) {
         this.id = u.getId();
         this.email = u.getEmail();
@@ -177,7 +178,6 @@ public class Utilizador{
         return (this.id == id_utilizador);
     }
 
-<<<<<<< HEAD
     public void addArtigoCompra(String cod){
         this.artigos_comprados.add(cod);
     }
@@ -187,11 +187,9 @@ public class Utilizador{
     }
 
     public void addArtigoParaVenda(String cod){
-        this.artigos_pra_venda.add(cod);
+        this.artigos_para_venda.add(cod);
     }
 
-
-=======
     public void finalização_de_encomenda(double preço, String artigo_id){
         updatePreço(preço);
         artigos_para_venda.remove(artigo_id);
@@ -203,5 +201,4 @@ public class Utilizador{
         artigos_para_venda.remove(artigo);
         artigos_vendidos.add(artigo);
     }
->>>>>>> 8293e3b (Adição das encomendas e ligeiras otimizações)
 }
