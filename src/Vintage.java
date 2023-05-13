@@ -265,7 +265,7 @@ public class Vintage implements Serializable {
         return this.artigos.getVendedores(artigosID);
      }
 
-    public void devolverArtigos(Pair <String ,Integer> dados_de_devolução, Collection<String> conjuntoDeArtigos){
+    public void devolverArtigos(Collection<Pair <String ,Integer>> dados_de_devolução, Collection<String> conjuntoDeArtigos){
         utilizadores.devolverArtigos(dados_de_devolução);
         artigos.devolveArtigos(conjuntoDeArtigos);
     }
@@ -289,7 +289,7 @@ public class Vintage implements Serializable {
         return this.utilizadores.getEmailById(id);
     }
 
-    public void devolverEncomenda(String cod, int id_comprador){
+    public void devolverEncomenda(int id_comprador){
         this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);;
         
     }
