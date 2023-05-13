@@ -281,7 +281,8 @@ public class Vintage implements Serializable {
 
     public boolean addArtigoEncomenda(String cod, int id_comprador){
         boolean valido = this.artigos.existe_Artigo_pra_venda_id(cod);
-        this.utilizadores.getContaByCod(id_comprador).getEncomenda().addArtigo(cod, this);
+        if(valido == true) this.utilizadores.getContaByCod(id_comprador).getEncomenda().addArtigo(cod, this);
+        System.out.println(this.utilizadores.getContaByCod(id_comprador).getEncomenda());
         return valido; //falso não pode comprar
     }
 
@@ -291,6 +292,6 @@ public class Vintage implements Serializable {
 
     public void devolverEncomenda(int id_comprador){
         this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);;
-        
     }
+
 }

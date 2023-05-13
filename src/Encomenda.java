@@ -9,21 +9,21 @@ import java.util.Iterator;
 
 public class Encomenda {
     private Set<String> encomenda;
-    private LocalDate dataCriacao;
+    private LocalDate dataCompra;
 
     public Encomenda(){
         this.encomenda = new HashSet<>();
-        this.dataCriacao = null;
+        this.dataCompra = null;
     }
 
     public Encomenda(Encomenda e){
         this.encomenda = e.getEncomenda();
-        this.dataCriacao = LocalDate.now();
+        this.dataCompra = LocalDate.now();
     }
 
     public Encomenda(Set<String> encomenda){
         this.encomenda = encomenda;
-        this.dataCriacao = LocalDate.now();
+        this.dataCompra = LocalDate.now();
     }
 
     public Set<String> getEncomenda() {
@@ -45,12 +45,12 @@ public class Encomenda {
         }
     }
 
-    public LocalDate getDataCriacao() {
-        return this.dataCriacao;
+    public LocalDate getDataCompra() {
+        return this.dataCompra;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setDataCompra(LocalDate dataCriacao) {
+        this.dataCompra = dataCriacao;
     }
 
     public boolean equals(Object object) {
@@ -59,18 +59,18 @@ public class Encomenda {
         if (!super.equals(object)) return false;
         Encomenda encomenda1 = (Encomenda) object;
         return this.getEncomenda().equals(encomenda1.getEncomenda()) 
-        && this.getDataCriacao().equals(encomenda1.getDataCriacao());
+        && this.getDataCompra().equals(encomenda1.getDataCompra());
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getEncomenda(), getDataCriacao());
+        return Objects.hash(super.hashCode(), getEncomenda(), getDataCompra());
     }
 
     @java.lang.Override
     public java.lang.String toString() {
         return "Encomenda{" +
                 "encomenda=" + encomenda +
-                ", dataCriacao=" + dataCriacao +
+                ",dataCriacao=" + dataCompra +
                 '}';
     }
 
@@ -129,5 +129,6 @@ public class Encomenda {
         vintage.devolverArtigos(dados_de_devolução);
         this.encomenda.remove(id);
     }
+
 
 }

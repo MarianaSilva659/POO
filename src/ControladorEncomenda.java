@@ -18,14 +18,17 @@ public class ControladorEncomenda implements InterfaceEncomendas{
 
             switch(opcao){
                 case 1:
-                    vintage.mostraTodosArtigos();
-                    String artigo = menuE.MenuEscolheArtigo();
-                    vintage.addArtigoEncomenda(artigo, id);
+                    EncomendaNovoArtigo(id);
+                    int qual = menuE.MenuMaisArtigos();
+                    if(qual == 1) EncomendaNovoArtigo(id);
+               //     else //finalizar encomenda
+
                 break;
                 case 2:
 
                 break;
                 case 3:
+                    
                 break;
                 case 4:
                     controladorUtilizador.run(vintage, vintage.getEmailById(id));
@@ -37,4 +40,14 @@ public class ControladorEncomenda implements InterfaceEncomendas{
             }
         }
     }
+
+    public void EncomendaNovoArtigo(int id){
+        vintage.mostraTodosArtigos();
+        String artigo = menuE.MenuEscolheArtigo();
+        if(vintage.addArtigoEncomenda(artigo, id) == false) menu.avisos(3);
+    }
+
+   /* public void devolverEncomenda(String cod, int id){
+        
+    }*/
 }

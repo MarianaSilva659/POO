@@ -30,6 +30,16 @@ public class MenuEncomenda {
         return cod;
     }
 
+    public int MenuMaisArtigos(){
+        StringBuilder sb = new StringBuilder("\n\n\n-----------MENU VENDAS-----------\n\n");
+        sb.append("1 -> Adicionar mais artigos há encomenda?\n");
+        sb.append("2 -> Deseja finalizar a encomenda\n");
+        sb.append("Selecione a opção pretendida: ");
+        System.out.print(sb.toString());
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
+
     public int MenuEncomenda(){
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU VENDAS-----------\n\n");
         sb.append("1 -> Deseja adicionar um artigo há encomenda?\n");

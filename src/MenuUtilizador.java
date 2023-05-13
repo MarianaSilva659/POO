@@ -143,31 +143,12 @@ public class MenuUtilizador {
         return r;
     }
 
-    public String MenuEscolheArtigo(){
-        StringBuilder sb = new StringBuilder("\n");
-        System.out.print(sb.toString());
-        Scanner scanner = new Scanner(System.in);
-        String cod = scannerString("Digite o Código alfanomérico do artigo que quer comprar: ", scanner);
-        return cod;
-    }
-
-    public int MenuEncomenda(){
-        StringBuilder sb = new StringBuilder("\n\n\n-----------MENU VENDAS-----------\n\n");
-        sb.append("1 -> Deseja adicionar um artigo há encomenda?\n");
-        sb.append("2 -> Deseja finalizar a encomenda?\n");
-        sb.append("3 -> Deseja voltar atrás?\n");
-        sb.append("0 -> Sair\n");
-        sb.append("Selecione a opção pretendida: ");
-        System.out.print(sb.toString());
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
-    }
-
 
     public void avisos(int a){
         StringBuilder sb = new StringBuilder();
         if (a==1) sb.append("\n!!!!Digite um número inteiro válido!!!!").append("\n");
         if (a==2) sb.append("\n!!!!ARTIGO JÁ EXISTE OU TRANSPORTADORA INVÁLIDA!!!").append("\n");
+        if (a==3) sb.append("\n!!!!ARTIGO INDISPONÍVEL!!!").append("\n");
         sb.append("\nPressione no enter...");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);
