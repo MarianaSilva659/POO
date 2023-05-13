@@ -32,9 +32,9 @@ public class ControladorEncomenda implements InterfaceEncomendas{
                 case 3:
                     if(vintage.devolverEncomenda(id) == false) menu.avisos(5);
                 break;
-                case 4:
+                case 4: //finalizar encomenda;
                     LocalDate datacompra = LocalDate.now();
-                    //finalizar
+                    
                 break;
                 case 5:
                     controladorUtilizador.run(vintage, vintage.getEmailById(id));
