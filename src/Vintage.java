@@ -308,6 +308,10 @@ public class Vintage implements Serializable {
         System.out.println(this.utilizadores.getContaByCod(id).getEncomenda());
     }
 
+    public void finalizarArtigos(Collection<String> artigosID){
+        artigos.finalizarArtigos(artigosID);
+    }
+
     public boolean cancelaArtigoEnc(int id, String cod){
         if(this.utilizadores.getContaByCod(id).getEncomenda().existe_Artigo(cod) == true){
             this.utilizadores.getContaByCod(id).getEncomenda().cancelarArtigo(this, cod);

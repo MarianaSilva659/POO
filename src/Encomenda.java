@@ -125,7 +125,7 @@ public class Encomenda {
         return preço;
     }
 
-    public void finalizarCompra(Vintage vintage){
+    public void finalizarCompra(Vintage vintage, int id){
         Collection<Pair<Integer, Pair <String, Double>>> dadosDeVenda = vintage.getDadosDeVenda(getEncomenda());
         vintage.updateVendedores(dadosDeVenda);
         vintage.finalizarArtigos(this.getEncomenda());
