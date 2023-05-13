@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Map;
+import java.util.Set;
+import java.util.Iterator;
 
 public class Vintage implements Serializable {
     private GestorArtigos artigos;
@@ -37,7 +40,7 @@ public class Vintage implements Serializable {
         }
         else return null;
     }
-    
+
 
     public boolean existeContaT(int id){
         return this.transportes.existe_Transportadora(id);
@@ -200,4 +203,35 @@ public class Vintage implements Serializable {
         oos.close();
     }
 
+    public double getValorTotalArtigosVendidos(Set<String> vendidos){
+        Iterator<String> iteratorartigos = vendidos.iterator();
+        String codArtigo;
+        Artigo artigo;
+        double valorArtigosVendidos = 0;
+        while(iteratorartigos.hasNext()){
+            codArtigo = iteratorartigos.next();
+            artigo = this.artigos.getArtigoById(codArtigo);
+            valorArtigosVendidos += artigo.precoartigo();
+        }
+        return valorArtigosVendidos;
+    }
+
+    public Utilizador getMaiorVendedor(){
+        Map<Integer, Utilizador> aqui = this.utilizadores.getContas();
+        Iterator<Map.Entry<Integer, Utilizador>> iterator = aqui.entrySet().iterator();
+        Map.Entry<Integer,Utilizador> c;
+        Utilizador maisFaturou = new Utilizador();
+        Utilizador vendedor;
+        double valor, maior = 0;
+        while(iterator.hasNext()){
+            c = iterator.next();
+            vendedor = c.getValue();
+            valor = getValorTotalArtigosVendidos(vendedor.getArtigos_vendidos());
+            if(valor > maior){
+                maisFaturou = vendedor.clone();
+                maior = valor;
+            }
+        }
+        return maisFaturou;
+    }
 }

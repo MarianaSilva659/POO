@@ -57,7 +57,7 @@ public class MenuUtilizador {
 
     public boolean MenuArtigoMalas(int id_utilizador, int opcao){
         boolean a = false;
-        StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
+        StringBuilder sb = new StringBuilder("\n\n-----------NOVO ARTIGO-----------\n\n");
         sb.append("Insira os dados. \n");
         System.out.print(sb.toString());
 
@@ -87,7 +87,7 @@ public class MenuUtilizador {
 
     public boolean MenuArtigoSapatilhas(int id_utilizador, int opcao){
         boolean r = false;
-        StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
+        StringBuilder sb = new StringBuilder("\n\n-----------NOVO ARTIGO-----------\n\n");
         sb.append("Insira os dados. \n");
         System.out.print(sb.toString());
 
@@ -117,7 +117,7 @@ public class MenuUtilizador {
 
     public boolean MenuArtigoTShit(int id_utilizador, int opcao){
         boolean r = false;
-        StringBuilder sb = new StringBuilder("\n\n\n-----------NOVO ARTIGO-----------\n\n");
+        StringBuilder sb = new StringBuilder("\n\n-----------NOVO ARTIGO-----------\n\n");
         sb.append("Insira os dados. \n");
         System.out.print(sb.toString());
 
