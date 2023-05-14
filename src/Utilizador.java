@@ -120,7 +120,7 @@ public class Utilizador implements Serializable{
     }
 
     public  Map<String, LocalDate> getArtigos_comprados() {
-        return this.artigos_vendidos;
+        return this.artigos_comprados;
     }
 
     public void setArtigos_comprados( Map<String, LocalDate> artigos_comprados) {

@@ -148,7 +148,6 @@ public class Encomenda implements Serializable{
             }
         }
         vintage.updateTransportadora(listadeTransportadoras);
-      //  System.out.println("aqui");
         vintage.updateComprador(getEncomenda(), this.id_comprador, preço);
         this.setData(Vintage.getTime());
         return preço;
