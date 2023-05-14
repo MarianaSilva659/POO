@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -122,15 +123,32 @@ public class Menu {
         return id;
     }
 
-    public void MenuVendedorFaturou(){
+    public LocalDate[] MenuVendedorFaturou() {
         StringBuilder str = new StringBuilder("------------VENDEDOR QUE MAIS FATUROU--------------\n\n");
-        
+    
         str.append("1 -> Vendedor que mais faturou desde sempre\n");
         str.append("2 -> Vendedor que mais faturou num período\n");
         System.out.print(str.toString());
         Scanner input = new Scanner(System.in);
         int opcao = scannerInt("Selecione um número para prosseguir: ", input);
-
+        if (opcao < 0 || opcao > 11) {
+            throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 11\n");
+        }
+        try {
+            if (opcao == 1) {
+                return new LocalDate[] { null, null };
+            } else if (opcao == 2) {
+                LocalDate dataInicio = LocalDate.parse(scannerString("Digite a data de início (AAAA-MM-DD): ", input));
+                LocalDate dataFim = LocalDate.parse(scannerString("Digite a data de fim (AAAA-MM-DD): ", input));
+                return new LocalDate[] { dataInicio, dataFim };
+            } else {
+                System.out.println("Opção inválida.");
+            }
+        } catch (DateTimeParseException e) {
+            System.out.println("Formato de data inválido. Certifique-se de usar o formato AAAA-MM-DD.");
+        }
+    
+        return null;
     }
 
     public void avisos(int a){

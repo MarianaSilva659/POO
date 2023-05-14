@@ -84,7 +84,7 @@ public class Malas extends Artigo{
     }
 
     public double precoartigo(){
-        return getPrecoBase()*((100-getDesconto())/100);
+        return getPrecoBase()*((100-(getDesconto()))/((getAltura()*getProfundidade()*getLargura())))/100;
     }
 
     @Override
