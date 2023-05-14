@@ -25,6 +25,7 @@ public class Utilizador implements Serializable{
         this.artigos_vendidos = new HashSet<>();
         this.artigos_para_venda = new HashSet<>();
         this.dinheiro_faturado = 0;
+        this.dinheiro_gasto = 0;
         this.encomenda = new Encomenda(this.id);
     }
 
@@ -38,6 +39,7 @@ public class Utilizador implements Serializable{
         this.artigos_vendidos = vendidas;
         this.artigos_para_venda = pra_venda;
         this.dinheiro_faturado = 0;
+        this.dinheiro_gasto = 0;
         this.encomenda = new Encomenda(this.id);
     }
     public Utilizador(int id, String email, String nome, String morada, int nif) {
@@ -50,6 +52,7 @@ public class Utilizador implements Serializable{
         this.artigos_vendidos = new HashSet<>();
         this.artigos_para_venda = new HashSet<>();
         this.dinheiro_faturado = 0;
+        this.dinheiro_gasto = 0;
         this.encomenda = new Encomenda(id);
     }
 
@@ -63,6 +66,7 @@ public class Utilizador implements Serializable{
         this.artigos_vendidos = u.getArtigos_vendidos();
         this.artigos_para_venda = u.getArtigos_para_venda();
         this.dinheiro_faturado = u.getDinheiro_faturado();
+        this.dinheiro_gasto = u.getDinheiro_gasto();
         this.encomenda  = u.getEncomenda();
     }
 
