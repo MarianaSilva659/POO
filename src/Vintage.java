@@ -257,6 +257,21 @@ public class Vintage implements Serializable {
         }else return false;
     }
 
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        out.writeDouble(imposto);
+        out.writeDouble(lucro);
+        out.writeObject(data);
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        imposto = in.readDouble();
+        lucro = in.readDouble();
+        data = (LocalDate)in.readObject();
+    }
+
     public static Vintage loadState (String filename) throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename));
         Vintage f = (Vintage) ois.readObject();
