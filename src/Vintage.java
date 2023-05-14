@@ -294,14 +294,13 @@ public class Vintage implements Serializable {
      }
 
     public void cancelarEncomenda(Collection<Pair <String ,Integer>> dados_de_devolução, Collection<String> conjuntoDeArtigos, int id){
-        utilizadores.cancelarArtigosVendedor(dados_de_devolução);
-        utilizadores.devolverArtigosComprador(conjuntoDeArtigos, id);
+      //  utilizadores.cancelarArtigosVendedor(dados_de_devolução);
+        //utilizadores.devolverArtigosComprador(conjuntoDeArtigos, id);
         artigos.devolverArtigos(conjuntoDeArtigos);
     }
 
-    public void cancelarArtigo(Pair <String ,Integer> dados_de_devolução, int id){
-        utilizadores.devolverArtigosComprador(dados_de_devolução.getFirst(), id);
-        artigos.devolverArtigos(dados_de_devolução.getFirst());
+    public void cancelarArtigo(String artigoID){
+        artigos.cancelarArtigo(artigoID);
     }
 
     public void updateArtigo(String id){

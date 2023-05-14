@@ -234,7 +234,7 @@ public class GestorArtigos implements Serializable{
         return pair;
     }
 
-    public void cancelarEncomendaArtigo(Collection<String> artigosID){
+    public void cancelarEncomenda(Collection<String> artigosID){
         Iterator<String> it = artigosID.iterator();
         String aux;
         Artigo artigo;
@@ -246,7 +246,7 @@ public class GestorArtigos implements Serializable{
         }
     }
 
-    public void cancelarEncomendaArtigo(String artigosID){
+    public void cancelarArtigo(String artigosID){
         Artigo artigo;
             artigo = produtos_pendentes.get(artigosID);
             produtos_pendentes.remove(artigosID);

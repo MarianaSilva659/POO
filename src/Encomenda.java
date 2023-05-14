@@ -159,8 +159,8 @@ public class Encomenda implements Serializable{
     }
 
     public void cancelarArtigo(Vintage vintage, String id){
-       Pair <String ,Integer> dados_de_devolução = vintage.getVendedores(id);
-        vintage.cancelarArtigo(dados_de_devolução, this.id_comprador);
+       //Pair <String ,Integer> dados_de_devolução = vintage.getVendedores(id);
+        vintage.cancelarArtigo(id);
         this.encomenda.remove(id);
     }
 
