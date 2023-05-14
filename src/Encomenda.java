@@ -29,13 +29,13 @@ public class Encomenda implements Serializable{
 
     public Encomenda(Encomenda e){
         this.encomenda = e.getEncomenda();
-        this.data = LocalDate.now();
+        this.data = e.getData();
         this.id_comprador = e.getId_comprador();
     }
 
     public Encomenda(Set<String> encomenda, int id){
         this.encomenda = encomenda;
-        this.data = LocalDate.now();
+        this.data = null;
         this.id_comprador = id;
     }
 
@@ -164,7 +164,6 @@ public class Encomenda implements Serializable{
         this.encomenda.remove(id);
     }
 
-    //ignore
     public void devolverEncomenda(Vintage vintage){
         Collection<Pair<Integer, Pair <String, Double>>> dadosDeVenda = vintage.getDadosDeVenda(getEncomenda());
         vintage.devolverArtigosVendedor(dadosDeVenda);

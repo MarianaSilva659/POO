@@ -379,7 +379,6 @@ public class Vintage implements Serializable {
         else return false;
     }
 
-<<<<<<< HEAD
     public boolean finalizarEnc(int id_comprador){
         if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false){
          this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this);
@@ -388,8 +387,7 @@ public class Vintage implements Serializable {
         else return false;
     }
 
-=======
->>>>>>> 498e6b7 (asdf)
+
     public double getPrecoEncomenda(int id_comprador){
         return this.utilizadores.getContaByCod(id_comprador).getEncomenda().calculaPreço(this);
     }

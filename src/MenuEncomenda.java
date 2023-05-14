@@ -1,12 +1,6 @@
 import java.util.Scanner;
 
 public class MenuEncomenda {
-    private InterfaceEncomendas inter;
-
-    public void setInterface(InterfaceEncomendas inter){
-        this.inter = inter;
-    }
-
     public int scannerInt(String message, Scanner s){
         System.out.print(message);
         return s.nextInt();
