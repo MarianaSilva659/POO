@@ -240,17 +240,17 @@ public class GestorArtigos implements Serializable{
         Artigo artigo;
         while(it.hasNext()){
             aux = it.next();
-            artigo = this.produtos_pendentes.get(aux).clone();
-            this.produtos_pendentes.remove(aux);
-            this.produtos_para_venda.put(aux, artigo);
+            artigo = produtos_pendentes.get(aux).clone();
+            produtos_pendentes.remove(aux);
+            produtos_para_venda.put(aux, artigo);
         }
     }
 
     public void cancelarArtigo(String artigosID){
         Artigo artigo;
-            artigo = this.produtos_pendentes.get(artigosID);
-            this.produtos_pendentes.remove(artigosID);
-            this.produtos_para_venda.put(artigosID, artigo.clone());
+            artigo = produtos_pendentes.get(artigosID);
+            produtos_pendentes.remove(artigosID);
+            produtos_para_venda.put(artigosID, artigo.clone());
     }
 
     public void devolverArtigos(Collection<String> artigosID){
@@ -259,23 +259,23 @@ public class GestorArtigos implements Serializable{
         Artigo artigo;
         while(it.hasNext()){
             aux = it.next();
-            artigo = this.produtos_vendidos.get(aux).clone();
-            this.produtos_vendidos.remove(aux);
-            this.produtos_para_venda.put(aux, artigo);
+            artigo = produtos_vendidos.get(aux).clone();
+            produtos_vendidos.remove(aux);
+            produtos_para_venda.put(aux, artigo);
         }
     }
 
     public void devolverArtigos(String artigosID){
         Artigo artigo;
-            artigo = this.produtos_vendidos.get(artigosID).clone();
-            this.produtos_vendidos.remove(artigosID);
-            this.produtos_para_venda.put(artigosID, artigo);
+            artigo = produtos_vendidos.get(artigosID).clone();
+            produtos_vendidos.remove(artigosID);
+            produtos_para_venda.put(artigosID, artigo);
     }
 
     public void updateArtigo(String id){
-        Artigo artigo = this.produtos_para_venda.get(id).clone();
-        this.produtos_para_venda.remove(id);
-        this.produtos_pendentes.put(id, artigo);
+        Artigo artigo = produtos_para_venda.get(id).clone();
+        produtos_para_venda.remove(id);
+        produtos_pendentes.put(id, artigo);
     }
 
     public void finalizarArtigos(Collection <String> artigosID){
