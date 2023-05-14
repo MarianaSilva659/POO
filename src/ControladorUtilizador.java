@@ -26,7 +26,7 @@ public class ControladorUtilizador implements InterfaceUtilizadores {
                 }catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
-            } while (opcaoEscolhida < 0 || opcaoEscolhida > 4);
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 5);
             
             
             switch(opcaoEscolhida){
