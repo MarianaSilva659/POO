@@ -62,6 +62,7 @@ public class ControladorCentral implements Interface{
                     }
                 break;
                 case 5:
+                    menu.MenuVendedorFaturou();
                     vintage.getMaiorVendedor();
                 break;
                 case 6: //Transportadora que mais faturou
@@ -70,7 +71,8 @@ public class ControladorCentral implements Interface{
                 break;
                 case 8: //maiores vendedores da vintage
                 break;
-                case 9: //quanto dinheiro ganhou a Vintage
+                case 9:
+                    vintage.lucroVintage();
                 break;
                 case 10:
                     try {

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -119,6 +120,17 @@ public class Menu {
         int id = scannerInt("Identificador: ", scanner);
        
         return id;
+    }
+
+    public void MenuVendedorFaturou(){
+        StringBuilder str = new StringBuilder("------------VENDEDOR QUE MAIS FATUROU--------------\n\n");
+        
+        str.append("1 -> Vendedor que mais faturou desde sempre\n");
+        str.append("2 -> Vendedor que mais faturou num período\n");
+        System.out.print(str.toString());
+        Scanner input = new Scanner(System.in);
+        int opcao = scannerInt("Selecione um número para prosseguir: ", input);
+
     }
 
     public void avisos(int a){

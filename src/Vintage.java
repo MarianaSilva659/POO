@@ -397,7 +397,7 @@ public class Vintage implements Serializable {
     public void getMaiorVendedor(){
         Utilizador vendedorMaisfaturou = this.utilizadores.getMaiorVendedor();
         
-        System.out.println(vendedorMaisfaturou.getNome() + " faturou um total de " + vendedorMaisfaturou.getDinheiro_faturado() + '€');
+        System.out.println("Vendedor " + vendedorMaisfaturou.getNome() + " faturou um total de " + vendedorMaisfaturou.getDinheiro_faturado() + '€');
     }
 
     //ARTIGOS VENDIDOS DE UM UTILIZADOR
@@ -437,5 +437,9 @@ public class Vintage implements Serializable {
 
    public void corrigirUtilizador(Collection<String> artigos,double preço, int id){
     utilizadores.corrigirUtilizador(artigos, preço, id);
+   }
+
+   public void lucroVintage(){
+    System.out.println("A Vintage já ganhou " + Vintage.getLucro() + '€');
    }
 }
