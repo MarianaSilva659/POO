@@ -297,8 +297,8 @@ public class Vintage implements Serializable {
         return this.artigos.getVendedores(artigosID);
      }
 
-    public void cancelarEncomenda(Collection<String> conjuntoDeArtigos, int id){
-        artigos.devolverArtigos(conjuntoDeArtigos);
+    public void cancelarEncomenda(Collection<String> conjuntoDeArtigos){
+        artigos.cancelarArtigos(conjuntoDeArtigos);
     }
 
     public void cancelarArtigo(String artigoID){
@@ -413,7 +413,7 @@ public class Vintage implements Serializable {
    }
 
    public void devolverArtigos(Collection<String> artigosID){
-    artigos.devolverArtigos(artigosID);
+    artigos.cancelarArtigos(artigosID);
    }
 
    public void corrigirUtilizador(Collection<String> artigos,double preço, int id){

@@ -154,7 +154,7 @@ public class Encomenda implements Serializable{
     }
 
     public void cancelarEncomenda(Vintage vintage){
-        vintage.cancelarEncomenda(getEncomenda(), this.id_comprador);
+        vintage.cancelarEncomenda(getEncomenda());
         this.encomenda = new HashSet<>();
     }
 

@@ -250,14 +250,14 @@ public class GestorArtigos implements Serializable{
             produtos_para_venda.put(artigosID, artigo.clone());
     }
 
-    public void devolverArtigos(Collection<String> artigosID){
+    public void cancelarArtigos(Collection<String> artigosID){
         Iterator<String> it = artigosID.iterator();
         String aux;
         Artigo artigo;
         while(it.hasNext()){
             aux = it.next();
-            artigo = produtos_vendidos.get(aux).clone();
-            produtos_vendidos.remove(aux);
+            artigo = produtos_pendentes.get(aux).clone();
+            produtos_pendentes.remove(aux);
             produtos_para_venda.put(aux, artigo);
         }
     }
