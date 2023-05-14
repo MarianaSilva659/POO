@@ -259,7 +259,7 @@ public class Utilizador implements Serializable{
 
     private Collection<Double> filterMapArtigosByDate(Map<String, LocalDate> map, LocalDate date1, LocalDate date2, Vintage vintage){
         return map.entrySet().stream().
-        filter(entry -> entry.getValue().isAfter(date1) && entry.getValue().isBefore(date2)).
+        filter(entry -> (entry.getValue().isAfter(date1) || entry.getValue().isEqual(date1)) && (entry.getValue().isEqual(date2) || entry.getValue().isBefore(date2))).
         map(entry -> vintage.getArtigos().getArtigoById(entry.getKey()).precoartigo()).collect(Collectors.toList());
     }
 

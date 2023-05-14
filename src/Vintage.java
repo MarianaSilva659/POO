@@ -14,7 +14,7 @@ public class Vintage implements Serializable {
     private GestorArtigos artigos;
     private GestorUtilizadores utilizadores;
     private GestorTransportes transportes;
-    private static double imposto = 0.23;
+    private static double imposto;
     private static LocalDate data;
     private static double lucro;
 
