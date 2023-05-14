@@ -16,6 +16,7 @@ public class Vintage implements Serializable {
     private GestorUtilizadores utilizadores;
     private GestorTransportes transportes;
     private static double imposto = 23;
+    private static LocalDate timeVintage;
 
     public Vintage() {
         this.artigos = new GestorArtigos();
@@ -35,6 +36,14 @@ public class Vintage implements Serializable {
 
     public static void setImposto(double novoimposto){
         imposto = novoimposto;
+    }
+    
+    public static LocalDate getVintageTime(){
+        return timeVintage;
+    }
+
+    public static void setVintageTime(LocalDate time){
+        timeVintage = time;
     }
 
     public boolean existeContaU(String email){
