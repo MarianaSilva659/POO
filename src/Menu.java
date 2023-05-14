@@ -1,7 +1,3 @@
-
-import java.io.IOException;
-import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
