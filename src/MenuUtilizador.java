@@ -40,7 +40,7 @@ public class MenuUtilizador {
         sb.append("1 -> Deseja comprar\n");
         sb.append("2 -> Deseja vender\n");
         sb.append("3 -> Ver todos os artigos dispiníveis\n");
-        sb.append("4 -> Deseja finalizar a encomenda?\n");
+        sb.append("4 -> Deseja ver todos os artigos que já vendeu?\n");
         sb.append("5 -> Voltar ao Menu Inicial\n");
         sb.append("0 -> Sair\n");
         sb.append("Selecione a opção pretendida: ");

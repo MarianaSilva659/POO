@@ -330,8 +330,6 @@ public class Vintage implements Serializable {
         if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().getData() != null) && (this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false) && (podeDevolverEnc(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getData()))){
             this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);
             System.out.println(this.utilizadores.getContaByCod(id_comprador).getEncomenda());
-           // System.out.println("dineiro faturado" + this.utilizadores.getContaByCod(id_comprador).getDinheiro_faturado());
-           // System.out.println("dineiro gasto" + this.utilizadores.getContaByCod(id_comprador).getDinheiro_gasto());
             return true;
         }
         else return false;
@@ -351,8 +349,6 @@ public class Vintage implements Serializable {
             double precoAPagar = this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this);
             System.out.println(this.utilizadores.getContaByCod(id_comprador).getEncomenda());
             System.out.println("Preço a pagar pela encomenda = " + precoAPagar + '€');
-        //    System.out.println("dineiro faturado" + this.utilizadores.getContaByCod(id_comprador).getDinheiro_faturado());
-         //   System.out.println("dineiro gasto" + this.utilizadores.getContaByCod(id_comprador).getDinheiro_gasto());
             return true;
         }else return false;
     }

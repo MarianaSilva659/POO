@@ -54,6 +54,17 @@ public class Menu {
             return scannerDouble(message, s); 
         }
     }
+
+    public boolean scannerBoolean(String message, Scanner s) {
+        try {
+            System.out.print(message);
+            return s.nextBoolean();
+        } catch (InputMismatchException e) {
+            System.out.println("\n!!!Entrada inválida. Por favor, insira 'true' ou 'false'!!!");
+            s.nextLine();
+            return scannerBoolean(message, s); 
+        }
+    }
     
     public String scannerString(String message, Scanner s) {
         System.out.print(message);
@@ -95,8 +106,7 @@ public class Menu {
         double med = scannerDouble("Preço Base para encomenda média: ", scanner);
         double gra = scannerDouble("Preço Base para encomenda grande: ", scanner);
         int margem = scannerInt("Margem de lucro em %: ", scanner);
-        System.out.print("Aceita encomendas Premium(true/false): ");
-        boolean aceita = scanner.nextBoolean();
+        boolean aceita = scannerBoolean("Aceita encomendas Premium (true/false): ", scanner);
         return inter.novoTransporte(peq, med, gra, margem, aceita, id);
     }
 
