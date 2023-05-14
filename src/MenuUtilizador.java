@@ -34,8 +34,8 @@ public class MenuUtilizador {
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);
         int opcaoEscolhida = scanner.nextInt();
-        if (opcaoEscolhida < 0 || opcaoEscolhida > 4) {
-            throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 4\n");
+        if (opcaoEscolhida < 0 || opcaoEscolhida > 5) {
+            throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 5\n");
         }
         return opcaoEscolhida;
     }
