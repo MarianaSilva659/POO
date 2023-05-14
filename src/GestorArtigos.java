@@ -198,8 +198,7 @@ public class GestorArtigos implements Serializable{
             aux = it.next();
             artigo = getArtigoById(aux);
           pair.setFirst(artigo.getId_vendedor());
-          pair.getSecond().setSecond(artigo.precoartigo());
-          pair.getSecond().setFirst(aux);
+          pair.setSecond(new Pair<String, Double>(aux , artigo.precoartigo()));
         result.add(pair.clone());
         }
         return result;
