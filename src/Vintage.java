@@ -81,13 +81,9 @@ public class Vintage implements Serializable {
     }
     
     public static LocalDate getTime(){
-<<<<<<< HEAD
-        return timeVintage;
-=======
         LocalDate atualizaDate = LocalDate.now();
         if(getTime().isEqual(atualizaDate) == false) setTime(atualizaDate);
         return data;
->>>>>>> 936e28c (....)
     }
 
     public static void setTime(LocalDate time){
@@ -328,11 +324,7 @@ public class Vintage implements Serializable {
 
 
     public boolean devolverEncomenda(int id_comprador){
-<<<<<<< HEAD
         if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false) && (podeDevolverEnc(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getData()) == true)){
-=======
-        if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().EncomendaVazia() == false) && (podeDevolverEnc(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getDataCriacao()) == true)){
->>>>>>> 936e28c (....)
             this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);
             return true;
         }
@@ -340,13 +332,7 @@ public class Vintage implements Serializable {
     }
 
     public boolean podeDevolverEnc(LocalDate dataFinalizacao){
-<<<<<<< HEAD
-        LocalDate atualizaDate = LocalDate.now();
-        if(getTime().isEqual(atualizaDate) == false) setVintageTime(atualizaDate);
-        Duration duracao = Duration.between(dataFinalizacao.atStartOfDay(), timeVintage.atStartOfDay());
-=======
         Duration duracao = Duration.between(dataFinalizacao.atStartOfDay(), data.atStartOfDay());
->>>>>>> 936e28c (....)
         long diferencaHoras = duracao.toHours();
 
         return (diferencaHoras <= 48);
@@ -376,13 +362,8 @@ public class Vintage implements Serializable {
     }
 
     public boolean finalizarEnc(int id_comprador){
-<<<<<<< HEAD
         if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false){
-      //      this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this, id_comprador);
-=======
-        if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().EncomendaVazia() == false){
          this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this);
->>>>>>> 936e28c (....)
         return true;
         }
         else return false;
