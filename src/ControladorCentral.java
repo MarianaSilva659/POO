@@ -64,8 +64,16 @@ public class ControladorCentral implements Interface{
                 case 5:
                     vintage.getMaiorVendedor();
                 break;
-                case 6:
-                     try {
+                case 6: //Transportadora que mais faturou
+                break;
+                case 7: //maiores compradores da vintage
+                break;
+                case 8: //maiores vendedores da vintage
+                break;
+                case 9: //quanto dinheiro ganhou a Vintage
+                break;
+                case 10:
+                    try {
                         vintage = Vintage.loadState("state.obj");
                         System.out.println("Foi atualizado com sucesso\n");
                     }
@@ -79,7 +87,7 @@ public class ControladorCentral implements Interface{
                     }
                     correrPrograma();
                 break;
-                case 7: 
+                case 11:
                     try {
                         vintage.saveState("state.obj");
                         System.out.println("Foi gravado com sucesso\n");

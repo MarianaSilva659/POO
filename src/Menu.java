@@ -20,8 +20,12 @@ public class Menu {
         str.append("3 -> Iniciar sessão para Transportadora\n");
         str.append("4 -> Registar nova conta para Transportadora\n");
         str.append("5 -> Qual o Vendedor que mais faturou?\n");
-        str.append("6 -> Atualizar para a última versão guardada\n");
-        str.append("7 -> Gravar versão\n");
+        str.append("6 -> Qual a Transportadora com maior volume de faturação?\n");
+        str.append("7 -> Maiores compradores do sistema\n");
+        str.append("8 -> Maiores vendedores do sistema\n");
+        str.append("9 -> Quanto dinheiro ganou a Vintage\n");
+        str.append("10 -> Atualizar para a última versão guardada\n");
+        str.append("11 -> Gravar versão\n");
         str.append("0 -> Sair\n\n");
         str.append("Selecione um número para prosseguir: ");
         System.out.print(str.toString());
