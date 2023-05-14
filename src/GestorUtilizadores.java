@@ -180,6 +180,7 @@ public class GestorUtilizadores implements Serializable{
                 valor = c.getValue().getDinheiro_faturado();
                 if(valor > maior){
                     maiorvendedor = c.getValue().clone();
+                    maior = valor;
                 }
             }
         return maiorvendedor;
