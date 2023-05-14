@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuTransportes{
@@ -7,9 +8,15 @@ public class MenuTransportes{
         this.inter = inter;
     }
 
-    public double scannerDouble(String message, Scanner s){
-        System.out.print(message);
-        return s.nextDouble();
+    public double scannerDouble(String message, Scanner s) {
+        try {
+            System.out.print(message);
+            return s.nextDouble();
+        } catch (InputMismatchException e) {
+            System.out.println("\n!!!Entrada inválida. Por favor, insira um valor inteiro ou double!!!\n");
+            s.nextLine(); 
+            return scannerDouble(message, s); 
+        }
     }
 
     public void MenuAlteraValores(int id){
@@ -38,7 +45,11 @@ public class MenuTransportes{
         sb.append("Selecione a opção pretendida: ");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        int opcaoEscolhida = scanner.nextInt();
+        if (opcaoEscolhida < 0 || opcaoEscolhida > 6) {
+            throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 6\n");
+        }
+        return opcaoEscolhida;
     }
 
     public Double MenuAlteraValor(int i){

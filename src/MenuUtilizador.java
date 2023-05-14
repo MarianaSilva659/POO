@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuUtilizador {
@@ -7,17 +8,29 @@ public class MenuUtilizador {
         this.inter = inter;
     }
 
-    public int scannerInt(String message, Scanner s){
-        System.out.print(message);
-        return s.nextInt();
+    public int scannerInt(String message, Scanner s) {
+        try {
+            System.out.print(message);
+            return s.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada inválida. Por favor, insira um valor inteiro.");
+            s.nextLine(); // Limpa o buffer do scanner
+            return scannerInt(message, s); // Chama a função novamente para obter uma entrada válida
+        }
     }
-
-    public double scannerDouble(String message, Scanner s){
-        System.out.print(message);
-        return s.nextDouble();
+    
+    public double scannerDouble(String message, Scanner s) {
+        try {
+            System.out.print(message);
+            return s.nextDouble();
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada inválida. Por favor, insira um valor numérico.");
+            s.nextLine(); // Limpa o buffer do scanner
+            return scannerDouble(message, s); // Chama a função novamente para obter uma entrada válida
+        }
     }
-
-    public String scannerString(String message, Scanner s){
+    
+    public String scannerString(String message, Scanner s) {
         System.out.print(message);
         return s.nextLine();
     }

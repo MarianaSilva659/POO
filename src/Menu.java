@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -8,7 +9,6 @@ public class Menu {
     }
 
     public  int MenuInicial() throws IllegalArgumentException{
-        int opcao;
         StringBuilder str = new StringBuilder("          Seja bem vindo á Vintege\n\n");
         
         str.append("1 -> Iniciar sessão como Utilizador\n");
@@ -26,21 +26,36 @@ public class Menu {
         str.append("Selecione um número para prosseguir: ");
         System.out.print(str.toString());
         Scanner input = new Scanner(System.in);
-        opcao = input.nextInt();
-        return opcao;
+        int opcaoEscolhida = input.nextInt();
+        if (opcaoEscolhida < 0 || opcaoEscolhida > 11) {
+            throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 11\n");
+        }
+        return opcaoEscolhida;
     }
 
-    public int scannerInt(String message, Scanner s){
-        System.out.print(message);
-        return s.nextInt();
+    public int scannerInt(String message, Scanner s) {
+        try {
+            System.out.print(message);
+            return s.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("\n!!!Entrada inválida. Por favor, insira um valor inteiro!!!\n");
+            s.nextLine();
+            return scannerInt(message, s);
+        }
     }
-
-    public double scannerDouble(String message, Scanner s){
-        System.out.print(message);
-        return s.nextDouble();
+    
+    public double scannerDouble(String message, Scanner s) {
+        try {
+            System.out.print(message);
+            return s.nextDouble();
+        } catch (InputMismatchException e) {
+            System.out.println("\n!!!Entrada inválida. Por favor, insira um valor inteiro ou double!!!\n");
+            s.nextLine(); 
+            return scannerDouble(message, s); 
+        }
     }
-
-    public String scannerString(String message, Scanner s){
+    
+    public String scannerString(String message, Scanner s) {
         System.out.print(message);
         return s.nextLine();
     }

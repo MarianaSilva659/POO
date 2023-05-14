@@ -1,17 +1,31 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuEncomenda {
-    public int scannerInt(String message, Scanner s){
-        System.out.print(message);
-        return s.nextInt();
-    }
 
-    public double scannerDouble(String message, Scanner s){
-        System.out.print(message);
-        return s.nextDouble();
+    public int scannerInt(String message, Scanner s) {
+        try {
+            System.out.print(message);
+            return s.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("!!!Entrada inválida. Por favor, insira um valor inteiro!!!");
+            s.nextLine();
+            return scannerInt(message, s);
+        }
     }
-
-    public String scannerString(String message, Scanner s){
+    
+    public double scannerDouble(String message, Scanner s) {
+        try {
+            System.out.print(message);
+            return s.nextDouble();
+        } catch (InputMismatchException e) {
+            System.out.println("\n!!!Entrada inválida. Por favor, insira um valor inteiro ou double!!!\n");
+            s.nextLine();
+            return scannerDouble(message, s); 
+        }
+    }
+    
+    public String scannerString(String message, Scanner s) {
         System.out.print(message);
         return s.nextLine();
     }
@@ -24,7 +38,7 @@ public class MenuEncomenda {
         return cod;
     }
 
-    public int MenuEncomenda() throws IllegalArgumentException {
+    public int Menu() throws IllegalArgumentException {
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU VENDAS-----------\n\n");
         sb.append("1 -> Deseja adicionar artigo há encomenda?\n");
         sb.append("2 -> Deseja remover artigo da encomenda?\n");
@@ -36,7 +50,11 @@ public class MenuEncomenda {
         sb.append("Selecione a opção pretendida: ");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        int opcaoEscolhida = scanner.nextInt();
+        if (opcaoEscolhida < 0 || opcaoEscolhida > 6) {
+            throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 6\n");
+        }
+        return opcaoEscolhida;
     }
 
     public void avisos(int a){

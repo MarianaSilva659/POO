@@ -18,7 +18,7 @@ public class ControladorEncomenda{
             int opcao = -1;
             do{
                 try {
-                    opcao = menuE.MenuEncomenda();
+                    opcao = menuE.Menu();
                 }catch (InputMismatchException e) {
                     System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
                 }catch (IllegalArgumentException e) {
