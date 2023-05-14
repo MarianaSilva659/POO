@@ -4,14 +4,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class GestorUtilizadores implements Serializable{
     private Map<Integer, Utilizador> contas;

@@ -131,4 +131,25 @@ public class GestorTransportes implements Serializable {
             t.corrigirTransportadora(aux.getValue());
         }
     }
+
+    public Pair<Integer, Double> getTransportadoraComMaiorFaturação(){
+        Pair<Integer, Double> best = new Pair<>(); 
+        Iterator<Map.Entry<Integer, Transportadora>> it = transportes.entrySet().iterator();
+        Map.Entry<Integer, Transportadora> aux;
+        if(it.hasNext()){
+            aux = it.next();
+            best.setFirst(aux.getKey());
+            best.setSecond(aux.getValue().getFaturação());
+        }
+        double money = 0;
+        while(it.hasNext()){
+            aux = it.next();
+            money = aux.getValue().getFaturação();
+            if(money > best.getSecond()){
+                best.setFirst(aux.getKey());
+                best.setSecond(money);
+            }
+        }
+        return best;
+    }
 }
