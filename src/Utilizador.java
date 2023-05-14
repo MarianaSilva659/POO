@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.stream.*;
 public class Utilizador implements Serializable{
     private int id;
     private String email;
@@ -200,8 +201,8 @@ public class Utilizador implements Serializable{
             ", id='" + getId() + "'" +
             ", morada='" + getMorada() + "'" +
             ", nif='" + getNif() + "'" +
-            ", artigos_comprados='" + getArtigos_comprados() + "'" +
-            ", artigos_vendidos='" + getArtigos_vendidos() + "'" +
+            ", artigos_comprados='" + getID_Artigos_comprados() + "'" +
+            ", artigos_vendidos='" + getID_Artigos_vendidos() + "'" +
             ", artigos_para_venda='" + getArtigos_para_venda() + "'" +
             "}";
     }
@@ -254,5 +255,19 @@ public class Utilizador implements Serializable{
     
     public void addToDinheiroGasto(double dinheiro){
         dinheiro_gasto += dinheiro;
+    }
+
+    private Collection<Double> filterMapArtigosByDate(Map<String, LocalDate> map, LocalDate date1, LocalDate date2, Vintage vintage){
+        return map.entrySet().stream().
+        filter(entry -> entry.getValue().isAfter(date1) && entry.getValue().isBefore(date2)).
+        map(entry -> vintage.getArtigos().getArtigoById(entry.getKey()).precoartigo()).collect(Collectors.toList());
+    }
+
+    public Pair<String, Double>getDadosVendedorEntreDatas(LocalDate date1, LocalDate date2, Vintage vintage){
+        return new Pair<String, Double>(this.getNome(), filterMapArtigosByDate(getArtigos_vendidos(), date1, date2, vintage).stream().reduce(0.0, Double::sum));
+    }
+
+    public  Pair<String, Double> getDadosCompradorEntreDatas(LocalDate date1, LocalDate date2, Vintage vintage){
+        return new Pair<String, Double>(this.getNome(), filterMapArtigosByDate(getArtigos_comprados(), date1, date2, vintage).stream().reduce(0.0, Double::sum));
     }
 }

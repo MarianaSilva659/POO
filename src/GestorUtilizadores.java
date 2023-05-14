@@ -1,8 +1,17 @@
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class GestorUtilizadores implements Serializable{
     private Map<Integer, Utilizador> contas;
@@ -206,6 +215,49 @@ public class GestorUtilizadores implements Serializable{
             aux = it.next();
             utilizador.devolverArtigoUtilizador(aux);
         }
+    }
+
+    public  Map<String, Double> getMelhoresVendedoresEntreDuasDatas(LocalDate date1, LocalDate date2, Vintage vintage){
+        Iterator<Map.Entry<Integer, Utilizador>> it = contas.entrySet().iterator();
+       Map<String, Double> result = new HashMap<>();
+        Map.Entry<Integer, Utilizador> aux;
+        Pair <String,Double> pair;
+        while(it.hasNext()){
+            aux = it.next();
+            pair = aux.getValue().getDadosVendedorEntreDatas(date1, date2, vintage);
+            result.put(pair.getFirst(), pair.getSecond());
+        }
+        return result.entrySet().stream().sorted(Map.Entry.<String,Double>comparingByValue().reversed()).collect(LinkedHashMap::new, (map2, entry) -> map2.put(entry.getKey(), entry.getValue()), LinkedHashMap::putAll);
+    }
+
+    public  Map<String, Double> getMelhoresCompradoresEntreDuasDatas(LocalDate date1, LocalDate date2, Vintage vintage){
+        Iterator<Map.Entry<Integer, Utilizador>> it = contas.entrySet().iterator();
+       Map<String, Double> result = new HashMap<>();
+        Map.Entry<Integer, Utilizador> aux;
+        Pair <String,Double> pair;
+        while(it.hasNext()){
+            aux = it.next();
+            pair = aux.getValue().getDadosCompradorEntreDatas(date1, date2, vintage);
+            result.put(pair.getFirst(), pair.getSecond());
+        }
+        return result.entrySet().stream().sorted(Map.Entry.<String,Double>comparingByValue().reversed()).collect(LinkedHashMap::new, (map2, entry) -> map2.put(entry.getKey(), entry.getValue()), LinkedHashMap::putAll);
+    }
+
+    public Pair<String,Double> getMelhorVendedorEntreDuasDatas(LocalDate date1, LocalDate date2, Vintage vintage){
+        Iterator<Map.Entry<Integer, Utilizador>> it = contas.entrySet().iterator();
+        Map.Entry<Integer, Utilizador> aux;
+        Pair <String,Double> pair;
+        Pair <String,Double> best = new Pair<>();
+        if(it.hasNext()){
+            aux = it.next();
+            best = aux.getValue().getDadosVendedorEntreDatas(date1, date2, vintage);
+        }
+        while(it.hasNext()){
+            aux = it.next();
+            pair = aux.getValue().getDadosVendedorEntreDatas(date1, date2, vintage);
+            if(pair.getSecond() > best.getSecond()) best = pair;
+        }
+        return best;
     }
 
 }
