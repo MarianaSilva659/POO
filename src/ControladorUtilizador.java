@@ -20,7 +20,7 @@ public class ControladorUtilizador implements InterfaceUtilizadores {
             int opcaoEscolhida = -1;
             do{
                 try {
-                    opcaoEscolhida = menu.MenuUtilizador();
+                    opcaoEscolhida = menu.Menu();
                 }catch (InputMismatchException e) {
                     System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
                 }catch (IllegalArgumentException e) {
