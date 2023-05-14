@@ -1,6 +1,6 @@
 import java.util.InputMismatchException;
 
-public class ControladorEncomenda implements InterfaceEncomendas{
+public class ControladorEncomenda{
     private MenuUtilizador menu;
     private MenuEncomenda menuE;
     private Vintage vintage;
@@ -10,7 +10,6 @@ public class ControladorEncomenda implements InterfaceEncomendas{
         this.vintage = vintage;
         this.menu = new MenuUtilizador();
         this.menuE = new MenuEncomenda();
-        this.menuE.setInterface(this);
         this.controladorUtilizador = controlador;
     }
 
@@ -38,14 +37,14 @@ public class ControladorEncomenda implements InterfaceEncomendas{
                     String cod = menuE.MenuEscolheArtigo();
                     if(vintage.cancelaArtigoEnc(id, cod) == false) menuE.avisos(2);
                 break;
-                case 3: //cancelar encomenda
-                    
+                case 3: 
+                    if(vintage.cancelarEncomenda(id) == false) menuE.avisos(4);
                 break;
                 case 4://devolver encomenda
                    if(vintage.devolverEncomenda(id) == false) menuE.avisos(3);          
                 break;
-                case 5: //finalinazar encomenda
-                    
+                case 5: 
+                    if(vintage.finalizaEnc(id) == false) menuE.avisos(5);
                 break;
                 case 6:
                     controladorUtilizador.run(vintage, vintage.getEmailById(id));

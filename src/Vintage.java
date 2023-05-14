@@ -303,6 +303,7 @@ public class Vintage implements Serializable {
         artigos.cancelarArtigos(conjuntoDeArtigos);
     }
 
+
     public void cancelarArtigo(String artigoID){
         artigos.cancelarArtigo(artigoID);
     }
@@ -326,9 +327,28 @@ public class Vintage implements Serializable {
     public boolean devolverEncomenda(int id_comprador){
         if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false) && (podeDevolverEnc(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getData()) == true)){
             this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);
+            System.out.println(this.utilizadores.getContaByCod(id_comprador).getEncomenda());
             return true;
         }
         else return false;
+    }
+
+    public boolean cancelarEncomenda(int id_comprador){
+        if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getData() == null){
+            this.utilizadores.getContaByCod(id_comprador).getEncomenda().cancelarEncomenda(this);
+            System.out.println(this.utilizadores.getContaByCod(id_comprador).getEncomenda());
+            return true;
+        }
+        else return false;
+    }
+
+    public boolean finalizaEnc(int id_comprador){
+        if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false){
+            double precoAPagar = this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this);
+            System.out.println(this.utilizadores.getContaByCod(id_comprador).getEncomenda());
+            System.out.println("Preço a pagar pela encomenda = " + precoAPagar + '€');
+            return true;
+        }else return false;
     }
 
     public boolean podeDevolverEnc(LocalDate dataFinalizacao){
@@ -337,8 +357,6 @@ public class Vintage implements Serializable {
 
         return (diferencaHoras <= 48);
     }
-
-
 
     public void mostraEncomenda(int id){
         System.out.println(this.utilizadores.getContaByCod(id).getEncomenda());
@@ -361,6 +379,7 @@ public class Vintage implements Serializable {
         else return false;
     }
 
+<<<<<<< HEAD
     public boolean finalizarEnc(int id_comprador){
         if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false){
          this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this);
@@ -369,6 +388,8 @@ public class Vintage implements Serializable {
         else return false;
     }
 
+=======
+>>>>>>> 498e6b7 (asdf)
     public double getPrecoEncomenda(int id_comprador){
         return this.utilizadores.getContaByCod(id_comprador).getEncomenda().calculaPreço(this);
     }
@@ -390,7 +411,6 @@ public class Vintage implements Serializable {
             System.out.println(this.artigos.getArtigoById(id_artigo));
         }
     }
-
 
    public void updateTransportadora(Map<Integer, Integer> transportadora){
     transportes.updateTransportadora(transportadora);
