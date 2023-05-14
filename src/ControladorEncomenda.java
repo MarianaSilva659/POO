@@ -28,13 +28,16 @@ public class ControladorEncomenda implements InterfaceEncomendas{
                     String cod = menuE.MenuEscolheArtigo();
                     if(vintage.cancelaArtigoEnc(id, cod) == false) menuE.avisos(2);
                 break;
-                case 3:
-                    if(vintage.devolverEncomenda(id) == false) menuE.avisos(3);
+                case 3: //cancelar encomenda
+                    
                 break;
-                case 4:
-                                        
+                case 4://devolver encomenda
+                   if(vintage.devolverEncomenda(id) == false) menuE.avisos(3);          
                 break;
-                case 5:
+                case 5: //finalinazar encomenda
+                    
+                break;
+                case 6:
                     controladorUtilizador.run(vintage, vintage.getEmailById(id));
                 break;
                 case 0:

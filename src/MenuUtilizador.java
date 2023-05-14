@@ -22,7 +22,7 @@ public class MenuUtilizador {
         return s.nextLine();
     }
 
-    public int MenuUtilizador(){
+    public int MenuUtilizador() throws IllegalArgumentException{
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU UTILIZADOR-----------\n\n");
         sb.append("1 -> Deseja comprar\n");
         sb.append("2 -> Deseja vender\n");
@@ -32,7 +32,11 @@ public class MenuUtilizador {
         sb.append("Selecione a opção pretendida: ");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        int opcaoEscolhida = scanner.nextInt();
+        if (opcaoEscolhida < 0 || opcaoEscolhida > 4) {
+            throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 4\n");
+        }
+        return opcaoEscolhida;
     }
 
     public int MenuTipoDoArtigo(){

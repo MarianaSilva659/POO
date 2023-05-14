@@ -21,9 +21,7 @@ public class ControladorUtilizador implements InterfaceUtilizadores {
             do{
                 try {
                     opcaoEscolhida = menu.MenuUtilizador();
-                    if (opcaoEscolhida < 0 || opcaoEscolhida > 4) {
-                        throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 2\n");
-                    }
+                    System.out.println(opcaoEscolhida);
                 }catch (InputMismatchException e) {
                     menu.avisos(1);
                 }catch (IllegalArgumentException e) {
