@@ -11,7 +11,7 @@ import java.util.Iterator;
 public class Encomenda implements Serializable{
     private Set<String> encomenda;
     private int id_comprador;
-    private LocalDate dataCriacao;
+    private LocalDate data;
 
     public int getId_comprador() {
         return this.id_comprador;
@@ -23,19 +23,19 @@ public class Encomenda implements Serializable{
 
     public Encomenda(int id){
         this.encomenda = new HashSet<>();
-        this.dataCriacao = null;
+        this.data = null;
         this.id_comprador = id;
     }
 
     public Encomenda(Encomenda e){
         this.encomenda = e.getEncomenda();
-        this.dataCriacao = LocalDate.now();
+        this.data = LocalDate.now();
         this.id_comprador = e.getId_comprador();
     }
 
     public Encomenda(Set<String> encomenda, int id){
         this.encomenda = encomenda;
-        this.dataCriacao = LocalDate.now();
+        this.data = LocalDate.now();
         this.id_comprador = id;
     }
 
@@ -58,12 +58,12 @@ public class Encomenda implements Serializable{
         }
     }
 
-    public LocalDate getDataCriacao() {
-        return this.dataCriacao;
+    public LocalDate getData() {
+        return this.data;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setData(LocalDate dataCriacao) {
+        this.data = dataCriacao;
     }
 
     public boolean equals(Object object) {
@@ -72,18 +72,18 @@ public class Encomenda implements Serializable{
         if (!super.equals(object)) return false;
         Encomenda encomenda1 = (Encomenda) object;
         return this.getEncomenda().equals(encomenda1.getEncomenda()) 
-        && this.getDataCriacao().equals(encomenda1.getDataCriacao());
+        && this.getData().equals(encomenda1.getData());
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getEncomenda(), getDataCriacao());
+        return Objects.hash(super.hashCode(), getEncomenda(), getData());
     }
 
     @java.lang.Override
     public java.lang.String toString() {
         return "Encomenda{" +
                 "encomenda=" + encomenda +
-                ",dataCriacao=" + dataCriacao +
+                ",dataCriacao=" + data +
                 '}';
     }
 
@@ -149,6 +149,7 @@ public class Encomenda implements Serializable{
         }
         vintage.updateTransportadora(listadeTransportadoras);
         vintage.updateComprador(getEncomenda(), this.id_comprador, preço);
+        this.setData(Vintage.getTime());
         return preço;
     }
 
@@ -184,13 +185,15 @@ public class Encomenda implements Serializable{
         }
         vintage.corrigirTransportadoras(mapDeTransportadorasAssociadasAoNumeroDeOcurrencias);
         vintage.corrigirUtilizador(getEncomenda(), calculaPreço(vintage), this.id_comprador);
+        this.encomenda = new HashSet<>();
+        data = null;
     }
 
     public boolean existe_ArtigoEnc(String cod){
         return this.encomenda.contains(cod);
     }
 
-    public boolean EncomendaVazia(){
+    public boolean isVazia(){
         return this.encomenda.isEmpty();
     }
 }

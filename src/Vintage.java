@@ -80,7 +80,7 @@ public class Vintage implements Serializable {
         imposto = novoimposto;
     }
     
-    public static LocalDate getVintageTime(){
+    public static LocalDate getTime(){
         return timeVintage;
     }
 
@@ -325,8 +325,8 @@ public class Vintage implements Serializable {
 
     public boolean devolverEncomenda(int id_comprador){
         LocalDate dataAtual = LocalDate.now();
-        if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().EncomendaVazia() == false) && (podeDevolverEnc(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getDataCriacao()) == true)){
-          //  this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);
+        if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false) && (podeDevolverEnc(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getData()) == true)){
+            this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);
             return true;
         }
         else return false;
@@ -334,7 +334,7 @@ public class Vintage implements Serializable {
 
     public boolean podeDevolverEnc(LocalDate dataFinalizacao){
         LocalDate atualizaDate = LocalDate.now();
-        if(getVintageTime().isEqual(atualizaDate) == false) setVintageTime(atualizaDate);
+        if(getTime().isEqual(atualizaDate) == false) setVintageTime(atualizaDate);
         Duration duracao = Duration.between(dataFinalizacao.atStartOfDay(), timeVintage.atStartOfDay());
         long diferencaHoras = duracao.toHours();
 
@@ -365,7 +365,7 @@ public class Vintage implements Serializable {
     }
 
     public boolean finalizarEnc(int id_comprador){
-        if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().EncomendaVazia() == false){
+        if(this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false){
       //      this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this, id_comprador);
         return true;
         }
