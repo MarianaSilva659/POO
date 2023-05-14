@@ -327,7 +327,7 @@ public class Vintage implements Serializable {
 
 
     public boolean devolverEncomenda(int id_comprador){
-        if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false) && (podeDevolverEnc(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getData()) == true)){
+        if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false) && (podeDevolverEnc(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getData()))){
             this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);
             System.out.println(this.utilizadores.getContaByCod(id_comprador).getEncomenda());
             return true;
@@ -357,7 +357,7 @@ public class Vintage implements Serializable {
         Duration duracao = Duration.between(dataFinalizacao.atStartOfDay(), data.atStartOfDay());
         long diferencaHoras = duracao.toHours();
 
-        return (diferencaHoras <= 48);
+        return (diferencaHoras < 48);
     }
 
     public void mostraEncomenda(int id){
