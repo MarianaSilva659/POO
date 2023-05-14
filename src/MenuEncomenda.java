@@ -61,7 +61,7 @@ public class MenuEncomenda {
         StringBuilder sb = new StringBuilder();
         if (a==1) sb.append("\n!!!!ARTIGO INDISPONÍVEL!!!").append("\n");
         if (a==2) sb.append("\n!!!!ARTIGO NÃO EXISTE NA SUA ENCOMENDA!!!").append("\n");
-        if (a==3) sb.append("\n!!!!NÃO É POSSÍVEL DEVOLVER A SUA ENCOMENDA (FORA DE PRAZO)!!!").append("\n");
+        if (a==3) sb.append("\n!!!!NÃO É POSSÍVEL DEVOLVER A SUA ENCOMENDA!!!").append("\n");
         if (a==4) sb.append("\n!!!!NÃO É POSSÍVEL CANCELAR A SUA ENCOMENDA (SUA ENCOMENDA FOI FINALIZADA TENTE DEVOLVER)!!!").append("\n");
         if (a==5) sb.append("\n!!!!NÃO É POSSÍVEL FINALIZAR A SUA ENCOMENDA (SEM ARTIGOS)!!!").append("\n");
         sb.append("\nPressione no enter...");
