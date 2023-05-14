@@ -53,4 +53,15 @@ public class MenuEncomenda {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
+
+    public void avisos(int a){
+        StringBuilder sb = new StringBuilder();
+        if (a==1) sb.append("\n!!!!ARTIGO INDISPONÍVEL!!!").append("\n");
+        if (a==2) sb.append("\n!!!!ARTIGO NÃO EXISTE NA SUA ENCOMENDA!!!").append("\n");
+        if (a==3) sb.append("\n!!!!NÃO É POSSÍVEL DEVOLVER A SUA ENCOMENDA (FORA DE PRAZO)!!!").append("\n");
+        sb.append("\nPressione no enter...");
+        System.out.print(sb.toString());
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+    }
 }

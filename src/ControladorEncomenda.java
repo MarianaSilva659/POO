@@ -21,15 +21,15 @@ public class ControladorEncomenda implements InterfaceEncomendas{
                 case 1:
                     vintage.mostraTodosArtigos();
                     String artigo = menuE.MenuEscolheArtigo();
-                    if(vintage.addArtigoEncomenda(artigo, id) == false) menu.avisos(3);
+                    if(vintage.addArtigoEncomenda(artigo, id) == false) menuE.avisos(1);
                 break;
                 case 2:
                     vintage.mostraEncomenda(id);
                     String cod = menuE.MenuEscolheArtigo();
-                    if(vintage.cancelaArtigoEnc(id, cod) == false) menu.avisos(4);
+                    if(vintage.cancelaArtigoEnc(id, cod) == false) menuE.avisos(2);
                 break;
                 case 3:
-                    if(vintage.devolverEncomenda(id) == false) menu.avisos(5);
+                    if(vintage.devolverEncomenda(id) == false) menuE.avisos(3);
                 break;
                 case 4:
                                         
