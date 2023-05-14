@@ -123,34 +123,6 @@ public class Menu {
         return id;
     }
 
-    public LocalDate[] MenuVendedorFaturou() {
-        StringBuilder str = new StringBuilder("------------VENDEDOR QUE MAIS FATUROU--------------\n\n");
-    
-        str.append("1 -> Vendedor que mais faturou desde sempre\n");
-        str.append("2 -> Vendedor que mais faturou num período\n");
-        System.out.print(str.toString());
-        Scanner input = new Scanner(System.in);
-        int opcao = scannerInt("Selecione um número para prosseguir: ", input);
-        if (opcao < 0 || opcao > 11) {
-            throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 11\n");
-        }
-        try {
-            if (opcao == 1) {
-                return new LocalDate[] { null, null };
-            } else if (opcao == 2) {
-                LocalDate dataInicio = LocalDate.parse(scannerString("Digite a data de início (AAAA-MM-DD): ", input));
-                LocalDate dataFim = LocalDate.parse(scannerString("Digite a data de fim (AAAA-MM-DD): ", input));
-                return new LocalDate[] { dataInicio, dataFim };
-            } else {
-                System.out.println("Opção inválida.");
-            }
-        } catch (DateTimeParseException e) {
-            System.out.println("Formato de data inválido. Certifique-se de usar o formato AAAA-MM-DD.");
-        }
-    
-        return null;
-    }
-
     public void avisos(int a){
         StringBuilder sb = new StringBuilder();
         if (a==1) sb.append("!!!Email Inválido!!!").append("\n");
@@ -164,6 +136,47 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
+
+    public LocalDate[] MenuVendedorFaturou() {
+        StringBuilder str = new StringBuilder("------------VENDEDOR QUE MAIS FATUROU--------------\n\n");
+    
+        str.append("1 -> Vendedor que mais faturou desde sempre\n");
+        str.append("2 -> Vendedor que mais faturou num período\n");
+        System.out.print(str.toString());
+    
+        Scanner input = new Scanner(System.in);
+        int opcao = -1;
+        while (opcao != 1 && opcao != 2) {
+            try {
+                opcao = scannerInt("\nSelecione um número para prosseguir: ", input);
+                if (opcao != 1 && opcao != 2) {
+                    System.out.println("\n!!!Opção inválida. Por favor, selecione 1 ou 2!!!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("\n!!!Opção inválida. Por favor, selecione 1 ou 2!!!\n");
+            }
+        }
+        if (opcao == 1) return new LocalDate[] { null, null };
+        else if (opcao == 2) {
+            LocalDate[] datas = new LocalDate[2];
+            boolean validDates = false;
+            while (!validDates) {
+                try {
+                    input.nextLine();
+                    String startDateString = scannerString("Insira a data de início (yyyy-MM-dd): ", input);
+                    String endDateString = scannerString("Insira a data de término (yyyy-MM-dd): ", input);
+                    datas[0] = LocalDate.parse(startDateString);
+                    datas[1] = LocalDate.parse(endDateString);
+                    validDates = true;
+                } catch (DateTimeParseException e) {
+                    System.out.println("\n!!!Datas inválidas. Insira as datas no formato correto (yyyy-MM-dd)!!!\nPress Enter...");
+                }
+            }
+            return datas;
+        }
+        return null;
     }
+
+}
 
 
