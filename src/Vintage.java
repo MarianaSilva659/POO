@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Map;
-import java.util.Set;
 import java.util.Iterator;
 import java.util.Collection;
 
@@ -403,7 +402,7 @@ public class Vintage implements Serializable {
 
     //ARTIGOS VENDIDOS DE UM UTILIZADOR
     public void encomendaEmitidasVendedor(int id_vendedor){
-        Set<String> artigos = this.utilizadores.getContaByCod(id_vendedor).getArtigos_vendidos();
+        Collection<String> artigos = this.utilizadores.getContaByCod(id_vendedor).getID_Artigos_vendidos();
         Iterator<String> iterator = artigos.iterator();
         String id_artigo;
         while(iterator.hasNext()){

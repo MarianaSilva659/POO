@@ -1,15 +1,20 @@
 import java.io.Serializable;
 import java.util.Set;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.time.LocalDate;
+import java.util.Collection;
 public class Utilizador implements Serializable{
     private int id;
     private String email;
     private String nome;
     private String morada;
     private int nif;
-    private Set<String> artigos_comprados;
-    private Set<String> artigos_vendidos;
+    private Map<String, LocalDate> artigos_comprados;
+    private Map<String, LocalDate> artigos_vendidos;
     private Set<String> artigos_para_venda;
     private double dinheiro_faturado;
     private double dinheiro_gasto;
@@ -21,35 +26,22 @@ public class Utilizador implements Serializable{
         this.nome = "";
         this.morada = "";
         this.nif = 0;
-        this.artigos_comprados = new HashSet<>();
-        this.artigos_vendidos = new HashSet<>();
+        this.artigos_comprados = new HashMap<>();
+        this.artigos_vendidos = new HashMap<>();
         this.artigos_para_venda = new HashSet<>();
         this.dinheiro_faturado = 0;
         this.dinheiro_gasto = 0;
         this.encomenda = new Encomenda(this.id);
     }
 
-    public Utilizador(int id, String email, String nome, String morada, int nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda, double dinheiro_faturado) {
-        this.id = id;
-        this.email = email;
-        this.nome = nome;
-        this.morada = morada;
-        this.nif = nif;
-        this.artigos_comprados = compras;
-        this.artigos_vendidos = vendidas;
-        this.artigos_para_venda = pra_venda;
-        this.dinheiro_faturado = 0;
-        this.dinheiro_gasto = 0;
-        this.encomenda = new Encomenda(this.id);
-    }
     public Utilizador(int id, String email, String nome, String morada, int nif) {
         this.id = id;
         this.email = email;
         this.nome = nome;
         this.morada = morada;
         this.nif = nif;
-        this.artigos_comprados = new HashSet<>();
-        this.artigos_vendidos = new HashSet<>();
+        this.artigos_comprados = new HashMap<>();
+        this.artigos_vendidos = new HashMap<>();
         this.artigos_para_venda = new HashSet<>();
         this.dinheiro_faturado = 0;
         this.dinheiro_gasto = 0;
@@ -126,19 +118,41 @@ public class Utilizador implements Serializable{
         this.nif = nif;
     }
 
-    public Set<String> getArtigos_comprados() {
+    public  Map<String, LocalDate> getArtigos_comprados() {
         return this.artigos_vendidos;
     }
 
-    public void setArtigos_comprados(Set<String> artigos_comprasdos) {
-        this.artigos_comprados = artigos_comprasdos;
+    public void setArtigos_comprados( Map<String, LocalDate> artigos_comprados) {
+        this.artigos_comprados = artigos_comprados;
     }
 
-    public Set<String> getArtigos_vendidos() {
+    public  Map<String, LocalDate> getArtigos_vendidos() {
         return this.artigos_vendidos;
     }
 
-    public void setArtigos_vendidos(Set<String> artigos_vendidos) {
+    public Collection<String> getID_Artigos_comprados(){
+        Iterator<Map.Entry<String, LocalDate>> it = artigos_comprados.entrySet().iterator();
+        String aux;
+        Collection<String> result = new HashSet<>();
+        while(it.hasNext()){
+            aux = it.next().getKey();
+            result.add(aux);
+        }
+        return result;
+    }
+
+    public Collection<String> getID_Artigos_vendidos(){
+        Iterator<Map.Entry<String, LocalDate>> it = artigos_vendidos.entrySet().iterator();
+        String aux;
+        Collection<String> result = new HashSet<>();
+        while(it.hasNext()){
+            aux = it.next().getKey();
+            result.add(aux);
+        }
+        return result;
+    }
+
+    public void setArtigos_vendidos( Map<String, LocalDate> artigos_vendidos) {
         this.artigos_vendidos = artigos_vendidos;
     }
 
@@ -206,14 +220,6 @@ public class Utilizador implements Serializable{
         return (this.id == id_utilizador);
     }
 
-    public void addArtigoCompra(String cod){
-        this.artigos_comprados.add(cod);
-    }
-
-    public void addArtigoVendidos(String cod){
-        this.artigos_vendidos.add(cod);
-    }
-
     public void addArtigoParaVenda(String cod){
         this.artigos_para_venda.add(cod);
     }
@@ -221,8 +227,7 @@ public class Utilizador implements Serializable{
     public void finalização_de_encomenda(double preço, String artigo_id){
         updatePreço(preço);
         artigos_para_venda.remove(artigo_id);
-        artigos_vendidos.
-        add(artigo_id);
+        artigos_vendidos.put(artigo_id, Vintage.getTime());
     }
 
     public void devolverArtigoVendedor(String artigo, double preço){
@@ -244,7 +249,7 @@ public class Utilizador implements Serializable{
     }
 
     public void addToComprados(String artigo){
-        artigos_comprados.add(artigo);
+        artigos_comprados.put(artigo, Vintage.getTime());
     }
     
     public void addToDinheiroGasto(double dinheiro){
