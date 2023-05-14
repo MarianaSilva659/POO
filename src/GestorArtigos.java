@@ -240,17 +240,18 @@ public class GestorArtigos implements Serializable{
         Artigo artigo;
         while(it.hasNext()){
             aux = it.next();
-            artigo = produtos_pendentes.get(aux).clone();
-            produtos_pendentes.remove(aux);
+            artigo = this.produtos_pendentes.get(aux).clone();
+            this.produtos_pendentes.remove(aux);
             produtos_para_venda.put(aux, artigo);
         }
     }
 
     public void cancelarArtigo(String artigosID){
         Artigo artigo;
-            artigo = produtos_pendentes.get(artigosID).clone();
-            produtos_pendentes.remove(artigosID);
-            produtos_para_venda.put(artigosID, artigo);
+            artigo = this.produtos_pendentes.get(artigosID);
+            System.out.println("ARTIGOOOOOO" + artigo);
+            this.produtos_pendentes.remove(artigosID);
+            this.produtos_para_venda.put(artigosID, artigo.clone());
     }
 
     public void devolverArtigos(Collection<String> artigosID){
@@ -259,16 +260,16 @@ public class GestorArtigos implements Serializable{
         Artigo artigo;
         while(it.hasNext()){
             aux = it.next();
-            artigo = produtos_vendidos.get(aux).clone();
-            produtos_vendidos.remove(aux);
+            artigo = this.produtos_vendidos.get(aux).clone();
+            this.produtos_vendidos.remove(aux);
             produtos_para_venda.put(aux, artigo);
         }
     }
 
     public void devolverArtigos(String artigosID){
         Artigo artigo;
-            artigo = produtos_vendidos.get(artigosID).clone();
-            produtos_vendidos.remove(artigosID);
+            artigo = this.produtos_vendidos.get(artigosID).clone();
+            this.produtos_vendidos.remove(artigosID);
             produtos_para_venda.put(artigosID, artigo);
     }
 
