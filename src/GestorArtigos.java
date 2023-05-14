@@ -240,7 +240,7 @@ public class GestorArtigos implements Serializable{
         Artigo artigo;
         while(it.hasNext()){
             aux = it.next();
-            artigo = produtos_pendentes.get(aux);
+            artigo = produtos_pendentes.get(aux).clone();
             produtos_pendentes.remove(aux);
             produtos_para_venda.put(aux, artigo);
         }
@@ -248,7 +248,7 @@ public class GestorArtigos implements Serializable{
 
     public void cancelarArtigo(String artigosID){
         Artigo artigo;
-            artigo = produtos_pendentes.get(artigosID);
+            artigo = produtos_pendentes.get(artigosID).clone();
             produtos_pendentes.remove(artigosID);
             produtos_para_venda.put(artigosID, artigo);
     }
@@ -259,7 +259,7 @@ public class GestorArtigos implements Serializable{
         Artigo artigo;
         while(it.hasNext()){
             aux = it.next();
-            artigo = produtos_vendidos.get(aux);
+            artigo = produtos_vendidos.get(aux).clone();
             produtos_vendidos.remove(aux);
             produtos_para_venda.put(aux, artigo);
         }
@@ -267,13 +267,13 @@ public class GestorArtigos implements Serializable{
 
     public void devolverArtigos(String artigosID){
         Artigo artigo;
-            artigo = produtos_vendidos.get(artigosID);
+            artigo = produtos_vendidos.get(artigosID).clone();
             produtos_vendidos.remove(artigosID);
             produtos_para_venda.put(artigosID, artigo);
     }
 
     public void updateArtigo(String id){
-        Artigo artigo = produtos_para_venda.get(id);
+        Artigo artigo = produtos_para_venda.get(id).clone();
         produtos_para_venda.remove(id);
         produtos_pendentes.put(id, artigo);
     }
@@ -284,7 +284,7 @@ public class GestorArtigos implements Serializable{
         Artigo artigo;
         while(it.hasNext()){
             aux = it.next();
-            artigo = produtos_pendentes.get(aux);
+            artigo = produtos_pendentes.get(aux).clone();
             produtos_pendentes.remove(aux);
             produtos_vendidos.put(aux, artigo);
         }
