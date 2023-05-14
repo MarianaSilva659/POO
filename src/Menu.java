@@ -24,13 +24,14 @@ public class Menu {
         str.append("9 -> Quanto dinheiro ganhou a Vintage\n");
         str.append("10 -> Atualizar para a última versão guardada\n");
         str.append("11 -> Gravar versão\n");
+        str.append("12 -> Avançar dias\n");
         str.append("0 -> Sair\n\n");
         str.append("Selecione um número para prosseguir: ");
         System.out.print(str.toString());
         Scanner input = new Scanner(System.in);
         int opcaoEscolhida = input.nextInt();
-        if (opcaoEscolhida < 0 || opcaoEscolhida > 11) {
-            throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 11\n");
+        if (opcaoEscolhida < 0 || opcaoEscolhida > 12) {
+            throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 12\n");
         }
         return opcaoEscolhida;
     }
@@ -81,6 +82,15 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         String email = scannerString("Endereço de e-mail: ", scanner);
         return email;
+    }
+
+    public int dias(){
+        StringBuilder sb = new StringBuilder("\n\n\n------------INICIAR SESSAO---------\n\n");
+        sb.append("Insira os seus dados.\n\n");
+        System.out.print(sb.toString());
+        Scanner scanner = new Scanner(System.in);
+        int dias = scannerInt("Dias a avançar(int): ", scanner);
+        return dias;
     }
 
     public String MenuNovoRegisto(){
@@ -186,6 +196,8 @@ public class Menu {
         }
         return datas;
     }
+
+
 }
 
 

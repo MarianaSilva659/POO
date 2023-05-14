@@ -32,7 +32,7 @@ public class ControladorCentral implements Interface{
                 }catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
-            } while (opcaoEscolhida < 0 || opcaoEscolhida > 11);
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 12);
             
             switch(opcaoEscolhida){
 
@@ -102,6 +102,10 @@ public class ControladorCentral implements Interface{
                         menu.avisos(6);
                     }
                     correrPrograma();
+                break;
+                case 12:
+                    int dias = menu.dias();
+                    vintage.avançarTempo(dias);
                 break;
                 case 0:
 

@@ -46,11 +46,11 @@ public class Vintage implements Serializable {
     public static void subLucro(double valor){
         lucro-=valor;
     }
-
+ 
     public static void avançarTempo(int dias){
         Vintage.setTime(Vintage.getTime().plusDays(dias));
     }
-
+    
     public GestorArtigos getArtigos() {
         return this.artigos;
     }
@@ -370,15 +370,15 @@ public class Vintage implements Serializable {
             double precoAPagar = this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this);
             System.out.println(this.utilizadores.getContaByCod(id_comprador).getEncomenda());
             System.out.printf("Preço a pagar pela encomenda = %.2f€%n", precoAPagar);
-//System.out.println(this.utilizadores.getContaByCod(id_comprador).getArtigos_comprados());
-//System.out.println(this.utilizadores.getContaByCod(id_comprador).getArtigos_para_venda());
-//System.out.println(this.utilizadores.getContaByCod(id_comprador).getArtigos_vendidos());
-//System.out.println(this.utilizadores.getContaByCod(1).getArtigos_comprados());
-//System.out.println(this.utilizadores.getContaByCod(1).getArtigos_para_venda());
-//System.out.println(this.utilizadores.getContaByCod(1).getArtigos_vendidos());
-//System.out.println(this.utilizadores.getContaByCod(2).getArtigos_comprados());
-//System.out.println(this.utilizadores.getContaByCod(2).getArtigos_para_venda());
-//System.out.println(this.utilizadores.getContaByCod(2).getArtigos_vendidos());
+            System.out.println(this.utilizadores.getContaByCod(id_comprador).getArtigos_comprados());
+            System.out.println(this.utilizadores.getContaByCod(id_comprador).getArtigos_para_venda());
+            System.out.println(this.utilizadores.getContaByCod(id_comprador).getArtigos_vendidos());
+            System.out.println(this.utilizadores.getContaByCod(1).getArtigos_comprados());
+            System.out.println(this.utilizadores.getContaByCod(1).getArtigos_para_venda());
+            System.out.println(this.utilizadores.getContaByCod(1).getArtigos_vendidos());
+            System.out.println(this.utilizadores.getContaByCod(2).getArtigos_comprados());
+            System.out.println(this.utilizadores.getContaByCod(2).getArtigos_para_venda());
+            System.out.println(this.utilizadores.getContaByCod(2).getArtigos_vendidos());
             
 
 
