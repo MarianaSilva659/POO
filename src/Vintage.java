@@ -302,7 +302,7 @@ public class Vintage implements Serializable {
      }
 
     public void cancelarEncomenda(Collection<String> conjuntoDeArtigos){
-        artigos.cancelarArtigos(conjuntoDeArtigos);
+        artigos.cancelarEncomenda(conjuntoDeArtigos);
     }
 
 
@@ -433,7 +433,7 @@ public class Vintage implements Serializable {
    }
 
    public void devolverArtigos(Collection<String> artigosID){
-    artigos.cancelarArtigos(artigosID);
+    artigos.devolverEncomenda(artigosID);
    }
 
    public void corrigirUtilizador(Collection<String> artigos,double preço, int id){
