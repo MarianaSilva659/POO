@@ -369,7 +369,19 @@ public class Vintage implements Serializable {
         if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().getData() == null) && (this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false)){
             double precoAPagar = this.utilizadores.getContaByCod(id_comprador).getEncomenda().finalizarCompra(this);
             System.out.println(this.utilizadores.getContaByCod(id_comprador).getEncomenda());
-            System.out.println("Preço a pagar pela encomenda = " + precoAPagar + '€');
+            System.out.printf("Preço a pagar pela encomenda = %.2f€%n", precoAPagar);
+//System.out.println(this.utilizadores.getContaByCod(id_comprador).getArtigos_comprados());
+//System.out.println(this.utilizadores.getContaByCod(id_comprador).getArtigos_para_venda());
+//System.out.println(this.utilizadores.getContaByCod(id_comprador).getArtigos_vendidos());
+//System.out.println(this.utilizadores.getContaByCod(1).getArtigos_comprados());
+//System.out.println(this.utilizadores.getContaByCod(1).getArtigos_para_venda());
+//System.out.println(this.utilizadores.getContaByCod(1).getArtigos_vendidos());
+//System.out.println(this.utilizadores.getContaByCod(2).getArtigos_comprados());
+//System.out.println(this.utilizadores.getContaByCod(2).getArtigos_para_venda());
+//System.out.println(this.utilizadores.getContaByCod(2).getArtigos_vendidos());
+            
+
+
             return true;
         }else return false;
     }
@@ -455,12 +467,12 @@ public class Vintage implements Serializable {
    }
 
    public void lucroVintage(){
-    System.out.println("A Vintage já ganhou " + Vintage.getLucro() + '€');
+    System.out.printf("A Vintage já ganhou %.2f€%n", Vintage.getLucro());
    }
 
     public void getMaiorVendedor(){
         Utilizador vendedorMaisfaturou = this.utilizadores.getMaiorVendedor();
-        System.out.println("Vendedor " + vendedorMaisfaturou.getNome() + " faturou um total de " + vendedorMaisfaturou.getDinheiro_faturado() + '€');
+        System.out.printf("Vendedor %s faturou um total de %.2f€%n", vendedorMaisfaturou.getNome(), vendedorMaisfaturou.getDinheiro_faturado());
     }
 
     public boolean getMelhorVendedor(LocalDate date1, LocalDate date2){
@@ -470,7 +482,7 @@ public class Vintage implements Serializable {
             }
             else{
                 Pair<String, Double> vendedor = this.utilizadores.getMelhorVendedorEntreDuasDatas(date1, date2, this);
-                System.out.println("Vendedor " + vendedor.getFirst() + " faturou um total de " + vendedor.getSecond() + '€');
+                System.out.printf("Vendedor %s faturou um total de %.2f€%n", vendedor.getFirst(), vendedor.getSecond());
             }
             return true;
         }
@@ -486,28 +498,35 @@ public class Vintage implements Serializable {
                 Map.Entry<String, Double> entry = iterator.next();
                 String vendedor = entry.getKey();
                 Double valor = entry.getValue();
-                System.out.println("Vendedor: " + vendedor + ", Valor: " + valor);
+                System.out.printf("Vendedor: %s, Valor: %.2f€%n", vendedor, valor);
         }
         return true;
     }
     else return false;   
 }
 
-public boolean getMelhoresCompradoresEntreDuasDatas(LocalDate date1, LocalDate date2){
-    if(!this.utilizadores.isVazio()){
-        Map<String, Double> vendedores = this.utilizadores.getMelhoresCompradoresEntreDuasDatas(date1, date2, this);
-        Iterator<Map.Entry<String, Double>> iterator = vendedores.entrySet().iterator();
+    public boolean getMelhoresCompradores(LocalDate date1, LocalDate date2){
+        if(!this.utilizadores.isVazio()){
+                Map<String, Double> compradores = this.utilizadores.getMelhoresCompradoresEntreDuasDatas(date1, date2, this);
+                Iterator<Map.Entry<String, Double>> iterator = compradores.entrySet().iterator();
 
-        while (iterator.hasNext()) {
-                Map.Entry<String, Double> entry = iterator.next();
-                String vendedor = entry.getKey();
-                Double valor = entry.getValue();
-                System.out.println("Compradores: " + vendedor + ", Valor: " + valor);
+                while (iterator.hasNext()) {
+                                Map.Entry<String, Double> entry = iterator.next();
+                                String comprador = entry.getKey();
+                                Double valor = entry.getValue();
+                                System.out.printf("Comprador: %s, Valor: %.2f€%n", comprador, valor);
+                }
+                return true;
         }
-        return true;
+        else return false;   
     }
-    else return false;   
-}
 
-   
+    public boolean getTransportaMaiorFaturacao(){
+        if(this.transportes.QuantidadeTransportes() != 0){
+            Pair<Integer, Double> best = this.transportes.getTransportadoraComMaiorFaturação();
+            System.out.printf("Transportadora %s valor da faturação %.2f€%n", best.getFirst(), best.getSecond());
+        return true;
+        }else return false;
+    }
+  
 }

@@ -132,6 +132,9 @@ public class Menu {
         if (a==5) sb.append("!!!Load falhou!!!").append("\n");
         if (a==6) sb.append("!!!Save falhou!!!").append("\n");
         if (a==7) sb.append("!!!\nAinda não existem vendedores no sistema!!!").append("\n");
+        if (a==8) sb.append("!!!\nAinda não existem transportaras no sistema!!!").append("\n");
+        if (a==9) sb.append("!!!\nAinda não existem compradores no sistema!!!").append("\n");
+        if (a==10) sb.append("!!!\nAinda não existem vendedores no sistema!!!").append("\n");
         sb.append("\nPressione no enter...");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);

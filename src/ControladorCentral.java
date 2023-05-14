@@ -67,14 +67,16 @@ public class ControladorCentral implements Interface{
                     datas = menu.MenuVendedorFaturou();
                     if(!vintage.getMelhorVendedor(datas[0], datas[1])) menu.avisos(7);
                 break;
-                case 6: //Transportadora que mais faturou
+                case 6: 
+                    if(!vintage.getTransportaMaiorFaturacao()) menu.avisos(8);
                 break;
-                case 7: //maiores compradores da vintage
+                case 7:
                     datas = menu.obterDatas();
+                    if(!vintage.getMelhoresCompradores(datas[0], datas[1])) menu.avisos(9);
                 break;
-                case 8: //maiores vendedores da vintage
+                case 8:
                     datas = menu.obterDatas();
-                    if(!vintage.getMelhoresVendedores(datas[0], datas[1])) menu.avisos(7); //!!!!
+                    if(!vintage.getMelhoresVendedores(datas[0], datas[1])) menu.avisos(10); //!!!!
                 break;
                 case 9:
                     vintage.lucroVintage();
