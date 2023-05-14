@@ -47,6 +47,10 @@ public class Vintage implements Serializable {
         lucro-=valor;
     }
 
+    public static void avançarTempo(int dias){
+        Vintage.setTime(Vintage.getTime().plusDays(dias));
+    }
+
     public GestorArtigos getArtigos() {
         return this.artigos;
     }
