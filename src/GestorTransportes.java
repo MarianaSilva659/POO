@@ -108,7 +108,7 @@ public class GestorTransportes implements Serializable {
     public double getPreçoTransportadora(int id, int num_artigos){
         Transportadora t = getTransportadoraById(id);
       return t.getPrecoEncomenda(num_artigos);
-    }
+}
 
     public void updateTransportadora(Map<Integer, Integer> transportadora){
         Iterator<Map.Entry<Integer, Integer>> it = transportadora.entrySet().iterator();
@@ -118,6 +118,17 @@ public class GestorTransportes implements Serializable {
             aux = it.next();
             t = transportes.get(aux.getKey());
             t.updateTransportadora(aux.getValue());
+        }
+    }
+
+    public void corrigirTransportadoras(Map<Integer, Integer> transportadora){
+        Iterator<Map.Entry<Integer, Integer>> it = transportadora.entrySet().iterator();
+        Map.Entry<Integer, Integer> aux;
+        Transportadora t;
+        while(it.hasNext()){
+            aux = it.next();
+            t = transportes.get(aux.getKey());
+            t.corrigirTransportadora(aux.getValue());
         }
     }
 }

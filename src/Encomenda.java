@@ -128,13 +128,14 @@ public class Encomenda implements Serializable{
 
     
     public double finalizarCompra(Vintage vintage){
+        double preço = calculaPreço(vintage);
         Collection<Pair<Integer, Pair <String, Double>>> dadosDeVenda = vintage.getDadosDeVenda(getEncomenda());
         vintage.updateVendedores(dadosDeVenda);
         vintage.updateVintage(this.getEncomenda());
         vintage.finalizarArtigos(this.getEncomenda());
         Set<String> artigos = this.getEncomenda(); 
-        Collection<Integer> listaDeTransportadorasDeArtigosNãoPremiumComRepetição = vintage.getTransportadoras(artigos);
-        Iterator<Integer> it_transpotadoras = listaDeTransportadorasDeArtigosNãoPremiumComRepetição.iterator();
+        Collection<Integer> listaDeTransportadorasDeArtigos = vintage.getTransportadoras(artigos);
+        Iterator<Integer> it_transpotadoras = listaDeTransportadorasDeArtigos.iterator();
         Map<Integer, Integer> listadeTransportadoras = new HashMap<>();
         Integer aux;
         while(it_transpotadoras.hasNext()){
@@ -147,14 +148,12 @@ public class Encomenda implements Serializable{
             }
         }
         vintage.updateTransportadora(listadeTransportadoras);
-        double preço = calculaPreço(vintage);
         vintage.updateComprador(getEncomenda(), this.id_comprador, preço);
         return preço;
     }
 
     public void cancelarEncomenda(Vintage vintage){
-        Collection<Pair <String ,Integer>> dados_de_devolução = vintage.getVendedores(getEncomenda());
-        vintage.cancelarEncomenda(dados_de_devolução, getEncomenda(), this.id_comprador);
+        vintage.cancelarEncomenda(getEncomenda(), this.id_comprador);
         this.encomenda = new HashSet<>();
     }
 
@@ -162,6 +161,29 @@ public class Encomenda implements Serializable{
        //Pair <String ,Integer> dados_de_devolução = vintage.getVendedores(id);
         vintage.cancelarArtigo(id);
         this.encomenda.remove(id);
+    }
+
+    public void devolverEncomenda(Vintage vintage){
+        Collection<Pair<Integer, Pair <String, Double>>> dadosDeVenda = vintage.getDadosDeVenda(getEncomenda());
+        vintage.devolverArtigosVendedor(dadosDeVenda);
+        vintage.removeLucroFromVintage(this.getEncomenda());
+        vintage.devolverArtigos(this.getEncomenda());
+        Set<String> artigos = this.getEncomenda(); 
+        Collection<Integer> listaDeTransportadoras = vintage.getTransportadoras(artigos);
+        Iterator<Integer> it_transpotadoras = listaDeTransportadoras.iterator();
+        Map<Integer, Integer> mapDeTransportadorasAssociadasAoNumeroDeOcurrencias = new HashMap<>();
+        Integer aux;
+        while(it_transpotadoras.hasNext()){
+            aux = it_transpotadoras.next();
+            if(mapDeTransportadorasAssociadasAoNumeroDeOcurrencias.containsKey(aux)){
+                int currentvalue = mapDeTransportadorasAssociadasAoNumeroDeOcurrencias.get(aux);
+                mapDeTransportadorasAssociadasAoNumeroDeOcurrencias.put(aux, currentvalue+1);
+            }else{
+                mapDeTransportadorasAssociadasAoNumeroDeOcurrencias.put(aux, 1);
+            }
+        }
+        vintage.corrigirTransportadoras(mapDeTransportadorasAssociadasAoNumeroDeOcurrencias);
+        vintage.corrigirUtilizador(getEncomenda(), calculaPreço(vintage), this.id_comprador);
     }
 
     public boolean existe_ArtigoEnc(String cod){

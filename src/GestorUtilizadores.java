@@ -129,22 +129,24 @@ public class GestorUtilizadores implements Serializable{
         }
     }
 
-    public void cancelarArtigosVendedor(Collection<Pair < String ,Integer>> dados_de_devolução){
-        Iterator<Pair<String, Integer>> it = dados_de_devolução.iterator();
-        Pair<String, Integer> pair = new Pair<>(); 
+    public void devolverArtigosVendedor(Collection<Pair<Integer, Pair <String,Double>>> dados_de_devolução){
+        Iterator<Pair<Integer, Pair<String, Double>>> it = dados_de_devolução.iterator();
+        Pair<Integer, Pair<String, Double>> pair = new Pair<>(); 
         Utilizador utilizador;
         while(it.hasNext()){
             pair = it.next();
-            utilizador = getContaById(pair.getSecond());
-            utilizador.cancelarArtigoVendedor(pair.getFirst());
+            utilizador = getContaById(pair.getFirst());
+            utilizador.devolverArtigoVendedor(pair.getSecond().getFirst(), pair.getSecond().getSecond());
         }
     }
 
+    /* 
     public void devolverArtigosVendedor(Pair < String ,Integer> dados_de_devolução){
         Utilizador utilizador;
             utilizador = getContaById(dados_de_devolução.getSecond());
-            utilizador.cancelarArtigoVendedor(dados_de_devolução.getFirst());
+            utilizador.devolverArtigoVendedor(dados_de_devolução.getFirst());
     }
+    */
 
     public void devolverArtigosComprador(Collection<String> artigosID, int id_comprador){
         Iterator<String> it = artigosID.iterator();
@@ -166,7 +168,6 @@ public class GestorUtilizadores implements Serializable{
         String email = utilizador.getEmail();
         return email;
     }
-
 
     public Utilizador getMaiorVendedor(){
         Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
@@ -193,6 +194,17 @@ public class GestorUtilizadores implements Serializable{
             utilizador.addToComprados(aux);
         }
         utilizador.addToDinheiroGasto(preço);
+    }
+
+    public void corrigirUtilizador(Collection<String> artigos, double preço, int id){
+        Utilizador utilizador = contas.get(id);
+        utilizador.corrigirPreçoComprador(preço);
+        Iterator<String> it = artigos.iterator();
+        String aux;
+        while(it.hasNext()){
+            aux = it.next();
+            utilizador.devolverArtigoUtilizador(aux);
+        }
     }
 
 }

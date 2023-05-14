@@ -221,13 +221,18 @@ public class Utilizador implements Serializable{
         add(artigo_id);
     }
 
-    public void cancelarArtigoVendedor(String artigo){
+    public void devolverArtigoVendedor(String artigo, double preço){
         artigos_vendidos.remove(artigo);
         artigos_para_venda.add(artigo);
+        dinheiro_faturado -= preço;
     }
 
     public void devolverArtigoUtilizador(String artigo){
         artigos_comprados.remove(artigo);
+    }
+
+    public void corrigirPreçoComprador(double preço){
+        this.dinheiro_gasto -= preço;
     }
 
     public void removeArtigoFromComprados(String artigo){

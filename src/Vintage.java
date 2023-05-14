@@ -285,6 +285,10 @@ public class Vintage implements Serializable {
         utilizadores.updateVendedores(dadosDeVenda);
     }
 
+    public void devolverArtigosVendedor(Collection<Pair<Integer, Pair <String,Double>>> dadosDeVenda){
+        utilizadores.devolverArtigosVendedor(dadosDeVenda);
+    }
+
     public  Collection<Pair < String , Integer>> getVendedores(Collection<String> artigosID){
        return this.artigos.getVendedores(artigosID);
     }
@@ -293,8 +297,8 @@ public class Vintage implements Serializable {
         return this.artigos.getVendedores(artigosID);
      }
 
-    public void cancelarEncomenda(Collection<Pair <String ,Integer>> dados_de_devolução, Collection<String> conjuntoDeArtigos, int id){
-      //  utilizadores.cancelarArtigosVendedor(dados_de_devolução);
+    public void cancelarEncomenda(Collection<String> conjuntoDeArtigos, int id){
+        //utilizadores.cancelarArtigosVendedor(dados_de_devolução);
         //utilizadores.devolverArtigosComprador(conjuntoDeArtigos, id);
         artigos.devolverArtigos(conjuntoDeArtigos);
     }
@@ -395,6 +399,10 @@ public class Vintage implements Serializable {
     transportes.updateTransportadora(transportadora);
    }
 
+   public void corrigirTransportadoras(Map<Integer, Integer> transportadora){
+    transportes.corrigirTransportadoras(transportadora);
+   }
+
    public void updateVintage(Collection<String> artigosID){
     int novos = artigos.getNumNovos(artigosID);
     int usados = artigos.getNumUsados(artigosID);
@@ -405,5 +413,13 @@ public class Vintage implements Serializable {
     int novos = artigos.getNumNovos(artigosID);
     int usados = artigos.getNumUsados(artigosID);
     Vintage.subLucro(0.5 * novos + 0.25 * usados);
+   }
+
+   public void devolverArtigos(Collection<String> artigosID){
+    artigos.devolverArtigos(artigosID);
+   }
+
+   public void corrigirUtilizador(Collection<String> artigos,double preço, int id){
+    utilizadores.corrigirUtilizador(artigos, preço, id);
    }
 }

@@ -171,7 +171,7 @@ public class GestorArtigos implements Serializable{
         String aux;
         while(it.hasNext()){
             aux = it.next();
-            result.add(this.produtos_pendentes.get(aux).precoartigo());
+            result.add(getArtigoById(aux).precoartigo());
         }
         return result;
     }
@@ -182,8 +182,7 @@ public class GestorArtigos implements Serializable{
         String aux;
         while(it.hasNext()){
             aux = it.next();
-          //  if(this.produtos_pendentes.get(aux).isPremium())
-            result.add(this.produtos_pendentes.get(aux).getId_transporte());
+            result.add(getArtigoById(aux).getId_transporte());
         }
         return result;
     }
@@ -202,7 +201,6 @@ public class GestorArtigos implements Serializable{
           pair.getSecond().setSecond(artigo.precoartigo());
           pair.getSecond().setFirst(aux);
         result.add(pair.clone());
-          //  result.add(this.produtos_pendentes.get(aux).getId_transporte());
         }
         return result;
     }
@@ -219,7 +217,6 @@ public class GestorArtigos implements Serializable{
             pair.setFirst(aux);
             pair.setSecond(artigo.getId_vendedor());
         result.add(pair);
-          //  result.add(this.produtos_pendentes.get(aux).getId_transporte());
         }
         return result;
     }
@@ -297,7 +294,7 @@ public class GestorArtigos implements Serializable{
         int count = 0;
         while(it.hasNext()){
             aux = it.next();
-            artigo = produtos_pendentes.get(aux);
+            artigo = getArtigoById(aux);
             if(artigo.isNovo()) count++;
         }
         return count;
@@ -310,7 +307,7 @@ public class GestorArtigos implements Serializable{
         int count = 0;
         while(it.hasNext()){
             aux = it.next();
-            artigo = produtos_pendentes.get(aux);
+            artigo = getArtigoById(aux);
             if(!(artigo.isNovo())) count++;
         }
         return count;

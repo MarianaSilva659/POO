@@ -161,4 +161,9 @@ public class Transportadora implements Serializable {
         double temp = getFaturação();
         setFaturação(temp + getPrecoEncomenda(tamanho_da_encomenda));
     }
+
+    public void corrigirTransportadora(int transportadora){
+        double temp = getFaturação();
+        setFaturação(temp - getPrecoEncomenda(transportadora));
+    }
 }
