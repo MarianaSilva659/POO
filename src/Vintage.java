@@ -298,8 +298,6 @@ public class Vintage implements Serializable {
      }
 
     public void cancelarEncomenda(Collection<String> conjuntoDeArtigos, int id){
-        //utilizadores.cancelarArtigosVendedor(dados_de_devolução);
-        //utilizadores.devolverArtigosComprador(conjuntoDeArtigos, id);
         artigos.devolverArtigos(conjuntoDeArtigos);
     }
 
@@ -324,7 +322,6 @@ public class Vintage implements Serializable {
 
 
     public boolean devolverEncomenda(int id_comprador){
-        LocalDate dataAtual = LocalDate.now();
         if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().isVazia() == false) && (podeDevolverEnc(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getData()) == true)){
             this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);
             return true;

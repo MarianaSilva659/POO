@@ -164,6 +164,7 @@ public class Encomenda implements Serializable{
         this.encomenda.remove(id);
     }
 
+    //ignore
     public void devolverEncomenda(Vintage vintage){
         Collection<Pair<Integer, Pair <String, Double>>> dadosDeVenda = vintage.getDadosDeVenda(getEncomenda());
         vintage.devolverArtigosVendedor(dadosDeVenda);
