@@ -76,13 +76,9 @@ public class ControladorCentral implements Interface{
                     try {
                         vintage = Vintage.loadState("state.obj");
                         System.out.println("Foi atualizado com sucesso\n");
-                    }
-
-                    catch(ClassNotFoundException a) {
+                    }catch(ClassNotFoundException a) {
                         System.out.println("ClassNotFoundException");
-                    }
-
-                    catch(IOException a){
+                    }catch(IOException a){
                         menu.avisos(5);
                     }
                     correrPrograma();
@@ -91,12 +87,9 @@ public class ControladorCentral implements Interface{
                     try {
                         vintage.saveState("state.obj");
                         System.out.println("Foi gravado com sucesso\n");
-                    }
-                    catch(NotSerializableException a){
+                    }catch(NotSerializableException a){
                         System.out.println("NotSerializableException");
-                    }
-
-                    catch(IOException a) {
+                    }catch(IOException a) {
                         menu.avisos(6);
                     }
                     correrPrograma();

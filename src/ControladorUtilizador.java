@@ -60,6 +60,9 @@ public class ControladorUtilizador implements InterfaceUtilizadores {
                     vintage.mostraTodosArtigos();
                 break;
                 case 4:
+                    vintage.encomendaEmitidasVendedor(vintage.getIdUtilizador(email));
+                break;
+                case 5:
                     controladorCentral.correrPrograma();
                 break;
                 case 0:
