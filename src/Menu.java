@@ -19,8 +19,8 @@ public class Menu {
         str.append("4 -> Registar nova conta para Transportadora\n");
         str.append("5 -> Qual o Vendedor que mais faturou?\n");
         str.append("6 -> Qual a Transportadora com maior volume de faturação?\n");
-        str.append("7 -> Maiores compradores do sistema\n");
-        str.append("8 -> Maiores vendedores do sistema\n");
+        str.append("7 -> Maiores compradores do sistema num período\n");
+        str.append("8 -> Maiores vendedores do sistema num período\n");
         str.append("9 -> Quanto dinheiro ganou a Vintage\n");
         str.append("10 -> Atualizar para a última versão guardada\n");
         str.append("11 -> Gravar versão\n");
@@ -158,25 +158,30 @@ public class Menu {
         }
         if (opcao == 1) return new LocalDate[] { null, null };
         else if (opcao == 2) {
-            LocalDate[] datas = new LocalDate[2];
-            boolean validDates = false;
-            while (!validDates) {
-                try {
-                    input.nextLine();
-                    String startDateString = scannerString("Insira a data de início (yyyy-MM-dd): ", input);
-                    String endDateString = scannerString("Insira a data de término (yyyy-MM-dd): ", input);
-                    datas[0] = LocalDate.parse(startDateString);
-                    datas[1] = LocalDate.parse(endDateString);
-                    validDates = true;
-                } catch (DateTimeParseException e) {
-                    System.out.println("\n!!!Datas inválidas. Insira as datas no formato correto (yyyy-MM-dd)!!!\nPress Enter...");
-                }
-            }
-            return datas;
+            return obterDatas();
         }
         return null;
     }
 
+    public LocalDate[] obterDatas() {
+        LocalDate[] datas = new LocalDate[2];
+        boolean validDates = false;
+    
+        Scanner input = new Scanner(System.in);
+    
+        while (!validDates) {
+            try {
+                String startDateString = scannerString("Insira a data de início (yyyy-MM-dd): ", input);
+                String endDateString = scannerString("Insira a data de término (yyyy-MM-dd): ", input);
+                datas[0] = LocalDate.parse(startDateString);
+                datas[1] = LocalDate.parse(endDateString);
+                validDates = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("\n!!!Datas inválidas. Insira as datas no formato correto (yyyy-MM-dd)!!!\n");
+            }
+        }
+        return datas;
+    }
 }
 
 

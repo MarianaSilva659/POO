@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.NotSerializableException;
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Collection;
 
@@ -19,6 +20,7 @@ public class ControladorCentral implements Interface{
     }
 
     public void correrPrograma(){
+        LocalDate[] datas;
         boolean errorMessage = false;
         while(true){
             int opcaoEscolhida = -1;
@@ -62,14 +64,16 @@ public class ControladorCentral implements Interface{
                     }
                 break;
                 case 5:
-                    menu.MenuVendedorFaturou();
+                    datas = menu.MenuVendedorFaturou();
                     vintage.getMaiorVendedor();
                 break;
                 case 6: //Transportadora que mais faturou
                 break;
                 case 7: //maiores compradores da vintage
+                    datas = menu.obterDatas();
                 break;
                 case 8: //maiores vendedores da vintage
+                    datas = menu.obterDatas();
                 break;
                 case 9:
                     vintage.lucroVintage();

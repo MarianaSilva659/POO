@@ -37,7 +37,7 @@ public class MenuUtilizador {
 
     public int Menu() throws IllegalArgumentException{
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU UTILIZADOR-----------\n\n");
-        sb.append("1 -> Deseja comprar\n");
+        sb.append("1 -> Deseja comprar ou tratar da encomenda\n");
         sb.append("2 -> Deseja vender\n");
         sb.append("3 -> Ver todos os artigos dispiníveis\n");
         sb.append("4 -> Deseja ver todos os artigos que já vendeu?\n");

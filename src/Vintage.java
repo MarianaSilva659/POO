@@ -125,25 +125,28 @@ public class Vintage implements Serializable {
         Transportadora t = this.transportes.getTransportadoraById(id);
         t.setValorBase_PEQ(peq);
         this.transportes.setTransporte(t);
+        System.out.println(t);
     }
     
     public void novoValorMED(double med, int id){
         Transportadora t = this.transportes.getTransportadoraById(id);
         t.setValorBase_MED(med);
         this.transportes.setTransporte(t);
+        System.out.println(t);
     }
 
     public void novoValorGRA(double gra, int id){
         Transportadora t = this.transportes.getTransportadoraById(id);
         t.setValorBase_GRA(gra);
         this.transportes.setTransporte(t);
+        System.out.println(t);
     }
 
     public void novaMargemLucro(double margem, int id){
         Transportadora t = this.transportes.getTransportadoraById(id);
         t.setMargemLucro(margem);
         this.transportes.setTransporte(t);
-        System.out.println(transportes);
+        System.out.println(t);
     }
 
     public void novoValoresTransporte(double peq, double med, double gra, double margem, int id){
