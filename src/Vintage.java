@@ -82,7 +82,9 @@ public class Vintage implements Serializable {
     
     public static LocalDate getTime(){
         LocalDate atualizaDate = LocalDate.now();
-        if(getTime().isEqual(atualizaDate) == false) setTime(atualizaDate);
+        if (data.isBefore(atualizaDate)){
+            data = atualizaDate;
+        }
         return data;
     }
 
