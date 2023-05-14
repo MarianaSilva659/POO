@@ -21,7 +21,7 @@ public class Menu {
         str.append("6 -> Qual a Transportadora com maior volume de faturação?\n");
         str.append("7 -> Maiores compradores do sistema num período\n");
         str.append("8 -> Maiores vendedores do sistema num período\n");
-        str.append("9 -> Quanto dinheiro ganou a Vintage\n");
+        str.append("9 -> Quanto dinheiro ganhou a Vintage\n");
         str.append("10 -> Atualizar para a última versão guardada\n");
         str.append("11 -> Gravar versão\n");
         str.append("0 -> Sair\n\n");
@@ -131,6 +131,7 @@ public class Menu {
         if (a==4) sb.append("!!!Identificador já existe!!!").append("\n");
         if (a==5) sb.append("!!!Load falhou!!!").append("\n");
         if (a==6) sb.append("!!!Save falhou!!!").append("\n");
+        if (a==7) sb.append("!!!\nAinda não existem vendedores no sistema!!!").append("\n");
         sb.append("\nPressione no enter...");
         System.out.print(sb.toString());
         Scanner scanner = new Scanner(System.in);

@@ -411,13 +411,6 @@ public class Vintage implements Serializable {
         return this.utilizadores.getContaByCod(id_comprador).getEncomenda().calculaPreço(this);
     }
 
-    //MAIOR VENDEDOR DE SEMPRE
-    public void getMaiorVendedor(){
-        Utilizador vendedorMaisfaturou = this.utilizadores.getMaiorVendedor();
-        
-        System.out.println("Vendedor " + vendedorMaisfaturou.getNome() + " faturou um total de " + vendedorMaisfaturou.getDinheiro_faturado() + '€');
-    }
-
     //ARTIGOS VENDIDOS DE UM UTILIZADOR
     public void encomendaEmitidasVendedor(int id_vendedor){
         Collection<String> artigos = this.utilizadores.getContaByCod(id_vendedor).getID_Artigos_vendidos();
@@ -460,4 +453,57 @@ public class Vintage implements Serializable {
    public void lucroVintage(){
     System.out.println("A Vintage já ganhou " + Vintage.getLucro() + '€');
    }
+
+    public void getMaiorVendedor(){
+        Utilizador vendedorMaisfaturou = this.utilizadores.getMaiorVendedor();
+        System.out.println("Vendedor " + vendedorMaisfaturou.getNome() + " faturou um total de " + vendedorMaisfaturou.getDinheiro_faturado() + '€');
+    }
+
+    public boolean getMelhorVendedor(LocalDate date1, LocalDate date2){
+        if(!this.utilizadores.isVazio()){
+            if((date1 == null) && (date2 == null)){
+                getMaiorVendedor();
+            }
+            else{
+                Pair<String, Double> vendedor = this.utilizadores.getMelhorVendedorEntreDuasDatas(date1, date2, this);
+                System.out.println("Vendedor " + vendedor.getFirst() + " faturou um total de " + vendedor.getSecond() + '€');
+            }
+            return true;
+        }
+        else return false;   
+   }
+
+   public boolean getMelhoresVendedores(LocalDate date1, LocalDate date2){
+    if(!this.utilizadores.isVazio()){
+        Map<String, Double> vendedores = this.utilizadores.getMelhoresVendedoresEntreDuasDatas(date1, date2, this);
+        Iterator<Map.Entry<String, Double>> iterator = vendedores.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+                Map.Entry<String, Double> entry = iterator.next();
+                String vendedor = entry.getKey();
+                Double valor = entry.getValue();
+                System.out.println("Vendedor: " + vendedor + ", Valor: " + valor);
+        }
+        return true;
+    }
+    else return false;   
+}
+
+public boolean getMelhoresCompradoresEntreDuasDatas(LocalDate date1, LocalDate date2){
+    if(!this.utilizadores.isVazio()){
+        Map<String, Double> vendedores = this.utilizadores.getMelhoresCompradoresEntreDuasDatas(date1, date2, this);
+        Iterator<Map.Entry<String, Double>> iterator = vendedores.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+                Map.Entry<String, Double> entry = iterator.next();
+                String vendedor = entry.getKey();
+                Double valor = entry.getValue();
+                System.out.println("Compradores: " + vendedor + ", Valor: " + valor);
+        }
+        return true;
+    }
+    else return false;   
+}
+
+   
 }

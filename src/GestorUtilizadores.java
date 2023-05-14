@@ -143,13 +143,6 @@ public class GestorUtilizadores implements Serializable{
         }
     }
 
-    /* 
-    public void devolverArtigosVendedor(Pair < String ,Integer> dados_de_devolução){
-        Utilizador utilizador;
-            utilizador = getContaById(dados_de_devolução.getSecond());
-            utilizador.devolverArtigoVendedor(dados_de_devolução.getFirst());
-    }
-    */
 
     public void devolverArtigosComprador(Collection<String> artigosID, int id_comprador){
         Iterator<String> it = artigosID.iterator();
@@ -254,4 +247,7 @@ public class GestorUtilizadores implements Serializable{
         return best;
     }
 
+    public boolean isVazio(){
+        return this.contas.isEmpty();
+    }
 }

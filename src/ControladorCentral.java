@@ -65,7 +65,7 @@ public class ControladorCentral implements Interface{
                 break;
                 case 5:
                     datas = menu.MenuVendedorFaturou();
-                    vintage.getMaiorVendedor();
+                    if(!vintage.getMelhorVendedor(datas[0], datas[1])) menu.avisos(7);
                 break;
                 case 6: //Transportadora que mais faturou
                 break;
@@ -74,6 +74,7 @@ public class ControladorCentral implements Interface{
                 break;
                 case 8: //maiores vendedores da vintage
                     datas = menu.obterDatas();
+                    if(!vintage.getMelhoresVendedores(datas[0], datas[1])) menu.avisos(7); //!!!!
                 break;
                 case 9:
                     vintage.lucroVintage();
