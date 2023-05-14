@@ -126,15 +126,35 @@ public class Encomenda implements Serializable{
         return preço;
     }
 
-    public void finalizarCompra(Vintage vintage){
+    
+    public double finalizarCompra(Vintage vintage){
         Collection<Pair<Integer, Pair <String, Double>>> dadosDeVenda = vintage.getDadosDeVenda(getEncomenda());
         vintage.updateVendedores(dadosDeVenda);
+        vintage.updateVintage(this.getEncomenda());
         vintage.finalizarArtigos(this.getEncomenda());
+        Set<String> artigos = this.getEncomenda(); 
+        Collection<Integer> listaDeTransportadorasDeArtigosNãoPremiumComRepetição = vintage.getTransportadoras(artigos);
+        Iterator<Integer> it_transpotadoras = listaDeTransportadorasDeArtigosNãoPremiumComRepetição.iterator();
+        Map<Integer, Integer> listadeTransportadoras = new HashMap<>();
+        Integer aux;
+        while(it_transpotadoras.hasNext()){
+            aux = it_transpotadoras.next();
+            if(listadeTransportadoras.containsKey(aux)){
+                int currentvalue = listadeTransportadoras.get(aux);
+                listadeTransportadoras.put(aux, currentvalue+1);
+            }else{
+                listadeTransportadoras.put(aux, 1);
+            }
+        }
+        vintage.updateTransportadora(listadeTransportadoras);
+        double preço = calculaPreço(vintage);
+        vintage.updateComprador(getEncomenda(), this.id_comprador, preço);
+        return preço;
     }
 
-    public void devolverEncomenda(Vintage vintage){
+    public void cancelarEncomenda(Vintage vintage){
         Collection<Pair <String ,Integer>> dados_de_devolução = vintage.getVendedores(getEncomenda());
-        vintage.devolverArtigos(dados_de_devolução, getEncomenda(), this.id_comprador);
+        vintage.cancelarEncomenda(dados_de_devolução, getEncomenda(), this.id_comprador);
         this.encomenda = new HashSet<>();
     }
 

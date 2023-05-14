@@ -123,6 +123,10 @@ public abstract class Artigo implements Serializable {
         return false;
     }
 
+    public boolean isNovo(){
+        return numeroDonos == 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

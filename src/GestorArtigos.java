@@ -290,4 +290,29 @@ public class GestorArtigos implements Serializable{
         }
     }
 
+    public int getNumNovos(Collection <String> artigosID){
+        Iterator<String> it = artigosID.iterator();
+        String aux;
+        Artigo artigo;
+        int count = 0;
+        while(it.hasNext()){
+            aux = it.next();
+            artigo = produtos_pendentes.get(aux);
+            if(artigo.isNovo()) count++;
+        }
+        return count;
+    }
+
+    public int getNumUsados(Collection <String> artigosID){
+        Iterator<String> it = artigosID.iterator();
+        String aux;
+        Artigo artigo;
+        int count = 0;
+        while(it.hasNext()){
+            aux = it.next();
+            artigo = produtos_pendentes.get(aux);
+            if(!(artigo.isNovo())) count++;
+        }
+        return count;
+    }
 }

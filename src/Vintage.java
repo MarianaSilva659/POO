@@ -17,6 +17,8 @@ public class Vintage implements Serializable {
     private GestorTransportes transportes;
     private static double imposto = 23;
     private static LocalDate timeVintage;
+    private static double lucro;
+
 
     public Vintage() {
         this.artigos = new GestorArtigos();
@@ -28,6 +30,46 @@ public class Vintage implements Serializable {
         this.artigos = v.artigos;
         this.utilizadores = v.utilizadores;
         this.transportes = v.transportes;
+    }
+
+    public static double getLucro(){
+        return lucro;
+    }
+
+    public static void setLucro(double valor){
+        lucro = valor;
+    }
+
+    public static void addLucro(double valor){
+        lucro+=valor;
+    }
+
+    public static void subLucro(double valor){
+        lucro-=valor;
+    }
+
+    public GestorArtigos getArtigos() {
+        return this.artigos;
+    }
+
+    public void setArtigos(GestorArtigos artigos) {
+        this.artigos = artigos;
+    }
+
+    public GestorUtilizadores getUtilizadores() {
+        return this.utilizadores;
+    }
+
+    public void setUtilizadores(GestorUtilizadores utilizadores) {
+        this.utilizadores = utilizadores;
+    }
+
+    public GestorTransportes getTransportes() {
+        return this.transportes;
+    }
+
+    public void setTransportes(GestorTransportes transportes) {
+        this.transportes = transportes;
     }
 
     public static double getImposto(){
@@ -251,8 +293,8 @@ public class Vintage implements Serializable {
         return this.artigos.getVendedores(artigosID);
      }
 
-    public void devolverArtigos(Collection<Pair <String ,Integer>> dados_de_devolução, Collection<String> conjuntoDeArtigos, int id){
-        utilizadores.devolverArtigosVendedor(dados_de_devolução);
+    public void cancelarEncomenda(Collection<Pair <String ,Integer>> dados_de_devolução, Collection<String> conjuntoDeArtigos, int id){
+        utilizadores.cancelarArtigosVendedor(dados_de_devolução);
         utilizadores.devolverArtigosComprador(conjuntoDeArtigos, id);
         artigos.devolverArtigos(conjuntoDeArtigos);
     }
@@ -277,10 +319,11 @@ public class Vintage implements Serializable {
         return this.utilizadores.getEmailById(id);
     }
 
+
     public boolean devolverEncomenda(int id_comprador){
         LocalDate dataAtual = LocalDate.now();
         if((this.utilizadores.getContaByCod(id_comprador).getEncomenda().EncomendaVazia() == false) && (podeDevolverEnc(this.utilizadores.getContaByCod(id_comprador).getEncomenda().getDataCriacao()) == true)){
-            this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);
+          //  this.utilizadores.getContaByCod(id_comprador).getEncomenda().devolverEncomenda(this);
             return true;
         }
         else return false;
@@ -303,6 +346,10 @@ public class Vintage implements Serializable {
 
     public void finalizarArtigos(Collection<String> artigosID){
         artigos.finalizarArtigos(artigosID);
+    }
+
+    public void updateComprador(Collection<String> artigosID, int id, double preço){
+        utilizadores.updateComprador(artigosID, id, preço);
     }
 
     public boolean cancelaArtigoEnc(int id, String cod){
@@ -345,4 +392,19 @@ public class Vintage implements Serializable {
     }
 
 
+   public void updateTransportadora(Map<Integer, Integer> transportadora){
+    transportes.updateTransportadora(transportadora);
+   }
+
+   public void updateVintage(Collection<String> artigosID){
+    int novos = artigos.getNumNovos(artigosID);
+    int usados = artigos.getNumUsados(artigosID);
+    Vintage.addLucro(0.5 * novos + 0.25 * usados);
+   }
+
+   public void removeLucroFromVintage(Collection<String> artigosID){
+    int novos = artigos.getNumNovos(artigosID);
+    int usados = artigos.getNumUsados(artigosID);
+    Vintage.subLucro(0.5 * novos + 0.25 * usados);
+   }
 }

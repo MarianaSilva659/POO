@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.Map.Entry;
 import java.util.Iterator;
 
 public class GestorTransportes implements Serializable {
@@ -97,7 +98,7 @@ public class GestorTransportes implements Serializable {
             t = iterator.next();
             Transportadora transportadora = t.getValue();
 
-            if (transportadora.getEncPremium() == true) {
+            if (transportadora.isPremium() == true) {
                 transportesPremium.put(t.getKey(), transportadora);
             }
         }
@@ -106,10 +107,17 @@ public class GestorTransportes implements Serializable {
 
     public double getPreçoTransportadora(int id, int num_artigos){
         Transportadora t = getTransportadoraById(id);
-        if(num_artigos == 1){
-           return t.getPrecoEncomendaPEQ();
-    }else if(num_artigos <= 5){
-        return t.getPrecoEncomendaMED();
-    }else return t.getPrecoEncomendaGRA();
-}
+      return t.getPrecoEncomenda(num_artigos);
+    }
+
+    public void updateTransportadora(Map<Integer, Integer> transportadora){
+        Iterator<Map.Entry<Integer, Integer>> it = transportadora.entrySet().iterator();
+        Map.Entry<Integer, Integer> aux;
+        Transportadora t;
+        while(it.hasNext()){
+            aux = it.next();
+            t = transportes.get(aux.getKey());
+            t.updateTransportadora(aux.getValue());
+        }
+    }
 }

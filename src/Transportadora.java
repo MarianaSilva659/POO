@@ -7,16 +7,18 @@ public class Transportadora implements Serializable {
     private double valorBase_MED;
     private double valorBase_GRA;
     private double margemLucro; // percentagem
-    private boolean EncPremium; //aceita encomendas premium?
+    private boolean Premium; //aceita encomendas premium?
     private int idTransporte;
+    private double faturação;
 
     public Transportadora(){
         this.valorBase_MED = 0;
         this.valorBase_PEQ = 0;
         this.valorBase_GRA = 0;
         this.margemLucro = 0;
-        this.EncPremium = false;
+        this.Premium = false;
         this.idTransporte = 0;
+        this.faturação = 0;
     }
 
     public Transportadora(double baseMed,double basePeq,double baseGra,double margemLucro, boolean EncPremium, int idTransporte){
@@ -24,8 +26,9 @@ public class Transportadora implements Serializable {
         this.valorBase_PEQ = basePeq;
         this.valorBase_GRA = baseGra;
         this.margemLucro = margemLucro;
-        this.EncPremium = EncPremium;
+        this.Premium = EncPremium;
         this.idTransporte = idTransporte;
+        this.faturação = 0;
     }
 
     public Transportadora(Transportadora t){
@@ -33,8 +36,17 @@ public class Transportadora implements Serializable {
         this.valorBase_PEQ = t.getValorBase_PEQ();
         this.valorBase_GRA = t.getValorBase_GRA();
         this.margemLucro = t.getMargemLucro();
-        this.EncPremium = t.getEncPremium();
+        this.Premium = t.isPremium();
         this.idTransporte = t.getIdTransporte();
+        this.faturação = t.getFaturação();
+    }
+
+    public double getFaturação() {
+        return this.faturação;
+    }
+
+    public void setFaturação(double faturação) {
+        this.faturação = faturação;
     }
 
     public double getValorBase_PEQ() {
@@ -69,12 +81,12 @@ public class Transportadora implements Serializable {
         this.margemLucro = margemlucro;
     }
 
-    public boolean getEncPremium() {
-        return this.EncPremium;
+    public boolean isPremium() {
+        return this.Premium;
     }
 
-    public void setEncPremium(boolean encPremium) {
-        this.EncPremium = encPremium;
+    public void setPremium(boolean encPremium) {
+        this.Premium = encPremium;
     }
 
     public int getIdTransporte() {
@@ -93,7 +105,7 @@ public class Transportadora implements Serializable {
                 ", ValorBase_MED=" + valorBase_MED +
                 ", ValorBase_GRA=" + valorBase_GRA +
                 ", MargemLucro=" + margemLucro +
-                ", EncPremium=" + EncPremium +
+                ", EncPremium=" + Premium +
                 "\n";
     }
 
@@ -106,7 +118,7 @@ public class Transportadora implements Serializable {
                 Double.compare(this.getValorBase_MED(), transportadora.getValorBase_MED()) == 0 &&
                 Double.compare(this.getValorBase_GRA(), transportadora.getValorBase_GRA()) == 0 &&
                 Double.compare(this.getMargemLucro(),transportadora.getMargemLucro()) == 0 &&
-                this.EncPremium == transportadora.getEncPremium() &&
+                this.Premium == transportadora.isPremium() &&
                 this.getIdTransporte() == transportadora.getIdTransporte();
     }
 
@@ -119,21 +131,34 @@ public class Transportadora implements Serializable {
         return Objects.hash(super.hashCode(), getValorBase_PEQ(), getValorBase_MED(), getValorBase_GRA(), getMargemLucro());
     }
 
-    public double getPrecoEncomendaPEQ(){
-        if(getEncPremium() == false) return getValorBase_PEQ() * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
+    private double getPrecoEncomendaPEQ(){
+        if(isPremium() == false) return getValorBase_PEQ() * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
         
-        else return (getValorBase_PEQ() * 3) * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
+        else return getValorBase_PEQ() * 3 * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
     }
 
-    public double getPrecoEncomendaMED(){
-        if(getEncPremium() == false) return getValorBase_MED() * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
+    private double getPrecoEncomendaMED(){
+        if (isPremium() == false) return getValorBase_MED() * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
 
-        else return (getValorBase_MED() * 3) * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
+        else return getValorBase_MED() * 3 * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
     }
 
-    public double getPrecoEncomendaGRA(){
-        if(getEncPremium() == false) return getValorBase_GRA() * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
+    private double getPrecoEncomendaGRA(){
+        if(isPremium() == false) return getValorBase_GRA() * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
         
-        else return (getValorBase_MED() * 3) * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
+        else return getValorBase_GRA() * 3 * getMargemLucro() * (1 + Vintage.getImposto()) * 0.9;
+    }
+
+    public double getPrecoEncomenda(int tamanho_da_encomenda){
+        if(tamanho_da_encomenda == 1){
+          return  getPrecoEncomendaPEQ();
+        }else if((tamanho_da_encomenda > 1) && (tamanho_da_encomenda <= 5)){
+            return getPrecoEncomendaMED();
+        }else return getPrecoEncomendaGRA();
+    }
+
+    public void updateTransportadora(int tamanho_da_encomenda){
+        double temp = getFaturação();
+        setFaturação(temp + getPrecoEncomenda(tamanho_da_encomenda));
     }
 }

@@ -12,6 +12,7 @@ public class Utilizador implements Serializable{
     private Set<String> artigos_vendidos;
     private Set<String> artigos_para_venda;
     private double dinheiro_faturado;
+    private double dinheiro_gasto;
     private Encomenda encomenda;
 
     public Utilizador(){
@@ -27,7 +28,7 @@ public class Utilizador implements Serializable{
         this.encomenda = new Encomenda(this.id);
     }
 
-    public Utilizador(int id, String email, String nome, String morada, int nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda, double dinheiro) {
+    public Utilizador(int id, String email, String nome, String morada, int nif, Set<String> compras, Set<String> vendidas, Set<String> pra_venda, double dinheiro_faturado) {
         this.id = id;
         this.email = email;
         this.nome = nome;
@@ -75,6 +76,14 @@ public class Utilizador implements Serializable{
 
     public int getId() {
         return this.id;
+    }
+
+    public double getDinheiro_gasto() {
+        return this.dinheiro_gasto;
+    }
+
+    public void setDinheiro_gasto(double dinheiro_gasto) {
+        this.dinheiro_gasto = dinheiro_gasto;
     }
 
     public void setId(int id) {
@@ -212,7 +221,7 @@ public class Utilizador implements Serializable{
         add(artigo_id);
     }
 
-    public void devolverArtigoVendedor(String artigo){
+    public void cancelarArtigoVendedor(String artigo){
         artigos_vendidos.remove(artigo);
         artigos_para_venda.add(artigo);
     }
@@ -224,5 +233,12 @@ public class Utilizador implements Serializable{
     public void removeArtigoFromComprados(String artigo){
         artigos_comprados.remove(artigo);
     }
+
+    public void addToComprados(String artigo){
+        artigos_comprados.add(artigo);
+    }
     
+    public void addToDinheiroGasto(double dinheiro){
+        dinheiro_gasto += dinheiro;
+    }
 }

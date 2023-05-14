@@ -129,21 +129,21 @@ public class GestorUtilizadores implements Serializable{
         }
     }
 
-    public void devolverArtigosVendedor(Collection<Pair < String ,Integer>> dados_de_devolução){
+    public void cancelarArtigosVendedor(Collection<Pair < String ,Integer>> dados_de_devolução){
         Iterator<Pair<String, Integer>> it = dados_de_devolução.iterator();
         Pair<String, Integer> pair = new Pair<>(); 
         Utilizador utilizador;
         while(it.hasNext()){
             pair = it.next();
             utilizador = getContaById(pair.getSecond());
-            utilizador.devolverArtigoVendedor(pair.getFirst());
+            utilizador.cancelarArtigoVendedor(pair.getFirst());
         }
     }
 
     public void devolverArtigosVendedor(Pair < String ,Integer> dados_de_devolução){
         Utilizador utilizador;
             utilizador = getContaById(dados_de_devolução.getSecond());
-            utilizador.devolverArtigoVendedor(dados_de_devolução.getFirst());
+            utilizador.cancelarArtigoVendedor(dados_de_devolução.getFirst());
     }
 
     public void devolverArtigosComprador(Collection<String> artigosID, int id_comprador){
@@ -167,6 +167,7 @@ public class GestorUtilizadores implements Serializable{
         return email;
     }
 
+
     public Utilizador getMaiorVendedor(){
         Iterator<Map.Entry<Integer, Utilizador>> iterator = contas.entrySet().iterator();
         Map.Entry<Integer,Utilizador> c;
@@ -182,4 +183,16 @@ public class GestorUtilizadores implements Serializable{
             }
         return maiorvendedor;
     }
+
+    public void updateComprador(Collection<String> artigosID, int id, double preço){
+        Iterator<String> it = artigosID.iterator();
+        String aux;
+        Utilizador utilizador = this.getContaById(id);
+        while(it.hasNext()){
+            aux = it.next();
+            utilizador.addToComprados(aux);
+        }
+        utilizador.addToDinheiroGasto(preço);
+    }
+
 }
