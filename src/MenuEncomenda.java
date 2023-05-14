@@ -30,7 +30,7 @@ public class MenuEncomenda {
         return cod;
     }
 
-    public int MenuEncomenda(){
+    public int MenuEncomenda() throws IllegalArgumentException {
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU VENDAS-----------\n\n");
         sb.append("1 -> Deseja adicionar artigo há encomenda?\n");
         sb.append("2 -> Deseja remover artigo da encomenda?\n");

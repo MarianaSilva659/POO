@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 
 public class ControladorEncomenda implements InterfaceEncomendas{
     private MenuUtilizador menu;
@@ -15,7 +16,16 @@ public class ControladorEncomenda implements InterfaceEncomendas{
 
     public void run(Vintage vintage, int id){
         while(true){
-            int opcao = menuE.MenuEncomenda();
+            int opcao = -1;
+            do{
+                try {
+                    opcao = menuE.MenuEncomenda();
+                }catch (InputMismatchException e) {
+                    System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
+                }catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            } while (opcao < 0 || opcao > 6);
 
             switch(opcao){
                 case 1:

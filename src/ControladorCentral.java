@@ -30,7 +30,7 @@ public class ControladorCentral implements Interface{
                 }catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
-            } while (opcaoEscolhida < 0 || opcaoEscolhida > 7);
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 11);
             
             switch(opcaoEscolhida){
 

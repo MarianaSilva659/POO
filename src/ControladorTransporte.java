@@ -20,16 +20,12 @@ public class ControladorTransporte implements InterfaceTransportes{
             do{
                 try {
                     opcaoEscolhida = menu.MenuTransportes();
-                    if (opcaoEscolhida < 0 || opcaoEscolhida > 6) {
-                        throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 6\n");
-                    }
                 }catch (InputMismatchException e) {
                     System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
                 }catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
-            } while (opcaoEscolhida < 0 || opcaoEscolhida > 6);
-            
+            } while (opcaoEscolhida < 0 || opcaoEscolhida > 7);
             switch(opcaoEscolhida){
                 case 1:
                     vintage.novoValorPEQ(menu.MenuAlteraValor(opcaoEscolhida), id);

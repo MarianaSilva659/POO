@@ -26,7 +26,7 @@ public class MenuTransportes{
         inter.novoValores(peq, med, gra, margem, id);
     }
     
-    public int MenuTransportes(){
+    public int MenuTransportes() throws IllegalArgumentException{
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU TRANSPORTE----------\n\n");
         sb.append("1 -> Deseja alterar o valor base para encomendas pequenas?\n");
         sb.append("2 -> Deseja alterar o valor base para encomendas médias?\n");

@@ -39,7 +39,7 @@ public class MenuUtilizador {
         return opcaoEscolhida;
     }
 
-    public int MenuTipoDoArtigo(){
+    public int MenuTipoDoArtigo() throws IllegalArgumentException{
         StringBuilder sb = new StringBuilder("\n\n\n-----------MENU VENDAS-----------\n\n");
         sb.append("1 -> Deseja vender uma Mala padrão?\n");
         sb.append("2 -> Deseja vender uma Mala Premium?\n");

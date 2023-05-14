@@ -21,13 +21,13 @@ public class ControladorUtilizador implements InterfaceUtilizadores {
             do{
                 try {
                     opcaoEscolhida = menu.MenuUtilizador();
-                    System.out.println(opcaoEscolhida);
                 }catch (InputMismatchException e) {
-                    menu.avisos(1);
+                    System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
                 }catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
             } while (opcaoEscolhida < 0 || opcaoEscolhida > 4);
+            
             
             switch(opcaoEscolhida){
                 case 1:
@@ -38,16 +38,13 @@ public class ControladorUtilizador implements InterfaceUtilizadores {
                     do{
                         try {
                             opcao = menu.MenuTipoDoArtigo();
-                            if (opcao < 0 || opcao > 8) {
-                                throw new IllegalArgumentException("\n!!!!Opção inválida!!!! Digite um valor entre 0 e 8\n");
-                            }
                         }catch (InputMismatchException e) {
-                            menu.avisos(1);
+                            System.out.println("\n!!!!Digite um número inteiro válido!!!!\n");
                         }catch (IllegalArgumentException e) {
                             System.out.println(e.getMessage());
                         }
                     } while (opcao < 0 || opcao > 8);
-                    
+
                     vintage.mostraTransportes(opcao);
                     if((opcao == 1) || (opcao == 2)){
                          if(menu.MenuArtigoMalas(vintage.getIdUtilizador(email), opcao) == false) menu.avisos(2);
